@@ -1,2 +1,2 @@
-# e-docs-
+# e-Docs
 Documents sharing for teachers
