@@ -1,6 +1,6 @@
 <?php
 
-require_once "pers_define.php";
+//require_once "pers_define.php";
 
 define("IT_DATE_STYLE", 1);
 define("SQL_DATE_STYLE", 2);

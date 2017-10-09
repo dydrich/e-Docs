@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+require_once "MySQLException.php";
 
 class MySQLConnection extends mysqli{
 	
@@ -39,7 +41,7 @@ class MySQLConnection extends mysqli{
 	public function executeQuery($query) {
 		$bool = parent::query($query);
 		if(!$bool)
-			throw new MySQLException($this->error, 1, $query);
+			throw new \edocs\MySQLException($this->error, 1, $query);
 		return $bool;
 	}
 	
@@ -48,7 +50,7 @@ class MySQLConnection extends mysqli{
 	 */
 	public function executeUpdate($query) {
 		if(!parent::query($query))
-			throw new MySQLException($this->error, 2, $query);
+			throw new \edocs\MySQLException($this->error, 2, $query);
 		$index = strpos(strtolower($query), "insert");
 		if ($index !== false && $index == 0)
 			return $this->insert_id;
@@ -61,7 +63,7 @@ class MySQLConnection extends mysqli{
 	 */
 	public function executeCount($query){
 		if (!($result = parent::query($query))){
-			throw new MySQLException($this->error, 1, $query);
+			throw new \edocs\MySQLException($this->error, 1, $query);
 		}
 		if ($result->num_rows > 0){
 			$record = $result->fetch_assoc();
@@ -77,7 +79,7 @@ class MySQLConnection extends mysqli{
 	 */
 	public function prepare($query){
 		if (!($result = parent::prepare($query))){
-			throw new MySQLException($this->error, 1, $query);
+			throw new \edocs\MySQLException($this->error, 1, $query);
 		}
 		return $result;
 	}

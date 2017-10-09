@@ -8,6 +8,8 @@
 
 namespace edocs;
 
+require_once "CustomException.php";
+
 
 /**
  * Handles SQL errors

@@ -1,7 +1,7 @@
 <?php
 
 // local copy
-$db = new MySQLConnection("localhost", "root", "isildur", "registro_elettronico", "3306");
+$db = new MySQLConnection("localhost", "root", "isildur", "edocs", "3306");
 $db->set_charset("utf8");
 
 // keliweb copy

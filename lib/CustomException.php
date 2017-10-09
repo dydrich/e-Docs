@@ -9,7 +9,7 @@
 namespace edocs;
 
 
-abstract class CustomException extends Exception{
+abstract class CustomException extends \Exception {
     protected $message = 'Unknown exception';     // Exception message
     private $string;                              // Unknown
     protected $code = 0;                          // User-defined exception code
