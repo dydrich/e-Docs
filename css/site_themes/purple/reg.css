@@ -1,0 +1,233 @@
+html {
+    height: 100%
+}
+
+body {
+    background: rgb(224, 224, 224);
+    background: -moz-linear-gradient(90deg, rgb(224, 224, 224) 30%, rgb(189, 189, 189) 69%);
+    background: -webkit-linear-gradient(90deg, rgb(224, 224, 224) 30%, rgb(189, 189, 189) 69%);
+    background: -o-linear-gradient(90deg, rgb(224, 224, 224) 30%, rgb(189, 189, 189) 69%);
+    background: -ms-linear-gradient(90deg, rgb(224, 224, 224) 30%, rgb(189, 189, 189) 69%);
+    background: linear-gradient(180deg, rgb(224, 224, 224) 30%, rgb(189, 189, 189) 69%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+form {
+    border: 1px solid rgba(30, 67, 137, .9);
+}
+
+input, select, textarea {
+    background-color: rgba(243, 229, 245, .5);
+    border: 1px solid rgba(30, 67, 137, .6);
+}
+
+#header {
+    background-color: #7b1fa2;
+}
+
+#header a {
+    color: #FFFFFF;
+}
+
+#sc_firstrow {
+    color: rgb(255, 255, 255);
+}
+
+#sc_secondrow {
+    width: 40%;
+    font-size: 1.2em;
+    color: rgb(255, 255, 255);
+}
+
+#main {
+    padding: 0;
+}
+
+#main a {
+    color: #1E4389;
+}
+
+#right_col a {
+    color: #222222;
+    text-decoration: none;
+}
+
+#navigation {
+    color: #DDDDDD;
+    background-color: #9c27b0;
+}
+
+#navigation a {
+    color: #DDDDDD;
+}
+
+.nav_div {
+    color: white;
+}
+
+div.navigate a {
+    color: #003366;
+}
+
+.card a {
+    color: #9c27b0 !important;
+}
+
+.card_title a {
+    color: #9c27b0 !important;
+}
+
+div.card_title {
+    color: #9c27b0;
+}
+
+fieldset {
+    border: 1px solid #7b1fa2;
+}
+
+div.mdtabs {
+    background-color: #9c27b0;
+    top: -20px;
+}
+
+div.mdselected_tab {
+    color: #18ffff;
+    border-bottom: 2px solid #ffd740;
+}
+
+div.mdselected_tab a > span {
+    color: #FFFFFF !important;
+}
+
+.outline_line_wrapper {
+    color: #000000;
+    border: 1px solid #ffd740;
+}
+
+.rb_button {
+    background-color: #ffd740;
+}
+
+.rb_bg {
+    background-color: #FFF3E0;
+}
+
+.conf_frame {
+    border: 1px solid #7b1fa2;
+}
+
+.accent_button a, a.material_link, .material_label {
+    color: #9c27b0 !important;
+}
+
+.accent_decoration {
+    border-bottom: 1px solid #ffd740 !important;
+}
+
+.hover_row:hover {
+    background-color: #ffd740;
+    color: white;
+    border-radius: 4px;
+}
+
+.accent_color {
+    color: #ffd740;
+}
+
+.accent_color a {
+    color: #ffd740 !important;
+}
+
+#ticker li, #tr_ticker li {
+    border-bottom:1px solid #ffd740;;
+    background-color: white;
+}
+
+#ticker li a, #tr_ticker li a {
+    color: #1E4389 !important;
+}
+
+.icon_card {
+    background-color: #ffd740;
+    color: #202020;
+}
+
+.icon_card_accent {
+    background-color: #7B1FA2;
+    color: white;
+}
+
+.text_card {
+    color: #7B1FA2 !important;
+}
+
+.text_card a {
+    color: #7B1FA2 !important;
+}
+
+input.android:focus, select.android:focus, textarea.android:focus {
+   border-color: #9c27b0;
+}
+
+.main_700, .main_700 a {
+    color: #7b1fa2 !important;
+}
+
+.main_500, .main_500 a {
+    color: #9c27b0 !important;
+}
+
+.alert_msg, .error_msg, .confirm_msg {
+    background-color: #FFFFFF;
+    border: 1px solid #7b1fa2;
+}
+
+.alert_title, .confirm_title {
+    border-bottom: 1px solid #9c27b0;
+    color: #7b1fa2;
+}
+
+.error_title {
+    color: rgba(200, 6, 6, 1);
+    border-bottom: 1px solid #9c27b0;
+}
+
+.alert_title span, .error_title span, .confirm_title span {
+    padding-left: 10px;
+    font-size: 1em
+}
+
+.confirmbuttons {
+    border-top: 1px solid #ffd740;
+}
+
+.material_dark_bg {
+    background-color: #4a148c;
+}
+
+.material_light_bg {
+    background-color: #b39ddb;
+    color: #222222;
+}
+
+.popup_form {
+    border: 1px solid rgba(156, 39, 176, .6);
+}
+
+.float_button {
+    background-color: #7B1FA2 !important;
+    color: #ffffff;
+}
+
+.float_button:hover {
+    background-color: #FFD740 !important;
+    color: #000000;
+}
+
+#gotoday, #newweek {
+    background-color: #7b1fa2;
+    border-color: #7b1fa2;
+    color: white;
+    font-weight: bold;
+}

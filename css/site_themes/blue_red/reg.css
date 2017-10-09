@@ -1,0 +1,226 @@
+html {
+    height: 100%
+}
+
+body {
+    background: rgb(189, 189, 189);
+    background: -moz-linear-gradient(90deg, rgb(189, 189, 189) 30%, rgb(224, 224, 224) 69%);
+    background: -webkit-linear-gradient(90deg, rgb(189, 189, 189) 30%, rgb(224, 224, 224) 69%);
+    background: -o-linear-gradient(90deg, rgb(189, 189, 189) 30%, rgb(224, 224, 224) 69%);
+    background: -ms-linear-gradient(90deg, rgb(189, 189, 189) 30%, rgb(224, 224, 224) 69%);
+    background: linear-gradient(180deg, rgb(189, 189, 189) 30%, rgb(224, 224, 224) 69%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+form {
+    border: 1px solid rgba(30, 67, 137, .9);
+}
+
+input, select, textarea {
+    background-color: rgba(252, 228, 236, .3);
+    border: 1px solid rgba(30, 67, 137, .6);
+}
+
+#header {
+    background-color: #D01716;
+}
+
+#header a {
+    color: #FFFFFF;
+}
+
+#sc_firstrow {
+    color: rgb(255, 255, 255);
+}
+
+#sc_secondrow {
+    width: 40%;
+    font-size: 1.2em;
+    color: rgb(255, 255, 255);
+}
+
+#main {
+    padding: 0;
+}
+
+#main a {
+    color: #1E4389;
+}
+
+#right_col a {
+    color: #222222;
+}
+
+#navigation {
+    color: #DDDDDD;
+    background-color: #E51C23;
+}
+
+#navigation a {
+    color: #DDDDDD;
+}
+
+.nav_div {
+    color: rgb(255,255,255);
+}
+
+.card a {
+    color: #E51C23 !important;
+}
+
+div.card_title {
+    color: #D01716;
+}
+
+div.navigate a {
+    color: #003366;
+}
+
+fieldset {
+    border: 1px solid #E51C23;
+}
+
+div.mdtabs {
+    background-color: #E51C23;
+    top: -20px;
+}
+
+div.mdtab a > span {
+    color: #DDDDDD;
+}
+
+div.mdselected_tab {
+    color: #000000;
+    border-bottom: 2px solid #000000;
+}
+
+div.mdselected_tab a > span {
+    color: #FFFFFF !important;
+}
+
+.outline_line_wrapper {
+    border: 1px solid #4d73ff;
+    color: #000000;
+}
+
+.rb_button {
+    background-color: #4d73ff;
+}
+
+.rb_bg {
+    background-color: #FFF3E0;
+}
+
+.conf_frame {
+    border: 1px solid rgba(30, 67, 137, .6);
+}
+
+.accent_button a, a.material_link, .material_label {
+    color: #E51C23 !important;
+}
+
+.accent_color {
+    color: #E51C23;
+}
+
+.accent_color a {
+    color: #E51C23 !important;
+}
+
+.accent_decoration {
+    border-bottom: 1px solid #E51C23 !important;
+}
+
+p#menu_label, .pop_label {
+    border-bottom: 1px solid #E51C23;
+}
+
+#ticker li, #tr_ticker li {
+    color:#fff;
+    border-bottom:1px solid #E51C23;;
+    background-color: white;
+}
+
+#ticker li a, #tr_ticker li a {
+    color: #1E4389 !important;
+}
+
+.icon_card {
+    background-color: #4d73ff;
+    color: #202020;
+}
+
+.icon_card_accent {
+    background-color: #D01716;
+    color: white;
+}
+
+.text_card {
+    color: #D01716 !important;
+}
+
+.text_card a {
+    color: #D01716 !important;
+}
+
+input.android:focus, select.android:focus, textarea.android:focus {
+    border-color: #D01716;
+}
+
+.main_700, .main_700 a {
+    color: #D01716 !important;
+}
+
+.main_500, .main_500 a {
+    color: #D01716 !important;
+}
+
+.alert_msg, .error_msg, .confirm_msg {
+    background-color: #FFFFFF;
+    border: 1px solid #b71c1c;
+}
+
+.alert_title, .confirm_title {
+    border-bottom: 1px solid #D01716;
+    color: #b71c1c;
+}
+
+.error_title {
+    color: rgba(200, 6, 6, 1);
+    border-bottom: 1px solid #D01716;
+}
+
+.alert_title span, .error_title span, .confirm_title span {
+    padding-left: 10px;
+    font-size: 1em
+}
+
+.material_dark_bg {
+    background-color: #b71c1c;
+}
+
+.material_light_bg {
+    background-color: #2979ff;
+    color: #ffffff;
+}
+
+.popup_form {
+    border: 1px solid rgba(244, 67, 54, .6);
+}
+
+.float_button {
+    background-color: #D01716 !important;
+    color: #ffffff;
+}
+
+.float_button:hover {
+    background-color: #4d73ff !important;
+    color: #000000;
+}
+
+#gotoday, #newweek {
+    background-color: #B0120A;
+    border: 1px solid #B0120A;
+    color: white;
+}

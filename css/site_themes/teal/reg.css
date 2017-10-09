@@ -1,0 +1,262 @@
+html {
+    height: 100%
+}
+
+body {
+    background: rgb(224, 247, 250);
+    background: -moz-linear-gradient(90deg, rgb(224, 247, 250) 30%, rgb(178, 235, 242) 90%);
+    background: -webkit-linear-gradient(90deg, rgb(224, 247, 250) 30%, rgb(178, 235, 242) 90%);
+    background: -o-linear-gradient(90deg, rgb(224, 247, 250) 30%, rgb(178, 235, 242) 90%);
+    background: -ms-linear-gradient(90deg, rgb(224, 247, 250) 30%, rgb(178, 235, 242) 90%);
+    background: linear-gradient(180deg, rgb(224, 247, 250) 30%, rgb(178, 235, 242) 90%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+form {
+    border: 1px solid rgba(30, 67, 137, .9);
+}
+
+input, select, textarea {
+    background-color: rgba(224, 242, 241, .5);
+    border: 1px solid rgba(30, 67, 137, .6);
+}
+
+#header {
+    background-color: #00796B;
+}
+
+#header a {
+    color: #FFFFFF;
+}
+
+#sc_firstrow {
+    color: rgb(255, 255, 255);
+}
+
+#sc_secondrow {
+    width: 40%;
+    font-size: 1.0em;
+    color: rgb(255, 255, 255);
+}
+
+#main {
+    padding: 0;
+}
+
+#main a {
+    color: #1E4389;
+}
+
+#right_col a {
+    color: #222222;
+}
+
+#navigation {
+    color: #DDDDDD;
+    background-color: #009688;
+}
+
+#navigation a {
+    color: #DDDDDD;
+}
+
+.nav_div {
+    color: white;
+}
+
+.card a {
+    color: #009688 !important;
+}
+
+.card_title a {
+    color: #009688 !important;
+}
+
+div.card_title {
+    color: #009688;
+}
+
+div.navigate {
+    background-color: #FFFFFF;
+}
+
+div.navigate a {
+    color: #003366;
+}
+
+fieldset {
+    border: 1px solid #00796B;
+}
+
+.context_menu, #hid, #tipinota, .tooltip, #d_tp {
+    background-color: #F2FAF9;
+    padding: 10px;
+    border: 1px solid rgba(30, 67, 137, .2);
+    border-radius: 2px;
+    box-shadow: 0 0 5px #666;
+    color: #222222;
+    z-index: 100;
+    position: absolute;
+}
+.context_menu a, #pop a, #hid a, #tipinota a, #d_tp a {
+    text-decoration: none;
+    color: rgba(30, 67, 137, 1);
+}
+
+div.mdtabs {
+    background-color: #009688;
+    top: -20px;
+}
+
+div.mdtab a > span {
+    color: #DDDDDD;
+}
+
+div.mdselected_tab {
+    color: #18ffff;
+    border-bottom: 2px solid #000000;
+}
+
+div.mdselected_tab a > span {
+    color: #000000 !important;
+}
+
+.outline_line_wrapper {
+    top: -20px;
+    color: #000000;
+    border: 1px solid #009688;
+}
+
+.rb_button {
+    background-color: #18FFFF;
+}
+
+.rb_bg {
+    background-color: #FFF3E0;
+}
+
+.conf_frame {
+    border: 1px solid #4db6ac;
+}
+
+.accent_button a, a.material_link, .material_label {
+    color: #009688 !important;
+}
+
+.accent_decoration {
+    border-bottom: 1px solid #00b8d4 !important;
+}
+
+.hover_row:hover {
+    background-color: #0097A7;
+    color: white;
+    border-radius: 4px;
+}
+
+.accent_color {
+    color: #009688;
+}
+
+.accent_color a {
+    color: #009688 !important;
+}
+
+p#menu_label, .pop_label {
+    border-bottom: 1px solid #00796B;
+}
+
+#ticker li, #tr_ticker li {
+    border-bottom:1px solid #009688;;
+    background-color: white;
+}
+
+#ticker li a, #tr_ticker li a {
+    color: #1E4389 !important;
+}
+
+.icon_card {
+    background-color: #18FFFF;
+    color: #202020;
+}
+
+.icon_card_accent {
+    background-color: #00796B;
+    color: white;
+}
+
+.text_card {
+    color: #009688 !important;
+    font-weight: 600;
+}
+
+.text_card a {
+    color: #009688 !important;
+    font-weight: 600;
+}
+
+input.android:focus, select.android:focus, textarea.android:focus {
+    border-color: #009688;
+}
+
+.main_700, .main_700 a {
+    color: #00796B !important;
+}
+
+.main_500, .main_500 a {
+    color: #009688 !important;
+}
+
+.main_300 {
+    color: #4db6ac;
+}
+
+.alert_msg, .error_msg, .confirm_msg {
+    background-color: #FFFFFF;
+    border: 1px solid #00796B;
+}
+
+.alert_title, .confirm_title {
+    border-bottom: 1px solid #009688;
+    color: #00796B;
+}
+
+.error_title {
+    color: rgba(200, 6, 6, 1);
+    border-bottom: 1px solid #18FFFF;
+}
+
+.alert_title span, .error_title span, .confirm_title span {
+    padding-left: 10px;
+    font-size: 1em
+}
+
+.material_dark_bg {
+    background-color: #00695c;
+}
+
+.material_light_bg {
+    background-color: #4db6ac;
+    color: #222222;
+}
+
+.popup_form {
+    border: 1px solid rgba(0, 150, 136, .6);
+}
+
+.float_button {
+    background-color: #00796B !important;
+    color: #ffffff;
+}
+
+.float_button:hover {
+    background-color: #18FFFF !important;
+    color: #000000;
+}
+
+#gotoday, #newweek {
+    background-color: #00796B;
+    border-color: #00796B;
+    color: white;
+    font-weight: bold;
+}

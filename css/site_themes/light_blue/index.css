@@ -1,0 +1,111 @@
+*{margin:0;padding:0;}:focus,:active {outline:0}ul,ol{list-style:none}img{border:0}
+
+html {
+    height: 100%
+}
+
+body {
+    font-size: 12px;
+    height: 100%;
+    margin: 0;
+
+    background: rgb(30, 67, 137);
+    background: -moz-linear-gradient(90deg, rgb(30, 67, 137) 30%, rgb(90, 140, 250) 100%);
+    background: -webkit-linear-gradient(90deg, rgb(30, 67, 137) 30%, rgb(90, 140, 250) 100%);
+    background: -o-linear-gradient(90deg, rgb(30, 67, 137) 30%, rgb(90, 140, 250) 100%);
+    background: -ms-linear-gradient(90deg, rgb(30, 67, 137) 30%, rgb(90, 140, 250) 100%);
+    background: linear-gradient(180deg, rgb(30, 67, 137) 30%, rgb(90, 140, 250) 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+}
+
+
+.area {
+    width: 33%;
+    text-align: center;
+    flex: 1 1 auto;
+    align-self: flex-start;
+    margin-top: 100px;
+}
+
+.area div {
+    color: #1E4389;
+}
+
+#login_form {
+    width: 600px;
+    height: 330px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    margin: 20px auto 0 auto;
+    background-color: #FFF;
+}
+
+#_header {
+    margin: 100px auto 30px auto;
+    font-size: 1.6em;
+    text-transform: uppercase;
+    text-align: center;
+    width: 400px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    font-weight: bold;
+    display: block
+}
+
+#_header p {
+    font-size: 0.7em;
+    font-weight: normal;
+    line-height: 20px;
+    margin: 0;
+    padding-top: 10px;
+    text-transform: none
+}
+
+#_subheader{
+    font-size: 0.7em;
+    font-weight: normal;
+    line-height: 20px;
+    margin: 0;
+    padding-top: 10px;
+    text-transform: none
+}
+
+img {
+    width: 150px;
+}
+
+#parents, #students, #school {
+    width: 150px;
+    margin: auto;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    color: #1E4389;
+    font-weight: bold
+}
+
+a {
+    text-decoration: none
+}
+
+.alert_msg, .error_msg {
+    background-color: #FFFFFF;
+    border: 1px solid #01579b;
+}
+
+.alert_title {
+    border-bottom: 1px solid #0288D1;
+    color: #01579b;
+}
+
+.error_title {
+    color: rgba(200, 6, 6, 1);
+    border-bottom: 1px solid #03A9F4;
+}
+
+.alert_title span, .error_title span {
+    padding-left: 10px;
+    font-size: 1em
+}
