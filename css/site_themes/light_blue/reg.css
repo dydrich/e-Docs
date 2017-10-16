@@ -14,12 +14,11 @@ body {
 }
 
 form {
-    border: 1px solid rgba(30, 67, 137, .5);
+    border: 1px solid rgba(30, 67, 137, .15);
 }
 
 input, select, textarea {
-    background-color: rgba(225, 245, 254, .5);
-    border: 1px solid rgba(30, 67, 137, .6);
+
 }
 
 #header {
@@ -44,16 +43,12 @@ input, select, textarea {
 
 #sc_secondrow {
     width: 40%;
-    font-size: 1.2em;
+    font-size: 1.0em;
     color: rgb(255, 255, 255);
 }
 
 #main {
     padding: 0;
-}
-
-#main a {
-    color: #1E4389;
 }
 
 #right_col a {
@@ -119,7 +114,7 @@ div.mdtabs {
 }
 
 div.mdtab a > span {
-    color: #DDDDDD;
+    color: #EEEEEE;
 }
 
 div.mdselected_tab {

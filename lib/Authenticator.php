@@ -8,7 +8,7 @@ class Authenticator {
 	private $datasource;
 	private $response;
 
-    public function __construct(DataLoader $dl){
+    public function __construct(MySQLDataLoader $dl){
 		$this->datasource = $dl;
 		$this->response = array();
 	}
@@ -37,16 +37,13 @@ class Authenticator {
 	}
 
 	public function loginWithToken($token, $area) {
-	    $table = 'rb_users';
-        $field = 'uid';
-
-        $sel_user = "SELECT $field FROM $table WHERE token = '{$token}'";
+	    $sel_user = "SELECT uid FROM rb_users WHERE token = '{$token}'";
         $uid = $this->datasource->executeCount($sel_user);
         if ($uid == null || $uid == false) {
             return false;
         }
         $rb = RBUtilities::getInstance($this->datasource->getSource());
-        $user = $rb->loadUserFromUid($uid, $area);
+        $user = $rb->loadUserFromUid($uid);
 
         $smt = $this->datasource->prepare("UPDATE rb_users SET accesses_count = (rb_users.accesses_count + 1), previous_access = last_access, last_access = NOW() WHERE uid = ?");
 

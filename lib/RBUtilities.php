@@ -52,7 +52,7 @@ final class RBUtilities{
 				$ut = $this->datasource->executeQuery($sel_user);
 				$utente = $ut[0];
 
-				$user = new User($uid, $utente['firstname'], $utente['lastname'], $utente['username'], $utente['role']);
+				$user = new User($uid, $utente['firstname'], $utente['lastname'], $utente['username'], null, $utente['role'], $this->datasource);
 
 		return $user;
 	}

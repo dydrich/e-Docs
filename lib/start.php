@@ -3,6 +3,9 @@
 require_once "User.php";
 require_once "functions.lib.php";
 require_once "database.lib.php";
+require_once "define.php";
+require_once "MySQLException.php";
+require_once "data_source.php";
 
 session_start();
 
@@ -26,7 +29,7 @@ ini_set("default_charset", "utf-8");
 /*
  * default theme
  */
-//$id_theme = $db->executeCount("SELECT valore FROM rb_config WHERE variabile = 'selected_theme'");
-//$_SESSION['default_theme'] = $db->executeCount("SELECT directory FROM rb_themes WHERE id_tema = {$id_theme}");
+$id_theme = $db->executeCount("SELECT value FROM rb_settings WHERE var = 'theme'");
+$_SESSION['default_theme'] = $db->executeCount("SELECT directory FROM rb_themes WHERE id_tema = {$id_theme}");
 
 date_default_timezone_set("Europe/Rome");

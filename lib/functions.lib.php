@@ -1,60 +1,5 @@
 <?php
 
-//require_once "pers_define.php";
-
-define("IT_DATE_STYLE", 1);
-define("SQL_DATE_STYLE", 2);
-define("US_DATE_STYLE", 3);
-
-define("INSERT_OBJECT", 1);
-define("DELETE_OBJECT", 2);
-define("UPDATE_OBJECT", 3);
-
-// check_permission (vedi tabella gruppi)
-define("ADM_PERM", 1);
-define("DOC_PERM", 2);
-define("ATA_PERM", 4);
-define("GEN_PERM", 8);
-define("COO_PERM", 16);
-define("SEG_PERM", 32);
-define("DIR_PERM", 64);
-define("DSG_PERM", 128);
-define("STD_PERM", 256);
-define("APS_PERM", 512);
-define("AMS_PERM", 1024);
-define("AIS_PERM", 2048);
-
-/*
- * tipologie di finestra per check_session
- *
- */
-define("MAIN_WINDOW", 1);
-define("POPUP_WINDOW", 2);
-define("FAKE_WINDOW", 3);
-define("AJAX_CALL", 4);
-
-/*
- * ordini di scuola
- */
-define("MIDDLE_SCHOOL", 1);
-define("PRIMARY_SCHOOL", 2);
-define("FIRST_SCHOOL", 3);
-
-/*
- * paginazione
- */
-define("PREVIOUS", -1);
-define("NEXT", 1);
-define("INDEX_OUT_OF_BOUND", 0);
-
-/*
- * administration area groups
- */
-define("DS_GROUP", 6);
-define("SEG_GROUP", 5);
-define("DSGA_GROUP", 7);
-
-
 /**
 
         check_mail
@@ -200,10 +145,10 @@ function check_session($window = MAIN_WINDOW){
     if(!isset($_SESSION['__user__'])){
     	switch($window){
     		case POPUP_WINDOW:
-    			print("<script type='text/javascript'>alert('Sessione scaduta: rifai il login'); window.opener.document.location.href = '".$_SESSION['__config__']['root_site']."/index.php'; window.close();</script>");
+    			//print("<script type='text/javascript'>alert('Sessione scaduta: rifai il login'); window.opener.document.location.href = '".$_SESSION['__config__']['root_site']."/index.php'; window.close();</script>");
     			break;
     		case FAKE_WINDOW:
-    			print("<script type='text/javascript'>alert('Sessione scaduta: rifai il login'); window.parent.document.location.href = '".$_SESSION['__config__']['root_site']."/index.php';</script>");
+    			//print("<script type='text/javascript'>alert('Sessione scaduta: rifai il login'); window.parent.document.location.href = '".$_SESSION['__config__']['root_site']."/index.php';</script>");
     			break;
     		case AJAX_CALL:
     		case MAIN_WINDOW:

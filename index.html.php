@@ -13,7 +13,6 @@
           href="css/general.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
-    <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
     <script type="application/javascript">
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById('public').addEventListener('click', function () {

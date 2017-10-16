@@ -13,8 +13,6 @@ require_once "lib/Authenticator.php";
 //require_once "lib/EventLogFactory.php";
 
 $_SESSION['__path_to_root__'] = "/";
-//header("Content-type: text/plain");
-//header("Content-type: application/json");
 $response = array();
 
 $nick = $db->real_escape_string($_POST['my-username']);
@@ -28,28 +26,30 @@ try {
 	$response['status'] = "kosql";
 	$response['query'] = $ex->getQuery();
 	$response['message'] = $ex->getMessage();
-	echo json_encode($response);
+	$_SESSION['mysqlerror'] = $response;
+	// TODO: redirect to mysql error page
 	exit;
 } catch (Exception $e){
 	$response['status'] = "ko";
 	$response['message'] = $e->getMessage();
-	echo json_encode($response);
+	$_SESSION['mysqlerror'] = $response;
+	// TODO: redirect to mysql error page
 	exit;
 }
 
 if ($user == null) {
-	echo "null";
+	// TODO: redirect to access error page
 }
 
 $_SESSION['__user__'] = $user;
 if ($_POST['area'] == 'admin') {
-	header("Location: admin/index.html");
+	if ($user->getRole() != User::$ADMIN) {
+		// TODO: redirect to no permission page
+	}
+	header("Location: admin/index.php");
 }
 else {
-	header("Location: back/index.html");
+	header("Location: back/index.php");
 }
 
-//echo $authenticator->getStringAjax();
 $response = $authenticator->getResponse();
-//echo json_encode($response);
-//exit;

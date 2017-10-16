@@ -15,7 +15,7 @@ if (isset($_SESSION['__user__'])) {
 			// TODO: no_permission page
 		}
 		else {
-			header("Location: admin/index.html");
+			header("Location: admin/index.php");
 		}
 	}
 	else if ($_REQUEST['area'] == 'private'){
@@ -23,7 +23,7 @@ if (isset($_SESSION['__user__'])) {
 			// TODO: no_permission page
 		}
 		else {
-			header("Location: back/index.html");
+			header("Location: back/index.php");
 		}
 	}
 }
