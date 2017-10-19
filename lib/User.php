@@ -210,4 +210,11 @@ class User {
 
 		$this->datasource->executeUpdate($sql);
 	}
+
+	public function check_role($admitted) {
+    	if ($admitted != $this->role) {
+    		return false;
+		}
+		return true;
+	}
 }

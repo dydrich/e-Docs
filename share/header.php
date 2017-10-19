@@ -6,7 +6,10 @@
 	<div id="sc_secondrow">
 		<i class="material-icons" style="position: relative; top: 1px">person</i>
 		<span style="position: relative; margin-left: 5px; bottom: 5px">
-			<?php echo $_SESSION['__user__']->getFullName() ?>
+            <a href="#" onclick="show_user_menu(event)">
+                <?php echo $_SESSION['__user__']->getFullName() ?>
+                <i id="arrow" class="material-icons" style="position: relative; top: 8px">arrow_drop_down</i>
+            </a>
 		</span>
 	</div>
 </header>

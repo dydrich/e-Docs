@@ -7,6 +7,11 @@
  */
 require_once "../lib/start.php";
 
+check_session();
+check_role(User::$ADMIN);
+
+$_SESSION['area'] = 'admin';
+
 $users_count = $db->executeCount("SELECT COUNT(*) FROM rb_users WHERE role <> 3");
 
 $drawer_label = "Dashboard";

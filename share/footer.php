@@ -46,3 +46,17 @@
         </div>
     </div>
 </div>
+<div id="user_menu" class="mdc-elevation--z2">
+    <div class="item">
+        <a href="../profile.php">
+            <i class="material-icons">account_box</i>
+            <span>Profilo</span>
+        </a>
+    </div>
+    <div class="item">
+        <a href="../do_logout.php">
+            <i class="material-icons">cloud_off</i>
+            <span>Logout</span>
+        </a>
+    </div>
+</div>

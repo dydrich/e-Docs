@@ -1,30 +1,30 @@
 <div class="menu">
     <div class="menu_link">
-        <a href="index.php">
+        <a href="<?php echo ROOT_SITE."/admin/" ?>index.php">
             <i class="material-icons" style="">home</i>
             <span>Home</span>
         </a>
     </div>
 	<div class="menu_link">
-		<a href="users.php?active=1">
+		<a href="<?php echo ROOT_SITE."/admin/" ?>users.php?active=1">
 			<i class="material-icons" style="">people</i>
 			<span>Utenti e ruoli</span>
 		</a>
 	</div>
 	<div class="menu_link">
-		<a href="labels.php">
+		<a href="<?php echo ROOT_SITE."/admin/" ?>labels.php">
 			<i class="material-icons" style="">label</i>
 			<span>Materie e categorie</span>
 		</a>
 	</div>
 	<div class="menu_link">
-		<a href="labels.php">
+		<a href="<?php echo ROOT_SITE."/admin/" ?>settings.php">
 			<i class="material-icons" style="">settings</i>
 			<span>Configurazione sito</span>
 		</a>
 	</div>
 	<div class="menu_link">
-		<a href="labels.php">
+		<a href="<?php echo ROOT_SITE."/admin/" ?>labels.php">
 			<i class="material-icons" style="">playlist_add_check</i>
 			<span>Verifica integrità</span>
 		</a>

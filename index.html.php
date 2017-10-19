@@ -60,6 +60,9 @@
                 <div style="font-size: 1.3em">Area pubblica</div>
             </a>
         </div>
+        <footer id="footer" style="margin-right: 20px">
+            <span>Copyright <?php echo date("Y") ?> Riccardo Bachis </span>
+        </footer>
     </div>
 </section>
 </body>

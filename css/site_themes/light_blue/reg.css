@@ -43,8 +43,12 @@ input, select, textarea {
 
 #sc_secondrow {
     width: 40%;
-    font-size: 1.0em;
+    font-size: 0.8em;
     color: rgb(255, 255, 255);
+}
+
+#sc_secondrow a {
+    font-size: 1.1em;
 }
 
 #main {
@@ -61,7 +65,7 @@ input, select, textarea {
 }
 
 #navigation a {
-    color: #DDDDDD;
+    color: white;
 }
 
 .nav_div {
@@ -132,8 +136,8 @@ div.mdselected_tab a > span {
     border: 1px solid #00b8d4;
 }
 
-.rb_button {
-    background-color: #18FFFF;
+.rb_button, .mdc-fab, #newuser {
+    background-color: #FF528D;
 }
 
 .rb_bg {
@@ -145,11 +149,11 @@ div.mdselected_tab a > span {
 }
 
 .accent_button a, a.material_link, .material_label {
-    color: #0097A7 !important;
+    color: #c51162 !important;
 }
 
 .accent_decoration {
-    border-bottom: 1px solid #18ffff !important;
+    border-bottom: 1px solid #FF528D !important;
 }
 
 .hover_row:hover {
@@ -159,11 +163,11 @@ div.mdselected_tab a > span {
 }
 
 .accent_color {
-    color: #0097A7;
+    color: #c51162;
 }
 
 .accent_color a {
-    color: #0097A7 !important;
+    color: #c51162 !important;
 }
 
 #ticker li, #tr_ticker li {
@@ -249,11 +253,4 @@ input.android:focus, select.android:focus, textarea.android:focus {
 .float_button:hover {
     background-color: #18FFFF !important;
     color: #000000;
-}
-
-#gotoday, #newweek {
-    background-color: #0288D1;
-    border-color: #0288D1;
-    color: white;
-    font-weight: bold;
 }

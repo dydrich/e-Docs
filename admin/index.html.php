@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="../css/site_themes/<?php echo getTheme() ?>/reg.css" type="text/css" media="screen,projection" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <script type="application/javascript" src="../js/page.js"></script>
 </head>
 <body>
-<?php include_once "header.php" ?>
-<?php include_once "nav.php" ?>
+<?php include_once "../share/header.php" ?>
+<?php include_once "../share/nav.php" ?>
 <div id="main">
     <div id="right_col">
         <?php include_once "menu.php" ?>
@@ -138,9 +139,7 @@
     </div>
     <p class="spacer"></p>
 </div>
-<footer id="footer">
-    <span>Copyright <?php echo date("Y") ?> Riccardo Bachis </span>
-</footer>
+<?php include_once "../share/footer.php" ?>
 <script>
     (function() {
         var hoverEl = document.getElementById('stats_card');

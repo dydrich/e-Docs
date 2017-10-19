@@ -28,8 +28,8 @@
     </script>
 </head>
 <body>
-<?php include_once "header.php" ?>
-<?php include_once "nav.php" ?>
+<?php include_once "../share/header.php" ?>
+<?php include_once "../share/nav.php" ?>
 <div id="main">
     <div id="right_col">
 		<?php include_once "menu.php" ?>
@@ -41,7 +41,7 @@
                 <label class="mdc-textfield__label" for="username">Username</label>
                 <?php if (isset($user)): ?>
                 <a href="#" id="unlock" style="float: right">
-                    <i class="material-icons" id="ulk_i">edit</i>
+                    <i class="material-icons accent_color" id="ulk_i">edit</i>
                 </a>
                 <?php endif; ?>
             </div>
@@ -80,7 +80,7 @@
 	</div>
 	<p class="spacer"></p>
 </div>
-<?php include_once "footer.php" ?>
+<?php include_once "../share/footer.php" ?>
 <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 <script>
     window.mdc.autoInit();
@@ -133,11 +133,11 @@
                 uname.classList.toggle('disabled_link');
                 if (uname.disabled === true) {
                     document.getElementById('username').disabled = false;
-                    unlock.innerHTML = "<i class='material-icons'>block</i>";
+                    unlock.innerHTML = "<i class='material-icons accent_color'>block</i>";
                 }
                 else {
                     document.getElementById('username').disabled = true;
-                    unlock.innerHTML = "<i class='material-icons'>edit</i>";
+                    unlock.innerHTML = "<i class='material-icons accent_color'>edit</i>";
                 }
 
             });

@@ -37,7 +37,7 @@ class MySQLException extends CustomException{
             $this->errors = array();
             $this->errors['data'] = date("d/m/Y");
             $this->errors['ora'] = date("H:i:s");
-            $this->errors['ip_address'] = $_SERVER['REMOTE_ADDR'];
+            $this->errors['ip_address'] = $_SERVER['REMOTE_ADDRESS'];
             $this->errors['referer'] = $_SERVER['HTTP_REFERER'];
             $this->errors['script'] = $_SERVER['SCRIPT_NAME'];
             $this->errors['query'] = $this->sql;
@@ -70,7 +70,7 @@ class MySQLException extends CustomException{
      * @return String
      */
     function redirect(){
-        header("Location: ".$_SESSION['__config__']['root_site']."/shared/mysql_error.php");
+        header("Location: ".ROOT_SITE."/share/db_errors.php");
     }
 
     /**

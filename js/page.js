@@ -43,13 +43,6 @@ function in_array(ar, val){
     return false;
 }
 
-window.open_centered = function(url, name, width, height, options){
-	var leftS = (screen.width - width) / 2;
-	var topS = (screen.height - height) / 2;
-	var pop = this.open(url, name, 'width='+width+', height='+height+', left='+leftS+', top='+topS);
-	return pop;
-};
-
 Array.prototype.remove_by_value = function(val) {
     for(var i=0; i<this.length; i++) {
         if (this[i] === val) {
@@ -66,9 +59,10 @@ window.sqlalert = function(){
 function fade(id, io, tm, opacity) {
     var el = document.getElementById(id);
     io === "in" ? el.style.opacity = opacity : el.style.opacity = 0;
-    el.style.transition = "opacity " + tm + "s";
-    el.style.WebkitTransition = "opacity " + tm + "s";
+    el.style.transition = "opacity " + tm + "ms";
+    el.style.WebkitTransition = "opacity " + tm + "ms";
     if (io === 'out') {
+        tm += 10;
         window.setTimeout(function () {
             el.style.display = 'none';
         }, tm);
@@ -98,23 +92,34 @@ var j_alert = function(type, msg){
         _alert.style.display = 'block';
         _alert.style.top = mtop+"px";
         _alert.style.left = mleft+"px";
-        fade('overlay', 'in', .1, .3);
-        fade('alert', 'in', .3, 1);
         window.setTimeout(function(){
-            fade('alert', 'out', .5, 0);
-            fade('overlay', 'out', .1, 0);
+            fade('overlay', 'in', .1, .3);
+            fade('alert', 'in', .3, 1);
+        }, 10);
+        window.setTimeout(function(){
+            fade('alert', 'out', 500, 0);
+            fade('overlay', 'out', 100, 0);
         }, 2500);
     }
     else if (type === "error") {
         document.getElementById('errormessage').innerHTML = msg;
         _alert = document.getElementById('error');
-        _alert.style.top = mtop;
-        _alert.style.left = mleft;
-        fade('overlay', 'in', 100);
-        fade('error', 'in', 300);
+        overlay = document.getElementById('overlay');
+        overlay.style.opacity = 0;
+        overlay.style.display = 'block';
+        _alert.style.opacity = 0;
+        _alert.style.display = 'block';
+        _alert.style.top = mtop+"px";
+        _alert.style.left = mleft+"px";
+        fade('overlay', 'in', .1, .3);
+        fade('alert', 'in', .3, 1);
         window.setTimeout(function(){
-            fade('error', 'out', 500);
-            fade('overlay', 'out', 100);
+            fade('overlay', 'in', .1, .3);
+            fade('alert', 'in', .3, 1);
+        }, 10);
+        window.setTimeout(function(){
+            fade('alert', 'out', 500, 0);
+            fade('overlay', 'out', 100, 0);
         }, 2500);
     }
     else if (type === "confirm") {
@@ -130,8 +135,11 @@ var j_alert = function(type, msg){
         _confirm.style.minHeight = '170px';
         overlay.style.opacity = 0;
         overlay.style.display = 'block';
-        fade('overlay', 'in', .1, .3);
-        fade('confirm', 'in', .3, 1);
+        window.setTimeout(function () {
+            fade('overlay', 'in', 100, .3);
+            fade('confirm', 'in', 300, 1);
+        }, 10);
+
     }
     else if (type === 'working') {
         var _i = document.querySelector('#alert .alert_title i');
@@ -143,14 +151,38 @@ var j_alert = function(type, msg){
         _alert = document.getElementById('error');
         _alert.style.top = mtop;
         _alert.style.left = mleft;
-        fade('overlay', 'in', 100);
-        fade('alert', 'in', 300);
+        window.setTimeout(function () {
+            fade('overlay', 'in', 100, .3);
+            fade('confirm', 'in', 300, 1);
+        }, 10);
     }
 };
 
+var show_user_menu = function (event) {
+    event.preventDefault();
+    var menu = document.getElementById('user_menu');
+    if (menu.style.display === 'block') {
+        window.setTimeout(function () {
+            fade('user_menu', 'out', 500, 0);
+        }, 10);
+    }
+    else {
+        menu.style.opacity = 0;
+        var arrow = document.getElementById('arrow');
+        var header = document.getElementById('header');
+        arrow_coord = arrow.getBoundingClientRect();
+        header_coord = header.getBoundingClientRect();
+        menu.style.top = parseInt(arrow_coord.bottom)+"px";
+        menu.style.left = parseInt(header_coord.right - 250)+"px";
+        menu.style.display = 'block';
+        window.setTimeout(function () {
+            fade('user_menu', 'in', 500, 1);
+        }, 10);
+    }
+};
 
 /*
-codice per la visualizzazione durante processi in background
+codice per la visualizzazione dei processi in background
 versione per jquery
  */
 var exec_code;

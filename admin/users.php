@@ -20,7 +20,13 @@ else {
 	$active = " WHERE active = {$_GET['active']} ";
 }
 
-$r_users = $db->executeQuery("SELECT * FROM rb_users $active ORDER BY lastname, firstname");
+$r_users = null;
+try {
+	$r_users = $db->executeQuery("SELECT * FROM rb_users $active ORDER BY lastname, firstname");
+} catch (\edocs\MySQLException $ex) {
+	$ex->redirect();
+}
+
 $users = [];
 if ($r_users->num_rows > 0) {
 	while ($row = $r_users->fetch_assoc()) {

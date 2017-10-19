@@ -160,6 +160,30 @@ function check_session($window = MAIN_WINDOW){
     }
 }
 
+function check_role($admitted, $window = MAIN_WINDOW){
+	if($_SESSION['__user__']->check_role($admitted) == false){
+		// registro in sessione la pagina chiamante
+		$_SESSION['__referer__'] = $_SERVER['HTTP_REFERER'];
+
+		switch($window){
+			case POPUP_WINDOW:
+				print("<script type='text/javascript'>window.opener.document.location.href = '".ROOT_SITE."/share/no_perms.php'; window.close();</script>");
+				break;
+			case FAKE_WINDOW:
+				print("<script type='text/javascript'>window.parent.document.location.href = '".ROOT_SITE."/share/no_perms.php';</script>");
+				break;
+			case AJAX_CALL:
+				echo "no_permission";
+				break;
+			case MAIN_WINDOW:
+			default:
+				header("Location: ".ROOT_SITE."/share/no_perms.php'");
+				break;
+		}
+		exit;
+	}
+}
+
 function text2html($html){
     if($html == "")
     	return $html;

@@ -28,8 +28,8 @@
     </style>
 </head>
 <body>
-<?php include_once "header.php" ?>
-<?php include_once "nav.php" ?>
+<?php include_once "../share/header.php" ?>
+<?php include_once "../share/nav.php" ?>
 <div id="main">
 	<div id="right_col">
 		<?php include_once "menu.php" ?>
@@ -88,7 +88,7 @@
     </button>
 	<p class="spacer"></p>
 </div>
-<?php include_once "footer.php" ?>
+<?php include_once "../share/footer.php" ?>
 <script type="application/javascript">
     document.addEventListener("DOMContentLoaded", function () {
         load_jalert();
