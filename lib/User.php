@@ -241,13 +241,13 @@ class User {
 	protected function sendEmailAccessData() {
     	$pwd = $this->pwd;
 		$to = $this->username;
-		$from = "admin@dydrich.net";
+		$from = "edocs@dydrich.net";
 		$subject = "Piattaforma e-Docs+";
 		$headers = "From: {$from}\r\n"."Reply-To: {$from}\r\n" .'X-Mailer: PHP/' . phpversion();
 		$message = "Gentile utente,\nil suo account per l'utilizzo della piattaforma e-Docs+ è stato attivato.\n ";
 		$message .= "Di seguito troverà i dati e le istruzioni per accedere:\n\n";
 		$message .= "username: {$this->username}\npassword: ".$pwd['c']."\n";
-		$message .= "Procedura di accesso:\nandare su https://www.dydrich.net/e-docs. \nNella finestra seguente selezionare 'Area privata', inserire i dati di accesso e cliccare sul pulsante Login. \n\n";
+		$message .= "Procedura di accesso:\nandare su https://www.dydrich.net/edocs. \nNella finestra seguente selezionare 'Area privata', inserire i dati di accesso e cliccare sul pulsante Login. \n\n";
 		$message .= "Per un corretto funzionamento del software, si raccomanda di NON utilizzare il browser Internet Explorer, ma una versione aggiornata di Firefox, Google Chrome, Opera o Safari.\n";
 		//$message .= "Le ricordiamo che, in caso di smarrimento della password, pu&ograve; richiederne una nuova usando il link 'Password dimenticata?' presente nella pagine iniziale del Registro.\n";
 		$message .= "Per qualunque problema, non esiti a contattarci.";

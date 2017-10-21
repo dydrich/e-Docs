@@ -6,9 +6,6 @@
  * Time: 18.44
  */
 require_once "lib/start.php";
-
-if(!isset($_SESSION['__config__'])){
-	include_once "lib/load_env.php";
-}
+require_once "lib/load_env.php";
 
 include "index-html.php";

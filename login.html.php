@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="css/site_themes/light_blue/index.css">
     <link rel="stylesheet" href="css/general.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .mdc-textfield {
+            width: 90%;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -23,7 +28,7 @@
 <section class="wrap">
     <div id="login_form" style="display: flex; display: -webkit-flex; flex-direction: row; flex-wrap: wrap; align-items: center;">
         <form id="myform" action="do_login.php" method="post">
-            <div style="display: block; width: 200px">
+            <div style="display: block; width: 300px">
                 <div class="mdc-textfield" data-mdc-auto-init="MDCTextfield">
                     <input required type="text" id="my-username" name="my-username" class="mdc-textfield__input">
                     <label class="mdc-textfield__label" for="my-username">Username</label>
@@ -40,6 +45,9 @@
             <button type="submit" class="mdc-button mdc-button--raised" id="login_button">
                 Login
             </button>
+            <p style="margin-top: 20px">
+                <a href="pwd_request.php" class="normal">Hai dimenticato la password?</a>
+            </p>
             <input type="hidden" id="area" name="area" value="<?php echo $_GET['area'] ?>">
         </form>
         <footer id="footer" style="margin-right: 20px">

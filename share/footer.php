@@ -10,7 +10,7 @@
 </div>
 <div id="error" class="error_msg" style="display: none">
     <div class="error_title">
-        <i class="fa fa-warning"></i>
+        <i class="material-icons">warning</i>
         <span>Errore</span>
     </div>
     <p class="errormessage" id="errormessage"></p>

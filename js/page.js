@@ -111,14 +111,12 @@ var j_alert = function(type, msg){
         _alert.style.display = 'block';
         _alert.style.top = mtop+"px";
         _alert.style.left = mleft+"px";
-        fade('overlay', 'in', .1, .3);
-        fade('alert', 'in', .3, 1);
         window.setTimeout(function(){
             fade('overlay', 'in', .1, .3);
-            fade('alert', 'in', .3, 1);
+            fade('error', 'in', .3, 1);
         }, 10);
         window.setTimeout(function(){
-            fade('alert', 'out', 500, 0);
+            fade('error', 'out', 500, 0);
             fade('overlay', 'out', 100, 0);
         }, 2500);
     }

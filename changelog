@@ -1,3 +1,9 @@
+0.3-20
+Bug fix (email e web) in User.php
+
+0.3-19
+bug fix per load_env in index.php
+
 0.3
 gestione errori di autenticazione e accesso
 gestione errori sql e di permesso
