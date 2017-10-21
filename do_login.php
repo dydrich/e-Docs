@@ -12,7 +12,6 @@ require_once "lib/start.php";
 require_once "lib/Authenticator.php";
 //require_once "lib/EventLogFactory.php";
 
-$_SESSION['__path_to_root__'] = "/";
 $response = array();
 
 $nick = $db->real_escape_string($_POST['my-username']);
@@ -29,11 +28,13 @@ try {
 	$_SESSION['mysqlerror'] = $response;
 	// TODO: redirect to mysql error page
 	exit;
-} catch (Exception $e){
+} catch (\edocs\CustomException $e){
 	$response['status'] = "ko";
 	$response['message'] = $e->getMessage();
-	$_SESSION['mysqlerror'] = $response;
-	// TODO: redirect to mysql error page
+	$response['code'] = $e->getCode();
+	$response['detail'] = $e->__toString();
+	$_SESSION['error'] = $response;
+	header("Location: share/login_errors.php");
 	exit;
 }
 

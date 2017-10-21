@@ -31,7 +31,8 @@ switch($_POST['action']){
 		try{
 			$begin = $db->executeUpdate("BEGIN");
 			$user = new User(0, $nome, $cognome, $uname, null, $role, new MySQLDataLoader($db));
-			$user->insert();
+			$response['user'] = $user->insert();
+			$response['data_field'] = 'user';
 			$commit = $db->executeUpdate("COMMIT");
         } catch (\edocs\MySQLException $ex){
 			$db->executeUpdate("ROLLBACK");

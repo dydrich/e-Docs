@@ -11,6 +11,7 @@ class User {
 	protected $pwd;
 	protected $accesses;
 	protected $datasource;
+	protected $active;
 
     /**
      * token for authentication from mobile devices
@@ -35,12 +36,13 @@ class User {
 			$this->datasource = new MySQLDataLoader($dl);
 		}
 		if ($pwd == null) {
-			$pass = AccountManager::generatePassword();;
-			$this->pwd = $pass['e'];
+			$pass = AccountManager::generatePassword();
+			$this->pwd = $pass;
 		}
 		else {
 			$this->pwd = $pwd;
 		}
+		$this->active = true;
 	}
 	
 	public function setFirstName($fn){
@@ -57,6 +59,20 @@ class User {
 
 	public function getLastName(){
 		return $this->lastName;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function isActive() {
+		return $this->active;
+	}
+
+	/**
+	 * @param mixed $active
+	 */
+	public function setActive($active) {
+		$this->active = $active;
 	}
 
 	/**
@@ -127,7 +143,7 @@ class User {
 		return $this->username;
 	}
 
-	public function setPwd($p){
+	public function setPwd(array $p){
 		$this->pwd = $p;
 	}
 	
@@ -179,10 +195,14 @@ class User {
 
 	}
 
-	public function insert () {
+	public function insert ($sendEmail = true) {
     	$sql = "INSERT INTO rb_users (username, password, firstname, lastname, accesses_count, last_access, previous_access, active, files_count, downloads, role)  
-				VALUES ('{$this->username}', '{$this->pwd}', '{$this->firstName}', '{$this->lastName}', 0, NULL, NULL, 1, 0, 0, {$this->role})";
+				VALUES ('{$this->username}', '{$this->pwd['e']}', '{$this->firstName}', '{$this->lastName}', 0, NULL, NULL, 1, 0, 0, {$this->role})";
     	$this->uid = $this->datasource->executeUpdate($sql);
+    	if ($sendEmail && $this->role != User::$GUEST) {
+			$this->sendEmailAccessData();
+		}
+    	return ['login' => $this->username, 'password' => $this->pwd['c']];
 	}
 
 	public function update () {
@@ -216,5 +236,21 @@ class User {
     		return false;
 		}
 		return true;
+	}
+
+	protected function sendEmailAccessData() {
+    	$pwd = $this->pwd;
+		$to = $this->username;
+		$from = "admin@dydrich.net";
+		$subject = "Piattaforma e-Docs+";
+		$headers = "From: {$from}\r\n"."Reply-To: {$from}\r\n" .'X-Mailer: PHP/' . phpversion();
+		$message = "Gentile utente,\nil suo account per l'utilizzo della piattaforma e-Docs+ è stato attivato.\n ";
+		$message .= "Di seguito troverà i dati e le istruzioni per accedere:\n\n";
+		$message .= "username: {$this->username}\npassword: ".$pwd['c']."\n";
+		$message .= "Procedura di accesso:\nandare su https://www.dydrich.net/e-docs. \nNella finestra seguente selezionare 'Area privata', inserire i dati di accesso e cliccare sul pulsante Login. \n\n";
+		$message .= "Per un corretto funzionamento del software, si raccomanda di NON utilizzare il browser Internet Explorer, ma una versione aggiornata di Firefox, Google Chrome, Opera o Safari.\n";
+		//$message .= "Le ricordiamo che, in caso di smarrimento della password, pu&ograve; richiederne una nuova usando il link 'Password dimenticata?' presente nella pagine iniziale del Registro.\n";
+		$message .= "Per qualunque problema, non esiti a contattarci.";
+		mail($to, $subject, $message, $headers);
 	}
 }

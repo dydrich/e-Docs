@@ -15,6 +15,20 @@
     </div>
     <p class="errormessage" id="errormessage"></p>
 </div>
+<div id="information" class="confirm_msg" style="display: none">
+    <div class="confirm_title">
+        <i class="material-icons">info</i>
+        <span></span>
+    </div>
+    <p class="confirmmessage" id="infomessage"></p>
+    <div class="confirmbuttons">
+        <a href="#" id="close_button">
+            <div class="alert_button material_dark_bg">
+                <span class="material_link">Chiudi</span>
+            </div>
+        </a>
+    </div>
+</div>
 <div id='background' class="alert_msg" style='display: none'>
     <div class="alert_title">
         <i class="fa fa-spin fa-circle-o-notch"></i>
@@ -29,21 +43,17 @@
         <span>Conferma</span>
     </div>
     <p class="confirmmessage" id="confirmmessage"></p>
-    <div class="confirmbuttons _center">
-        <div class="confirmbuttonscontainer">
-            <a href="#" id="okbutton">
-                <div class="alert_button material_dark_bg">
-                    <span class="material_link">OK</span>
-                </div>
-            </a>
-        </div>
-        <div class="confirmbuttonscontainer">
-            <a href="#" id="nobutton">
-                <div class="alert_button material_dark_bg">
-                    <span>NO</span>
-                </div>
-            </a>
-        </div>
+    <div class="confirmbuttons">
+        <a href="#" id="okbutton">
+            <div class="alert_button material_dark_bg">
+                <span class="material_link">OK</span>
+            </div>
+        </a>
+        <a href="#" id="nobutton">
+            <div class="alert_button material_dark_bg" style="margin-left: 20px">
+                <span>NO</span>
+            </div>
+        </a>
     </div>
 </div>
 <div id="user_menu" class="mdc-elevation--z2">

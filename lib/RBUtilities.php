@@ -48,11 +48,12 @@ final class RBUtilities{
 	 * @param string $area - type of user
 	 */
 	public function loadUserFromUid($uid){
-			$sel_user = "SELECT firstname, lastname, username, accesses_count, role FROM rb_users WHERE rb_users.uid = {$uid} ";
+			$sel_user = "SELECT firstname, lastname, username, accesses_count, role, active FROM rb_users WHERE rb_users.uid = {$uid} ";
 				$ut = $this->datasource->executeQuery($sel_user);
 				$utente = $ut[0];
 
 				$user = new User($uid, $utente['firstname'], $utente['lastname'], $utente['username'], null, $utente['role'], $this->datasource);
+				$user->setActive($utente['active']);
 
 		return $user;
 	}

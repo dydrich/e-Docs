@@ -167,17 +167,17 @@ function check_role($admitted, $window = MAIN_WINDOW){
 
 		switch($window){
 			case POPUP_WINDOW:
-				print("<script type='text/javascript'>window.opener.document.location.href = '".ROOT_SITE."/share/no_perms.php'; window.close();</script>");
+				print("<script type='text/javascript'>window.opener.document.location.href = '".ROOT_SITE."/share/no_perms.php; window.close();</script>");
 				break;
 			case FAKE_WINDOW:
-				print("<script type='text/javascript'>window.parent.document.location.href = '".ROOT_SITE."/share/no_perms.php';</script>");
+				print("<script type='text/javascript'>window.parent.document.location.href = '".ROOT_SITE."/share/no_perms.php;</script>");
 				break;
 			case AJAX_CALL:
 				echo "no_permission";
 				break;
 			case MAIN_WINDOW:
 			default:
-				header("Location: ".ROOT_SITE."/share/no_perms.php'");
+				header("Location: ".ROOT_SITE."/share/no_perms.php");
 				break;
 		}
 		exit;

@@ -11,4 +11,4 @@ if(!isset($_SESSION['__config__'])){
 	include_once "lib/load_env.php";
 }
 
-include "index.html.php";
+include "index-html.php";

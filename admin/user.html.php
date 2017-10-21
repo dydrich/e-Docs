@@ -113,10 +113,11 @@
             var OK = 200; // status 200 is a successful return.
             if (xhr.readyState === DONE) {
                 if (xhr.status === OK) {
-                    j_alert("alert", xhr.response.message);
-                    window.setTimeout(function () {
-                        window.location.href = 'users.php';
-                    }, 2500);
+                    j_alert("information", xhr.response);
+                    var okbtn = document.getElementById('close_button');
+                    okbtn.addEventListener('click', function () {
+                        window.location.href = 'users.php?active=1';
+                    });
                 }
             } else {
                 console.log('Error: ' + xhr.status);

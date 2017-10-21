@@ -122,6 +122,34 @@ var j_alert = function(type, msg){
             fade('overlay', 'out', 100, 0);
         }, 2500);
     }
+    else if (type === "information") {
+        var field = msg.data_field;
+        var infomessage = document.getElementById('infomessage');
+        var _text = '';
+        if (field === 'user') {
+            // show user account data
+            _text = 'Username: '+msg.user.login;
+            _text += '\n';
+            _text += 'Password: '+msg.user.password;
+        }
+        infomessage.innerHTML = _text;
+        var span = document.querySelector('#information .confirm_title span');
+        span.innerText = msg.message;
+        infomessage.style.height = '50px';
+        var _info = document.getElementById('information');
+        overlay = document.getElementById('overlay');
+        _info.style.opacity = 0;
+        _info.style.display = 'block';
+        _info.style.top = mtop+"px";
+        _info.style.left = mleft+"px";
+        _info.style.minHeight = '170px';
+        overlay.style.opacity = 0;
+        overlay.style.display = 'block';
+        window.setTimeout(function () {
+            fade('overlay', 'in', 100, .3);
+            fade('information', 'in', 300, 1);
+        }, 10);
+    }
     else if (type === "confirm") {
         var confirmmessage = document.getElementById('confirmmessage');
         confirmmessage.innerHTML = msg;

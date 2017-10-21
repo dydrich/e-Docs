@@ -24,11 +24,19 @@ class Authenticator {
 		$sel_user = "SELECT uid FROM rb_users WHERE username = '{$username}' AND password = '".trim($password)."'";
 		$res_user = $this->datasource->executeCount($sel_user);
 		if ($res_user == null){
-			return false;
+			throw new \edocs\CustomException("Accesso negato", \edocs\CustomException::$LOGIN_ERROR_CODE);
 		}
 
 		$rb = RBUtilities::getInstance($this->datasource->getSource());
 		$user = $rb->loadUserFromUid($res_user);
+
+		if (!$user->isActive()) {
+			throw new \edocs\CustomException("Utente non più attivo", \edocs\CustomException::$USER_NOT_ACTIVE_CODE);
+		}
+
+		if ($user->getRole() == User::$GUEST) {
+			throw new \edocs\CustomException("Permesso negato", \edocs\CustomException::$GUEST_NOT_AMITTED_CODE);
+		}
 
 		$update = "UPDATE rb_users SET accesses_count = (rb_users.accesses_count + 1), previous_access = last_access, last_access = NOW() WHERE uid = ".$res_user;
 		$upd = $this->datasource->executeUpdate($update);
