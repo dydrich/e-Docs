@@ -7,6 +7,10 @@
 	<link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
 	<link rel="stylesheet" href="css/site_themes/light_blue/index.css">
 	<link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" media="screen and (min-width: 2000px)" href="css/layouts/larger.css">
+    <link rel="stylesheet" media="screen and (max-width: 1999px) and (min-width: 1300px)" href="css/layouts/wide.css">
+    <link rel="stylesheet" media="screen and (max-width: 1299px) and (min-width: 1025px)" href="css/layouts/normal.css">
+    <link rel="stylesheet" media="screen and (max-width: 1024px)" href="css/layouts/small.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<style>
 		.mdc-textfield {
@@ -31,20 +35,20 @@
 </header>
 <section class="wrap">
 	<div id="login_form" style="display: flex; display: -webkit-flex; flex-direction: row; flex-wrap: wrap; align-items: center;">
-		<form id="myform" action="do_login.php" method="post">
-			<div style="display: block; width: 400px">
+		<form id="myformreq" action="do_login.php" method="post" style="margin: auto">
+			<div class="rb-login-container">
 				<div class="mdc-textfield" data-mdc-auto-init="MDCTextfield">
 					<input required type="email" id="my-username" name="my-username" class="mdc-textfield__input">
 					<label class="mdc-textfield__label" for="my-username">Email</label>
 				</div>
 			</div>
-			<div class="mdc-elevation--z5" style="display: block; width: 500px; padding: 20px; margin-bottom: 20px">
+			<div class="mdc-elevation--z5" id="pwdreq_info">
 				Inserisci l'indirizzo email con il quale ti sei registrato e riceverai a breve una mail contenente le istruzioni per la modifica della password.
 			</div>
 			<button type="submit" class="mdc-button mdc-button--raised" id="login_button">
 				Invia
 			</button>
-			<p style="margin-top: 20px">
+			<p style="margin-top: 20px" id="pwd_req">
 				<a href="index.php" class="normal">Torna indietro</a>
 			</p>
 		</form>

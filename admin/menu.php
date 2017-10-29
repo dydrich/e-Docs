@@ -14,7 +14,7 @@
 	<div class="menu_link">
 		<a href="<?php echo ROOT_SITE."/admin/" ?>labels.php">
 			<i class="material-icons" style="">label</i>
-			<span>Materie e categorie</span>
+			<span>Documenti</span>
 		</a>
 	</div>
 	<div class="menu_link">

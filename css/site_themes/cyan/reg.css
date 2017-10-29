@@ -13,15 +13,6 @@ body {
     background-repeat: no-repeat;
 }
 
-form {
-    border: 1px solid rgba(30, 67, 137, .9);
-}
-
-input, select, textarea {
-    background-color: rgba(239, 251, 252, .8);
-    border: 1px solid rgba(30, 67, 137, .6);
-}
-
 #header {
     background-color: #0097A7;
 }
@@ -90,15 +81,6 @@ fieldset {
     border: 1px solid #0097A7;
 }
 
-.context_menu, #hid, #tipinota, .tooltip, #d_tp {
-    background-color: #EFFBFC;
-    color: #222222;
-}
-
-.context_menu a, #pop a, #hid a, #tipinota a, #d_tp a {
-    color: rgba(30, 67, 137, 1);
-}
-
 div.mdtabs {
     background-color: #00BCD4;
     top: -20px;
@@ -115,11 +97,6 @@ div.mdselected_tab {
 
 div.mdselected_tab a > span {
     color: #000000 !important;
-}
-
-.outline_line_wrapper {
-    color: #000000;
-    border: 1px solid #e040fb;
 }
 
 .rb_button {
@@ -256,11 +233,4 @@ input.android:focus, select.android:focus, textarea.android:focus {
 .float_button:hover {
     background-color: #e040fb !important;
     color: #000000;
-}
-
-#gotoday, #newweek {
-    background-color: #0097A7;
-    border-color: #0097A7;
-    color: white;
-    font-weight: bold;
 }

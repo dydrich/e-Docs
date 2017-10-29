@@ -2,29 +2,32 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>Admin area</title>
 	<link rel="stylesheet" href="../css/general.css" type="text/css" media="screen,projection" />
+    <link rel="stylesheet" media="screen and (min-width: 2000px)" href="../css/layouts/larger.css">
+    <link rel="stylesheet" media="screen and (max-width: 1999px) and (min-width: 1300px)" href="../css/layouts/wide.css">
+    <link rel="stylesheet" media="screen and (max-width: 1299px) and (min-width: 1025px)" href="../css/layouts/normal.css">
+    <link rel="stylesheet" media="screen and (max-width: 1024px)" href="../css/layouts/small.css">
 	<link rel="stylesheet" href="../css/site_themes/<?php echo getTheme() ?>/reg.css" type="text/css" media="screen,projection" />
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
     <script type="application/javascript" src="../js/page.js"></script>
     <style>
         .demo-card {
-            width: 320px;
-            height: 120px;
             margin-left: 25px;
             margin-bottom: 25px;
-        }
-
-        .mdc-button--compact {
-            font-size: 1em;
         }
 
         .app-fab--absolute.app-fab--absolute {
              position: fixed;
              bottom: 4rem;
-             right: 31.4rem;
+             right: 38.6rem;
          }
+
+        .mdc-card__primary {
+            padding: 16px 16px 0 16px
+        }
     </style>
 </head>
 <body>
@@ -46,7 +49,7 @@
                 <a href="users.php?active=0"><span>Non attivi</span></a>
             </div>
         </div>
-        <div style="margin-left: 20px; margin-top: 25px; display: flex; flex-wrap: wrap; align-content: center; align-items: center">
+        <div style="margin: auto; display: flex; flex-wrap: wrap; align-content: center; align-items: center">
             <?php
 			foreach ($users as $user) {
                 if ($user['role'] == User::$USER) {
@@ -65,7 +68,7 @@
                             <h1 class="mdc-card__title"><?php echo $user['lastname']." ".$user['firstname'] ?></h1>
                             <h2 class="mdc-card__subtitle"><?php echo User::getHumanReadebleRole($user['role']) ?></h2>
                         </section>
-                        <i class="material-icons" style="font-size: 3em; position: relative; margin-top: 20px; color: <?php echo $color ?>">people</i>
+                        <i class="material-icons" style="font-size: 2.5em; position: relative; margin-top: 20px; color: <?php echo $color ?>">people</i>
                     </div>
                     <section class="mdc-card__actions">
                         <button type="submit" class="mdc-button mdc-button--compact mdc-card__action upd" data-uid="<?php echo $user['uid'] ?>">Modifica</button>
@@ -91,12 +94,23 @@
 <?php include_once "../share/footer.php" ?>
 <script type="application/javascript">
     document.addEventListener("DOMContentLoaded", function () {
-        load_jalert();
-        //setOverlayEvent();
+        var heightMain = document.getElementById('main').clientHeight;
+        var heightScreen = document.body.clientHeight;
+        var usedHeight = heightMain > heightScreen ? heightScreen : heightMain;
+        var btn = document.getElementById('newuser');
+        btn.style.top = (usedHeight)+"px";
+        //btn.style.top = '700px';
+
+        var screenW = screen.width;
+        var bodyW = document.body.clientWidth;
+        var right_offset = (bodyW - document.getElementById('main').clientWidth) / 2;
+        right_offset += document.getElementById('right_col').clientWidth;
+        btn.style.right = (right_offset - 18)+"px";
+
         document.body.addEventListener('click', function (event) {
             if (event.target.classList.contains('upd')) {
                 uid = event.target.getAttribute('data-uid');
-                window.location.href = 'user.php?uid='+uid;
+                window.location.href = 'user.php?uid='+uid+'&back=users.php';
             }
             if (event.target.classList.contains('del')) {
                 user_to_del = event.target.getAttribute('data-uid');
@@ -200,7 +214,7 @@
     var btn = document.getElementById('newuser');
     btn.addEventListener('click', function (event) {
         event.preventDefault();
-        document.location.href = 'user.php?uid=0';
+        document.location.href = 'user.php?uid=0&back=users.php';
     });
 </script>
 </body>

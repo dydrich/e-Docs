@@ -14,6 +14,7 @@ $drawer_label = "Errore SQL";
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>Errore in archivio</title>
 	<link rel="stylesheet" href="../css/general.css" type="text/css" media="screen,projection" />
 	<link rel="stylesheet" href="../css/site_themes/<?php echo getTheme() ?>/reg.css" type="text/css" media="screen,projection" />

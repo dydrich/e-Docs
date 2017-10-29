@@ -13,14 +13,6 @@ body {
     background-repeat: no-repeat;
 }
 
-form {
-    border: 1px solid rgba(30, 67, 137, .15);
-}
-
-input, select, textarea {
-
-}
-
 #header {
     background-color: #0288D1;
 }
@@ -43,12 +35,12 @@ input, select, textarea {
 
 #sc_secondrow {
     width: 40%;
-    font-size: 0.8em;
+    font-size: 1em;
     color: rgb(255, 255, 255);
 }
 
 #sc_secondrow a {
-    font-size: 1.1em;
+    font-size: 1.0em;
 }
 
 #main {
@@ -56,11 +48,11 @@ input, select, textarea {
 }
 
 #right_col a {
-    color: #222222;
+    color: rgba(0, 0, 0, .87);
 }
 
 #navigation {
-    color: #DDDDDD;
+    color: #FFFFFF;
     background-color: #03A9F4;
 }
 
@@ -97,21 +89,6 @@ fieldset {
     border: 1px solid #0288D1;
 }
 
-.context_menu, #hid, #tipinota, .tooltip, #d_tp {
-    background-color: #F2FCFD;
-    padding: 10px;
-    border: 1px solid rgba(30, 67, 137, .2);
-    border-radius: 2px;
-    box-shadow: 0 0 5px #666;
-    color: #222222;
-    z-index: 100;
-    position: absolute;
-}
-.context_menu a, #pop a, #hid a, #tipinota a, #d_tp a {
-    text-decoration: none;
-    color: rgba(30, 67, 137, 1);
-}
-
 div.mdtabs {
     background-color: #03A9F4;
     top: -20px;
@@ -128,12 +105,6 @@ div.mdselected_tab {
 
 div.mdselected_tab a > span {
     color: #000000 !important;
-}
-
-.outline_line_wrapper {
-    top: -20px;
-    color: #000000;
-    border: 1px solid #00b8d4;
 }
 
 .rb_button, .mdc-fab, #newuser {
@@ -241,10 +212,6 @@ input.android:focus, select.android:focus, textarea.android:focus {
     color: #222222;
 }
 
-.popup_form {
-    border: 1px solid rgba(3, 169, 244, .6);
-}
-
 .float_button {
     background-color: #0288D1 !important;
     color: #ffffff;
@@ -254,3 +221,4 @@ input.android:focus, select.android:focus, textarea.android:focus {
     background-color: #18FFFF !important;
     color: #000000;
 }
+

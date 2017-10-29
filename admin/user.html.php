@@ -2,8 +2,13 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>Admin area</title>
 	<link rel="stylesheet" href="../css/general.css" type="text/css" media="screen,projection" />
+    <link rel="stylesheet" media="screen and (min-width: 2000px)" href="../css/layouts/larger.css">
+    <link rel="stylesheet" media="screen and (max-width: 1999px) and (min-width: 1300px)" href="../css/layouts/wide.css">
+    <link rel="stylesheet" media="screen and (max-width: 1299px) and (min-width: 1025px)" href="../css/layouts/normal.css">
+    <link rel="stylesheet" media="screen and (max-width: 1024px)" href="../css/layouts/small.css">
 	<link rel="stylesheet" href="../css/site_themes/<?php echo getTheme() ?>/reg.css" type="text/css" media="screen,projection" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,400italic,600,600italic,700,700italic,900,200' rel='stylesheet' type='text/css'>
@@ -35,7 +40,8 @@
 		<?php include_once "menu.php" ?>
 	</div>
 	<div id="left_col">
-        <form method="post" id="userform"  class="mdc-elevation--z5" style="width: 50%; text-align: center" onsubmit="submit_data()">
+        <div style="margin: auto">
+        <form method="post" id="userform"  class="mdc-elevation--z5" style="width: 50%; text-align: center; margin: auto" onsubmit="submit_data()">
             <div class="mdc-textfield" data-mdc-auto-init="MDCTextfield">
                 <input type="email" required <?php if (isset($user)) echo 'disabled' ?> id="username" name="username" class="mdc-textfield__input <?php if (isset($user)) echo 'disabled_link' ?>" value="<?php if (isset($user)) echo $user->getUsername() ?>">
                 <label class="mdc-textfield__label" for="username">Username</label>
@@ -77,6 +83,7 @@
                 <button id="submit_btn" onclick="submit_data(event)" class="mdc-button mdc-button--compact mdc-card__action">Registra</button>
             </section>
         </form>
+        </div>
 	</div>
 	<p class="spacer"></p>
 </div>
@@ -143,7 +150,6 @@
 
             });
         }
-
     });
 </script>
 </body>

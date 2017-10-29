@@ -17,6 +17,7 @@ class CustomException extends \Exception {
 	public static $USER_NOT_ACTIVE_CODE = 1;
 	public static $LOGIN_ERROR_CODE = 2;
 	public static $GUEST_NOT_AMITTED_CODE = 3;
+	public static $CANT_DELETE_OBJECT = 4;
 
 
     public function __construct($message, $code = 0){
@@ -33,6 +34,9 @@ class CustomException extends \Exception {
 				break;
 			case CustomException::$GUEST_NOT_AMITTED_CODE:
 				return "Operazione non consentita per il tuo account. #<a href='mailto:". $_SESSION['__config__']['admin_email'] ."?subject=Problema di accesso' class='normal' style='text-decoration: underline'>Contatta l'amministratore</a> della piattaforma, se ritieni che si tratti di un errore.#Oppure, <a href='".ROOT_SITE."' class='normal'>vai all'area pubblica</a>, l'unica consentita al tuo tipo di utenza.";
+				break;
+			case CustomException::$CANT_DELETE_OBJECT:
+				return "Oggetto non cancellabile in quanto in uso";
 				break;
 		}
 		return get_class($this)." ==> ".$this->getMessage();
