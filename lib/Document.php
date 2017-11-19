@@ -8,6 +8,8 @@
 
 namespace edocs;
 
+require_once "RBUtilities.php";
+
 
 class Document
 {
@@ -16,21 +18,28 @@ class Document
 	 * rb_documents.id
 	 */
 	protected $id;
-	protected $uploadate;
+	protected $uploadDate;
 	protected $file;
+	protected $documentName;
 	protected $documentType;
 	protected $abstract;
-	protected $year;
 	protected $school;
+	protected $schoolGrade;
 	protected $subject;
 	protected $owner;
 	protected $lastUpdate;
 	protected $title;
+	protected $uri;
 	protected $filePath = null;
 	protected $tags = [];
-	protected $categories = [];
+	protected $category;
 
 	protected $datasource;
+
+	public static $INSERT_DOCUMENT = 1;
+	public static $UPDATE_DOCUMENT = 2;
+	public static $DELETE_DOCUMENT = 3;
+	public static $QUICK_DELETE    = 4;
 
 	/**
 	 *
@@ -40,24 +49,26 @@ class Document
 	const UPL_ERROR = 2;
 	const UPL_OK = 3;
 
-	public function __construct($id, $data, MySQLDataLoader $dl){
+	public function __construct($id, $data, $category, \MySQLDataLoader $dl){
 		$this->id = $id;
 		$this->datasource = $dl;
-		$this->highlighted = '';
-		//echo $data['owner'];
+		$this->category = $category;
 		if ($data != null){
-			$this->dataUpload = $data['data_upload'];
+			$this->uploadDate = $data['data_upload'];
 			$this->file = $data['file'];
 			$this->abstract = $data['abstract'];
-			$this->year = $data['anno_scolastico'];
+			$this->documentName = $data['document_name'];
 			$this->documentType = $data['doc_type'];
-			$rb = RBUtilities::getInstance($dl);
-			$this->owner = $rb->loadUserFromUid($data['owner'], 'school');
-			$this->title = $data['titolo'];
-			$this->filePath = "download/{$data['doc_type']}/";
-			if (isset($data['evidenziato']) && $data['evidenziato'] != "" && $data['evidenziato'] != null){
-				$this->highlighted = substr($data['evidenziato'], 0, 10)." 23:59:59";
-			}
+			$this->school = $data['school'];
+			$this->schoolGrade = $data['school_grade'];
+			$this->subject = $data['subject'];
+			$rb = \RBUtilities::getInstance($dl);
+			$this->owner = $rb->loadUserFromUid($data['owner']);
+			$this->lastUpdate = $data['last_update'];
+			$this->title = $data['title'];
+			$this->uri = $data['uri'];
+			$this->filePath = "/";
+
 			if (isset($data['tags']) && $data['tags'] != ""){
 				$tags = explode(",", $data['tags']);
 				$right_tags = array();
@@ -71,8 +82,118 @@ class Document
 				}
 			}
 		}
-		$this->deleteOnDownload = false;
-		$this->area = "admin";
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getUploadDate() {
+		return $this->uploadDate;
+	}
+
+	/**
+	 * @param mixed $uploadDate
+	 */
+	public function setUploadDate($uploadDate) {
+		$this->uploadDate = $uploadDate;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getDocumentName() {
+		return $this->documentName;
+	}
+
+	/**
+	 * @param mixed $documentName
+	 */
+	public function setDocumentName($documentName) {
+		$this->documentName = $documentName;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getSchool() {
+		return $this->school;
+	}
+
+	/**
+	 * @param mixed $school
+	 */
+	public function setSchool($school) {
+		$this->school = $school;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getSchoolGrade() {
+		return $this->schoolGrade;
+	}
+
+	/**
+	 * @param mixed $schoolGrade
+	 */
+	public function setSchoolGrade($schoolGrade) {
+		$this->schoolGrade = $schoolGrade;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getSubject() {
+		return $this->subject;
+	}
+
+	/**
+	 * @param mixed $subject
+	 */
+	public function setSubject($subject) {
+		$this->subject = $subject;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getUri() {
+		return $this->uri;
+	}
+
+	/**
+	 * @param mixed $uri
+	 */
+	public function setUri($uri) {
+		$this->uri = $uri;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getCategory() {
+		return $this->category;
+	}
+
+	/**
+	 * @param mixed $category
+	 */
+	public function setCategory($category) {
+		$this->category = $category;
+	}
+
+	/**
+	 * @return \MySQLDataLoader
+	 */
+	public function getDatasource() {
+		return $this->datasource;
+	}
+
+	/**
+	 * @param \MySQLDataLoader $datasource
+	 */
+	public function setDatasource($datasource) {
+		$this->datasource = $datasource;
 	}
 
 	public function getID(){
@@ -80,7 +201,7 @@ class Document
 	}
 
 	public function getDataUpload(){
-		return $this->dataUpload;
+		return $this->uploadDate;
 	}
 
 	public function getFile(){
@@ -115,15 +236,11 @@ class Document
 		$this->abstract = $ab;
 	}
 
-	public function getYear(){
-		return $this->year;
-	}
-
 	public function getOwner(){
 		return $this->owner;
 	}
 
-	public function setOwner(SchoolUserBean $o){
+	public function setOwner(\User $o){
 		$this->owner = $o;
 	}
 
@@ -143,38 +260,6 @@ class Document
 		$this->title = $t;
 	}
 
-	public function getGroups(){
-		return $this->groups;
-	}
-
-	public function setGroups($g){
-		$this->groups = $g;
-	}
-
-	public function setprotected($bool){
-		$this->protected = $bool;
-	}
-
-	public function isprotected(){
-		return $this->protected;
-	}
-
-	public function getHighlighted(){
-		return $this->highlighted;
-	}
-
-	public function setHighlighted($h){
-		$this->highlighted = $h;
-	}
-
-	public function getPermission(){
-		return $this->permission;
-	}
-
-	public function setPermission($s){
-		$this->permission = $s;
-	}
-
 	public function getFilePath(){
 		return $this->filePath;
 	}
@@ -183,39 +268,23 @@ class Document
 		$this->filePath = $fp;
 	}
 
-	public function deleteOnDownload(){
-		return $this->deleteOnDownload;
-	}
-
-	public function setDeleteOnDownload($dod){
-		$this->deleteOnDownload = $dod;
-	}
-
-	public function getArea(){
-		$this->area;
-	}
-
-	public function setArea($ar){
-		$this->area = $ar;
-	}
-
 	protected function insertTags(){
-		$this->datasource->executeUpdate("DELETE FROM rb_documents_tags WHERE id_documento = {$this->id}");
+		$this->datasource->executeUpdate("DELETE FROM rb_doc_tag WHERE doc_id = {$this->id}");
 		foreach ($this->tags as $tag){
-			$sel_tag = "SELECT tid FROM rb_tags WHERE tag = '{$tag}'";
+			$sel_tag = "SELECT tid FROM rb_tags WHERE name = '{$tag}'";
 			$tid = $this->datasource->executeCount($sel_tag);
 			if ($tid == null){
 				// insert new tag
-				$tid = $this->datasource->executeUpdate("INSERT INTO rb_tags (tag) VALUES ('{$tag}')");
+				$tid = $this->datasource->executeUpdate("INSERT INTO rb_tags (name) VALUES ('{$tag}')");
 			}
-			$this->datasource->executeUpdate("INSERT INTO rb_documents_tags (tid, id_documento) VALUES ({$tid}, {$this->id})");
+			$this->datasource->executeUpdate("INSERT INTO rb_doc_tag (tid, doc_id) VALUES ({$tid}, {$this->id})");
 		}
 	}
 
 	public function downloadFile(){
-		$mime = MimeType::getMimeContentType($this->file);
+		$mime = \MimeType::getMimeContentType($this->file);
 
-		$fp = "../../".$this->getFilePath().$this->file;
+		$fp = $_SESSION['__config__']['document_root'].$this->getFilePath().$this->file;
 		header("Content-Type: ".$mime['ctype']);
 		header("Content-Disposition: attachment; filename=".$this->file);
 		header("Expires: 0");
@@ -225,7 +294,7 @@ class Document
 		//exit;
 	}
 
-	public function deleteFile(){
+	protected function deleteFile(){
 		if (file_exists("../../".$this->getFilePath().$this->file)){
 			unlink("../../".$this->getFilePath().$this->file);
 		}
@@ -241,28 +310,35 @@ class Document
 		else {
 			$user = 0;
 		}
-		$ins = "INSERT INTO rb_downloads (doc_id, doc_type, ip_address, data_dw, user) VALUES ({$id}, {$id_type}, '{$ip}', NOW(), {$user})";
+		$ins = "INSERT INTO rb_downloads (document_id, document_type, ip_address, dw_date, user) VALUES ({$id}, {$id_type}, '{$ip}', NOW(), {$user})";
 		$this->datasource->executeUpdate($ins);
-		$table = "";
-		if($id_type == 1){
-			$table = "rb_stud_works";
-			$field = "id_work";
-		}
-		else {
-			$table = "rb_documents";
-			$field = "id";
-		}
-		$upd = "UPDATE $table SET dw_counter = (dw_counter + 1) WHERE $field = $id";
-		$rs_upd = $this->datasource->executeUpdate($upd);
+
+		$upd = "UPDATE rb_documents SET download_counter = (rb_documents.download_counter + 1) WHERE doc_id = $id";
+		$this->datasource->executeUpdate($upd);
 	}
 
-	public function save(){
-		$this->id = $this->datasource->executeUpdate("INSERT INTO rb_documents (data_upload, file, doc_type, titolo, abstract, anno_scolastico, owner, evidenziato) VALUES (NOW(), '{$this->file}', {$this->documentType}, '{$this->title}', '{$this->abstract}', {$this->year}, {$_SESSION['__user__']->getUid()}, ".field_null($this->highlighted, true).")");
+	public function insert(){
+		$sql = "INSERT INTO rb_documents (upload_date, file, document_name, document_type, category, abstract, school, school_grade, owner, last_modified_time, title, subject, link) 
+				VALUES (
+				NOW(), 
+				'{$this->file}', 
+				'{$this->documentName}',
+				{$this->documentType}, 
+				{$this->category}, 
+				'{$this->abstract}', 
+				".field_null($this->school, false).",
+				".field_null($this->schoolGrade, false).",
+				{$_SESSION['__user__']->getUid()},
+				NOW(),
+				'{$this->title}', 
+				".field_null($this->subject, false).",
+				".field_null($this->uri, true).")";
+		$this->id = $this->datasource->executeUpdate($sql);
 		$this->insertTags();
 	}
 
 	public function update(){
-		$this->datasource->executeUpdate("UPDATE rb_documents SET file = '{$this->file}', titolo = '{$this->title}', abstract = '{$this->abstract}', anno_scolastico = {$this->year}, evidenziato =  ".field_null($this->highlighted, true)." WHERE id = {$this->id}");
+		$this->datasource->executeUpdate("UPDATE rb_documents SET file = '{$this->file}', title = '{$this->title}', abstract = '{$this->abstract}' WHERE doc_id = {$this->id}");
 		$this->insertTags();
 	}
 
@@ -279,15 +355,8 @@ class Document
 			$this->downloadFile();
 		}
 		else {
-			$_SESSION['no_file']['file'] =  $this->getFilePath().$this->file;
-			if ($_SESSION['no_file']['referer'] == "albo/index.php"){
-				$_SESSION['no_file']['id'] = $this->getID();
-				$_SESSION['no_file']['fn'] = $this->getTitle();
-				header("Location: ../../../albo-pretorio/no_file.php");
-			}
-			else {
-				header("Location: no_file.php");
-			}
+			$_SESSION['no_file']['file'] =  $this->file;
+			header("Location: no_file.php");
 		}
 	}
 }

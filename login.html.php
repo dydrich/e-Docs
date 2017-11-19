@@ -13,7 +13,7 @@
     <link rel="stylesheet" media="screen and (max-width: 1024px)" href="css/layouts/small.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        .mdc-textfield {
+        .mdc-text-field {
             width: 90%;
         }
     </style>
@@ -33,17 +33,17 @@
     <div id="login_form" style="display: flex; display: -webkit-flex; flex-direction: row; flex-wrap: wrap; align-items: center;">
         <form id="myform" action="do_login.php" method="post" style="margin: auto">
             <div class="rb-login-container">
-                <div class="mdc-textfield" data-mdc-auto-init="MDCTextfield">
-                    <input required type="text" id="my-username" name="my-username" class="mdc-textfield__input">
-                    <label class="mdc-textfield__label" for="my-username">Username</label>
+                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                    <input required type="text" id="my-username" name="my-username" class="mdc-text-field__input">
+                    <label class="mdc-text-field__label" for="my-username">Username</label>
                 </div>
             </div>
             <div class="rb-login-container">
-                <div class="mdc-textfield" data-mdc-auto-init="MDCTextfield">
-                    <input required type="password" class="mdc-textfield__input" id="pw" name="pw"
+                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                    <input required type="password" class="mdc-text-field__input" id="pw" name="pw"
                            autocomplete="current-password">
-                    <label for="pw" class="mdc-textfield__label">Password</label>
-                    <div class="mdc-textfield__bottom-line"></div>
+                    <label for="pw" class="mdc-text-field__label">Password</label>
+                    <div class="mdc-text-field__bottom-line"></div>
                 </div>
             </div>
             <button type="submit" class="mdc-button mdc-button--raised" id="login_button">
@@ -107,7 +107,7 @@
 <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 <script>
 	window.mdc.autoInit();
-    mdc.textfield.MDCTextfield.attachTo(document.querySelector('.mdc-textfield'));
+    mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
 </script>
 </body>
 </html>

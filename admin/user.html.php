@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
     <script type="application/javascript" src="../js/page.js"></script>
 	<style>
-		.mdc-textfield, .mdc-select {
+		.mdc-text-field, .mdc-select {
 			width: 90%;
             margin-left: auto;
             margin-right: auto;
@@ -42,22 +42,22 @@
 	<div id="left_col">
         <div style="margin: auto">
         <form method="post" id="userform"  class="mdc-elevation--z5" style="width: 50%; text-align: center; margin: auto" onsubmit="submit_data()">
-            <div class="mdc-textfield" data-mdc-auto-init="MDCTextfield">
-                <input type="email" required <?php if (isset($user)) echo 'disabled' ?> id="username" name="username" class="mdc-textfield__input <?php if (isset($user)) echo 'disabled_link' ?>" value="<?php if (isset($user)) echo $user->getUsername() ?>">
-                <label class="mdc-textfield__label" for="username">Username</label>
+            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                <input type="email" required <?php if (isset($user)) echo 'disabled' ?> id="username" name="username" class="mdc-text-field__input <?php if (isset($user)) echo 'disabled_link' ?>" value="<?php if (isset($user)) echo $user->getUsername() ?>">
+                <label class="mdc-text-field__label" for="username">Username</label>
                 <?php if (isset($user)): ?>
                 <a href="#" id="unlock" style="float: right">
                     <i class="material-icons accent_color" id="ulk_i">edit</i>
                 </a>
                 <?php endif; ?>
             </div>
-            <div class="mdc-textfield" data-mdc-auto-init="MDCTextfield">
-                <input type="text" required id="firstname" name="firstname" class="mdc-textfield__input" value="<?php if (isset($user)) echo $user->getFirstName() ?>">
-                <label class="mdc-textfield__label" for="name">Nome</label>
+            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                <input type="text" required id="firstname" name="firstname" class="mdc-text-field__input" value="<?php if (isset($user)) echo $user->getFirstName() ?>">
+                <label class="mdc-text-field__label" for="name">Nome</label>
             </div>
-            <div class="mdc-textfield" data-mdc-auto-init="MDCTextfield">
-                <input type="text" required id="lastname" name="lastname" class="mdc-textfield__input" value="<?php if (isset($user)) echo $user->getLastName() ?>">
-                <label class="mdc-textfield__label" for="lastname">Cognome</label>
+            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                <input type="text" required id="lastname" name="lastname" class="mdc-text-field__input" value="<?php if (isset($user)) echo $user->getLastName() ?>">
+                <label class="mdc-text-field__label" for="lastname">Cognome</label>
             </div>
             <select class="mdc-select" name="role">
                 <?php
@@ -91,7 +91,7 @@
 <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 <script>
     window.mdc.autoInit();
-    mdc.textfield.MDCTextfield.attachTo(document.querySelector('.mdc-textfield'));
+    mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
 
     function supportFormData() {
         return !! window.FormData;

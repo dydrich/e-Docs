@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
 	<script type="application/javascript" src="../js/page.js"></script>
 	<style>
-		.mdc-textfield, .mdc-select {
+		.mdc-text-field, .mdc-select {
 			width: 90%;
 			margin-left: auto;
 			margin-right: auto;
@@ -36,17 +36,17 @@
 	</div>
 	<div id="left_col">
 		<form method="post" id="userform"  class="mdc-elevation--z5" style="width: 50%; text-align: center; margin: auto" onsubmit="submit_data()">
-			<div class="mdc-textfield" data-mdc-auto-init="MDCTextfield">
-				<input type="text" required id="sub" name="sub" class="mdc-textfield__input" value="<?php if (isset($category)) echo $category->getName() ?>">
-				<label class="mdc-textfield__label" for="sub">Nome</label>
+			<div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+				<input type="text" required id="sub" name="sub" class="mdc-text-field__input" value="<?php if (isset($category)) echo $category->getName() ?>">
+				<label class="mdc-text-field__label" for="sub">Nome</label>
 			</div>
-            <div class="mdc-textfield" data-mdc-auto-init="MDCTextfield">
-                <input type="text" required id="code" name="code" class="mdc-textfield__input" value="<?php if (isset($category)) echo $category->getCode() ?>">
-                <label class="mdc-textfield__label" for="code">Codice</label>
+            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                <input type="text" required id="code" name="code" class="mdc-text-field__input" value="<?php if (isset($category)) echo $category->getCode() ?>">
+                <label class="mdc-text-field__label" for="code">Codice</label>
             </div>
-            <div class="mdc-textfield mdc-textfield--textarea" data-mdc-auto-init="MDCTextfield">
-                <textarea id="textarea" name="textarea" class="mdc-textfield__input" rows="8" cols="40"><?php if (isset($category)) echo $category->getDescription() ?></textarea>
-                <label for="textarea" class="mdc-textfield__label">Descrizione</label>
+            <div class="mdc-text-field mdc-text-field--textarea" data-mdc-auto-init="MDCTextField">
+                <textarea id="textarea" name="textarea" class="mdc-text-field__input" rows="8" cols="40"><?php if (isset($category)) echo $category->getDescription() ?></textarea>
+                <label for="textarea" class="mdc-text-field__label">Descrizione</label>
             </div>
 			<select class="mdc-select" name="parent" id="parent">
 				<option value="0">Nessuna</option>
@@ -74,7 +74,7 @@
 <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 <script>
     window.mdc.autoInit();
-    mdc.textfield.MDCTextfield.attachTo(document.querySelector('.mdc-textfield'));
+    mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
 
     var cid = <?php if (isset($_REQUEST['cid'])) echo $_REQUEST['cid']; else echo 0 ?>;
 

@@ -222,3 +222,7 @@ input.android:focus, select.android:focus, textarea.android:focus {
     color: #000000;
 }
 
+.file-ext div {
+    background-color: #0288D1;
+    color: white;
+}

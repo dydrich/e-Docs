@@ -7,109 +7,67 @@ class UploadManager {
 	private $pathTo;
 	private $data;
 	private $file;
-	private $uploadType;
 	private $datasource;
 	
 	const FILE_EXISTS = 1;
 	const UPL_ERROR = 2;
 	const UPL_OK = 3;
-	const WRONG_FILE_EXT = 4;
 	
-	public function __construct($pt, $file, $ut, $db){
+	public function __construct($pt, $file, $db){
 		$this->pathTo = $pt;
 		$this->file = $file;
-		$this->uploadType = $ut;
 		$this->datasource = new MySQLDataLoader($db);
 	}
 	
 	public function setData($d){
 		$this->data = $d;
 	}
+
+	private function createFileName() {
+		$Y = date("Y");
+		$m = str_pad(date("m"), 2, "0", STR_PAD_LEFT);
+		$d = str_pad(date("d"), 2, "0", STR_PAD_LEFT);
+		$fn = $Y.$m.$d;
+		$id = $this->datasource->executeCount("SELECT (IFNULL(MAX(doc_id),0) + 1 ) AS id FROM rb_documents");
+		$fn .= str_pad($id, 16, "0", STR_PAD_LEFT);
+		$ext = pathinfo($_SESSION['__config__']['document_root']."/".basename($this->file['name']), PATHINFO_EXTENSION);
+		$fn .= ".".$ext;
+		return $fn;
+	}
 	
 	public function moveFile(){
 		/**
 		 * gestione del filesystem
 		 */
-		$file_name = $this->file['name'];
-		//$file = ereg_replace(" ", "_", basename($this->file['name']));
-		//$file = ereg_replace("'", "", $file);
-		//$file = preg_replace("/\\\/", "", $file);
+		$file = basename($this->file['name']);
 
-		$file = preg_replace("/ /", "_", basename($this->file['name']));
-		$file = preg_replace("/'/", "", $file);
-		$file = preg_replace("/\\\/", "", $file);
+		$fileName = $this->createFileName();
 
 		/**
 		 * gestione file nel filesystem
 		*/
-		$dir = $_SESSION['__config__']['document_root']."/rclasse/{$this->pathTo}";
+		$dir = $_SESSION['__config__']['document_root']."{$this->pathTo}";
 		if(!file_exists($dir)){
 			if (!mkdir($dir, 0775, true)) {
 				return self::UPL_ERROR;
 			}
 		}
 		
-		$target_path = $dir . $file;
+		$target_path = $dir . $fileName;
 		if(file_exists($target_path)){
-			if ($this->uploadType == "document") {
-				/*
-				 * file caricato in precedenza: verifico se si tratta di un errore
-				 */
-				$sel_docs = "SELECT id FROM rb_documents WHERE file = '{$file}'";
-				$id_f = $this->datasource->executeCount($sel_docs);
-				if ($id_f != "") {
-					return self::FILE_EXISTS;
-				}
 
-				return self::UPL_OK;
-			}
-			return self::UPL_OK;
 		}
 		else{
-		//print("<script>$('_span').innerHTML = 'Attendere il caricamento del file...'</script>");
 			if(move_uploaded_file($this->file['tmp_name'], $target_path)) {
-			//echo "The file ".  basename( $_FILES['fname']['name']). " has been uploaded";
-			//echo "moved ".$this->file['tmp_name']." to ".$target_path;
 				chdir($dir);
 				chmod($file, 0644);
-			} 
-			else{
-				return self::UPL_ERROR;
 			}
 		}
-		return self::UPL_OK;
+		return $fileName;
 	}
 	
-	public function upload($ext = null){
-		$file_ext = pathinfo($this->file['name'], PATHINFO_EXTENSION);
-		if ($ext != null && !in_array($file_ext, $ext)) {
-			return self::WRONG_FILE_EXT;
-		}
-		switch ($this->uploadType){
-			case "document":
-			case "document_cdc":
-				return $this->uploadDocument();
-				break;
-			case "teaching_doc":
-				return $this->uploadDocument();
-				break;
-			case "teacherbook_att":
-				return $this->teacherbookAttach();
-				break;
-		}
-	}
-	
-	private function teacherbookAttach(){
-		$ret = $this->moveFile();
-		if ($ret != 3){
-			return $ret;
-		}
-		else {
-			$file_name = basename($this->file['name']);
-			$last = $this->datasource->executeUpdate("INSERT INTO rb_allegati_registro_docente (registro, file) VALUES ({$this->data['id']}, '{$file_name}')");
-			$ff = preg_replace("/ /", "_", $file_name);
-			return $last;
-		}
+	public function upload(){
+		return $this->uploadDocument();
 	}
 	
 	private function uploadDocument(){

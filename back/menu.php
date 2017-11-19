@@ -6,7 +6,7 @@
         </a>
     </div>
 	<div class="menu_link">
-		<a href="<?php echo ROOT_SITE."/back/" ?>documents.php">
+		<a href="<?php echo ROOT_SITE."/back/" ?>documents.php?did=0">
 			<i class="material-icons" style="">description</i>
 			<span>Documenti</span>
 		</a>

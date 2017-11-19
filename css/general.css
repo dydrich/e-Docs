@@ -939,3 +939,106 @@ a.mdc-list-item {
 .mdc-card__action .mdc-button--compact {
     font-size: .875em;
 }
+
+iframe {
+    border: 1px solid #E4E7EF;
+}
+
+#iframe {
+    clear: both;
+    width: 100%;
+    border: 1px solid #E4E7EF;
+    height: 160px;
+    padding: 10px;
+    text-align: left;
+    display: inline-block;
+    border-radius: 2px;
+}
+
+#aframe {
+    border: none;
+    width: 90%;
+    margin: 0;
+    height: 140px
+}
+
+#del_upl {
+    position: relative;
+    float: right;
+    top: -25px;
+    padding-right: 20px;
+    display: none;
+    text-decoration: underline
+}
+
+.file-card {
+    width: 250px;
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 35px;
+    margin-bottom: 25px;
+    border-radius: 4px;
+}
+
+.file-title {
+    height: 60%;
+    padding: 10px;
+    width: 70%
+}
+
+.file-title h1 {
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+
+.file-title h2 {
+    font-size: .8rem;
+    color: rgba(0, 0, 0, .67);
+}
+
+.file-ext {
+    height: 60%;
+    width: 30%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.file-ext div {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-bottom {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 10px
+}
+
+.file-bottom i {
+    color: rgba(0, 0, 0, .67);
+}
+
+.file-action {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    color: rgba(0, 0, 0, .57);
+}
+
+.file-action:hover {
+    background-color: rgba(0, 0, 0, .15);
+    color: rgba(0, 0, 0, 1);
+}

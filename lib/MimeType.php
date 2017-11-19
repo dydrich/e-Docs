@@ -60,12 +60,14 @@ class MimeType{
 				$ctype = "image/gif";
 				$tipo = "Immagine gif";
 				$image = "image-gif.png";
+			$icon = 'image';
 				break;
 			case "png":
 			case "image/x-png":
 				$ctype = "image/x-png";
 				$tipo = "Immagine png";
 				$image = "image-png.png";
+				$icon = 'image';
 				break;
 			case "jpeg":
 			case "jpg":
@@ -74,6 +76,7 @@ class MimeType{
 				$ctype = "image/jpeg";
 				$tipo = "Immagine jpeg";
 				$image = "image-jpg.png";
+			$icon = 'image';
 				break;
 			case "tiff":
 			case "tif":
@@ -81,12 +84,14 @@ class MimeType{
 				$ctype = "image/tiff";
 				$tipo = "Immagine tif";
 				$image = "image-tiff.png";
+			$icon = 'image';
 				break;
 			case "bmp":
 			case "image/x-ms-bmp":
 				$ctype = "image/x-ms-bmp";
 				$tipo = "Immagine bmp";
 				$image = "image-bmp.png";
+			$icon = 'image';
 				break;
 				/*
 				 * audio files
@@ -180,26 +185,31 @@ class MimeType{
 				$ctype = "application/vnd.oasis.opendocument.text";
 				$tipo = "File OpenDocument text: OO.org - LibreOffice Writer";
 				$image = "libreoffice-writer.png";
+				$icon = 'description';
 				break;
 			case "ott":
 				$ctype = "application/vnd.oasis.opendocument.text-template";
 				$tipo = "File OO.org - LibreOffice Writer Template";
 				$image = "libreoffice-writer.png";
+				$icon = 'description';
 				break;
 			case "ods":
 				$ctype = "application/vnd.oasis.opendocument.spreadsheet";
 				$tipo = "File OO.org - LibreOffice Calc";
 				$image = "libreoffice-calc.png";
+				$icon = 'insert_chart';
 				break;
 			case "ots":
 				$ctype = "application/vnd.oasis.opendocument.spreadsheet-template";
 				$tipo = "File OO.org - LibreOffice Calc Template";
 				$image = "libreoffice-calc.png";
+				$icon = 'insert_chart';
 				break;
 			case "odp":
 				$ctype = "application/vnd.oasis.opendocument.presentation";
 				$tipo = "File OO.org - LibreOffice Impress";
 				$image = "libreoffice-impress.png";
+				$icon = 'present_to_all';
 				break;
 				 
 				/*
@@ -212,18 +222,21 @@ class MimeType{
 				$ctype = "application/postscript";
 				$tipo = "File Postscript";
 				$image = "image-x-psd.png";
+				$icon = 'picture_as_pdf';
 				break;
 			case "rtf":
 			case "application/rtf":
 				$ctype = "application/rtf";
 				$tipo = "Rich Text File";
 				$image = "text-plain.png";
+				$icon = 'description';
 				break;
 			case "pdf":
 			case "application/pdf":
 				$ctype = "application/pdf";
 				$tipo = "File pdf";
 				$image = "application-pdf.png";
+				$icon = 'picture_as_pdf';
 				break;
 			case "pps":
 			case "ppt":
@@ -231,11 +244,13 @@ class MimeType{
 				$ctype = "application/ms-powerpoint";
 				$tipo = "Presentazione PowerPoint";
 				$image = "application-vnd.ms-powerpoint.png";
+			$icon = 'present_to_all';
 				break;
 			case "pptx":
 				$ctype = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
 				$tipo = "Presentazione PowerPoint";
 				$image = "application-vnd.ms-powerpoint.png";
+				$icon = 'present_to_all';
 				break;
 			case "doc":
 			case "docx":
@@ -243,17 +258,20 @@ class MimeType{
 				$ctype = "application/ms-word";
 				$tipo = "File MS Word";
 				$image = "application-msword.png";
+				$icon = 'description';
 				break;
 			case "xls":
 			case "application/vnd.ms-excel":
 				$ctype = "application/vnd.ms-excel";
 				$tipo = "File MS Excel";
 				$image = "application-vnd.ms-excel.png";
+				$icon = 'insert_chart';
 				break;
 			case "xslx":
 				$ctype = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 				$tipo = "File MS Excel";
 				$image = "application-vnd.ms-excel.png";
+				$icon = 'insert_chart';
 				break;
 			case "mdb":
 			case "application/ms-access":
@@ -311,12 +329,12 @@ class MimeType{
 				 * default
 				*/
 			default:
-				$ctype = "application/octet-stream"; 
+				$ctype = "application/octet-stream";
+				$tipo = "File binario";
 				$image = "multipart-encrypted.png";
+				$icon = 'insert_drive_file';
 				break;
 		}
-		return array('ctype' => $ctype, 'tipo' => $tipo, 'image' => $image);
+		return array('ctype' => $ctype, 'tipo' => $tipo, 'image' => $image, 'icon' => $icon);
 	}
 }
-
-?>

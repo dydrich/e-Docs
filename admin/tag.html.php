@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
 	<script type="application/javascript" src="../js/page.js"></script>
 	<style>
-		.mdc-textfield, .mdc-select {
+		.mdc-text-field, .mdc-select {
 			width: 90%;
 			margin-left: auto;
 			margin-right: auto;
@@ -36,13 +36,13 @@
 	</div>
 	<div id="left_col">
 		<form method="post" id="userform"  class="mdc-elevation--z5" style="width: 50%; text-align: center; margin: auto" onsubmit="submit_data()">
-			<div class="mdc-textfield" data-mdc-auto-init="MDCTextfield">
-				<input type="text" required id="sub" name="sub" class="mdc-textfield__input" value="<?php if (isset($tag)) echo $tag->getName() ?>">
-				<label class="mdc-textfield__label" for="sub">Nome</label>
+			<div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+				<input type="text" required id="sub" name="sub" class="mdc-text-field__input" value="<?php if (isset($tag)) echo $tag->getName() ?>">
+				<label class="mdc-text-field__label" for="sub">Nome</label>
 			</div>
-			<div class="mdc-textfield mdc-textfield--textarea" data-mdc-auto-init="MDCTextfield">
-				<textarea id="textarea" name="textarea" class="mdc-textfield__input" rows="8" cols="40"><?php if (isset($tag)) echo $tag->getDescription() ?></textarea>
-				<label for="textarea" class="mdc-textfield__label">Descrizione</label>
+			<div class="mdc-text-field mdc-text-field--textarea" data-mdc-auto-init="MDCTextField">
+				<textarea id="textarea" name="textarea" class="mdc-text-field__input" rows="8" cols="40"><?php if (isset($tag)) echo $tag->getDescription() ?></textarea>
+				<label for="textarea" class="mdc-text-field__label">Descrizione</label>
 			</div>
 			<section class="mdc-card__actions">
 				<button id="submit_btn" onclick="submit_data(event)" class="mdc-button mdc-button--compact mdc-card__action">Registra</button>
@@ -56,7 +56,7 @@
 <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 <script>
     window.mdc.autoInit();
-    mdc.textfield.MDCTextfield.attachTo(document.querySelector('.mdc-textfield'));
+    mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
 
     var tid = <?php if (isset($_REQUEST['tid'])) echo $_REQUEST['tid']; else echo 0 ?>;
 

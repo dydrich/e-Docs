@@ -169,8 +169,6 @@ var j_alert = function(type, msg){
     }
     else if (type === 'working') {
         var _i = document.querySelector('#alert .alert_title i');
-        _i.classList.remove('fa-thumbs-up');
-        _i.classList.add('fa-circle-o-notch fa-spin');
         _span = document.querySelector('#alert .alert_title span');
         _span.innerText = 'Attendi';
         document.getElementById('alertmessage').innerText = msg;
@@ -209,43 +207,22 @@ var show_user_menu = function (event) {
 
 /*
 codice per la visualizzazione dei processi in background
-versione per jquery
+
  */
 var exec_code;
 var bckg_timer;
 var background_process = function(msg, tm, show_progress) {
-    $('#background .alert_title i').removeClass("fa-thumbs-up").addClass("fa-circle-o-notch fa-spin");
-    $('#background .alert_title span').text("Attendi");
-    $('#background_msg').text(msg);
-    /*
-    $('#background_msg').dialog({
-        autoOpen: true,
-        dialogClass: 'no_display ui-state-highlight',
-        show: {
-            effect: "fadeIn",
-            duration: 800
-        },
-        hide: {
-            effect: "fadeOut",
-            duration: 1000
-        },
-        modal: true,
-        width: 200,
-        title: '',
-        open: function(event, ui){
+    //document.querySelector('#background .alert_title i').removeClass("fa-thumbs-up").addClass("fa-circle-o-notch fa-spin");
+    document.querySelector('#background .alert_title span').innerText = "Attendi";
+    document.querySelector('#background_msg').innerText = msg;
 
-        }
-    });
-    */
     var mtop = mleft = 0;
     mtop = screen.height / 3;
     mleft = (screen.width - 300) / 2;
-    $('#background').css({
-        top: mtop,
-        left: mleft
-    });
-    $('#overlay').fadeIn(100);
-    $('#background').fadeIn(300);
+    document.getElementById('background').style.top = mtop+"px";
+    document.getElementById('background').style.left = mleft+"px";
+    fade('overlay', 'in', 500, 1);
+    fade('background', 'in', 500, 1);
 
     timeout = tm;
     bckg_timer = setTimeout(function() {
@@ -262,11 +239,11 @@ var background_progress = function(msg, show_progress) {
             if(tm > 5){
                 tm = 0;
                 msg = msg.substr(0, msg.length - 5);
-                $('#background_msg').text(msg);
+                document.getElementById('background_msg').innerText = msg;
             }
             else {
                 msg += ".";
-                $('#background_msg').text(msg);
+                document.getElementById('background_msg').innerText = msg;
             }
         }
         bckg_timer = setTimeout(
@@ -283,18 +260,18 @@ var background_progress = function(msg, show_progress) {
 
 var loaded = function(txt) {
     clearTimeout(bckg_timer);
-    $('#background .alert_title i').removeClass("fa-circle-o-notch fa-spin").addClass("fa-thumbs-up");
-    $('#background .alert_title span').text("Successo");
-    $('#background_msg').text(txt);
-    setTimeout(function() {
-        $('#background').fadeOut();
-        $('#overlay').fadeOut();
+    document.querySelector('#background .alert_title i').innerText = 'thumb_up';
+    document.querySelector('#background .alert_title span').innerText = "Successo";
+    document.getElementById('background_msg').innerText = txt;
+    window.setTimeout(function() {
+        fade('overlay', 'out', 50, 1);
+        fade('background', 'out', 50, 1);
     }, 2000);
 };
 
 var loaded_with_error = function(txt) {
     clearTimeout(bckg_timer);
-    $('#background').hide();
+    document.getElementById('background').style.display = 'none';
     j_alert("error", txt);
 };
 

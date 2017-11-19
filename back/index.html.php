@@ -26,7 +26,7 @@
 				<div class="dashboard_card docs_card_light mdc-elevation--z3 mdc-elevation-transition" style="order: 2">
 					<div class="dashboard_card_body">
 						<div class="dashboard_body_left">
-							<span style="font-size: 2em;">0</span>
+							<span style="font-size: 2em;"><?php echo $doc_count ?></span>
 							<br /> documenti
 						</div>
 						<div class="dashboard_body_right">
@@ -35,7 +35,7 @@
 					</div>
 					<div class="dashboard_card_row docs_card_dark">
 						<div>
-							<a href="">
+							<a href="documents.php">
 								<span>Gestisci</span>
 								<i class="material-icons">forward</i>
 							</a>
