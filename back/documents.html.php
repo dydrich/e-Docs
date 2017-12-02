@@ -33,6 +33,16 @@
 	</div>
 	<div id="left_col">
         <div style="width: 90%; margin-right: auto; margin-left: auto; margin-top: -10px; text-align: right; display: flex; justify-content: flex-end">
+            <?php if(!isset($_GET['view']) || $_GET['view'] != 'list'): ?>
+            <div style="width: 60px; color: rgba(0, 0, 0, .57); font-size: 1.2rem; display: flex; align-items: center" class="_bold">
+                Nome
+            </div>
+            <a href="<?php echo $name_link ?>" style="margin-right: 80%">
+                <div class="file-action">
+                    <i class="material-icons"><?php echo $arrow ?></i>
+                </div>
+            </a>
+            <?php endif; ?>
             <a href="<?php echo $link ?>">
                 <div class="file-action">
                     <i class="material-icons"><?php echo $mat_icon ?></i>
@@ -69,12 +79,37 @@
 			else {
 			    if ($index == 0) {
 					?>
-                    <div style="width: 100%; display: flex; flex-wrap: wrap; align-items: flex-start; height: 45px" class="bottom_decoration _bold">
+                    <div style="width: 100%; display: flex; flex-wrap: wrap; align-items: center; height: 45px" class="bottom_decoration _bold">
                         <div style="order: 1; flex: 3; display: flex; align-items: center; color: rgba(0, 0, 0, .55)">
-                            Titolo
+                            <a href="documents.php?view=list&o=title&d=desc" style="color: rgba(0, 0, 0, .55)">Titolo</a>
+                            <?php if (isset($_GET['view']) && $_GET['view'] == 'list' && $_GET['o'] == 'title'): ?>
+                            <a href="documents.php?view=list&o=title&d=<?php echo ($_GET['d'] == 'desc') ? 'asc': 'desc'  ?>" style="margin-right: 80%">
+                                <div style="width: 30px; height: 30px;" class="file-action">
+                                    <i class="material-icons" style="font-size: 1.2rem"><?php echo $arrow ?></i>
+                                </div>
+                            </a>
+                            <?php endif; ?>
                         </div>
-                        <div style="order: 2; flex: 2; color: rgba(0, 0, 0, .55)">Disciplina</div>
-                        <div style="order: 4; flex: 2; color: rgba(0, 0, 0, .55)">Ultima modifica</div>
+                        <div style="order: 2; flex: 2; display: flex; align-items: center; color: rgba(0, 0, 0, .55)">
+                            <a href="documents.php?view=list&o=sub&d=desc" style="color: rgba(0, 0, 0, .55)">Disciplina</a>
+							<?php if (isset($_GET['view']) && $_GET['view'] == 'list' && $_GET['o'] == 'sub'): ?>
+                                <a href="documents.php?view=list&o=sub&d=<?php echo ($_GET['d'] == 'desc') ? 'asc': 'desc'  ?>" style="margin-right: 20%">
+                                    <div style="width: 30px; height: 30px;" class="file-action">
+                                        <i class="material-icons" style="font-size: 1.2rem"><?php echo $arrow ?></i>
+                                    </div>
+                                </a>
+							<?php endif; ?>
+                        </div>
+                        <div style="order: 4; flex: 2; display: flex; align-items: center; color: rgba(0, 0, 0, .55)">
+                            <a href="documents.php?view=list&o=last_modified_time&d=desc" style="color: rgba(0, 0, 0, .55)">Ultima modifica</a>
+							<?php if (isset($_GET['view']) && $_GET['view'] == 'list' && $_GET['o'] == 'last_modified_time'): ?>
+                                <a href="documents.php?view=list&o=last_modified_time&d=<?php echo ($_GET['d'] == 'desc') ? 'asc': 'desc'  ?>" style="margin-right: 20%">
+                                    <div style="width: 30px; height: 30px;" class="file-action">
+                                        <i class="material-icons" style="font-size: 1.2rem"><?php echo $arrow ?></i>
+                                    </div>
+                                </a>
+							<?php endif; ?>
+                        </div>
                         <div style="order: 5; flex: 1; color: rgba(0, 0, 0, .55)">Dimensioni file</div>
                     </div>
 					<?php
@@ -86,7 +121,7 @@
                     <?php echo $row['title'] ?>
                 </div>
                 <div style="order: 2; flex: 2; color: rgba(0, 0, 0, .55)"><?php echo $row['sub'] ?></div>
-                <div style="order: 4; flex: 2; color: rgba(0, 0, 0, .55)"><?php echo format_date(substr($row['last_modified_time'], 0, 10), SQL_DATE_STYLE, IT_DATE_STYLE, "/") ?></div>
+                <div style="order: 4; flex: 2; color: rgba(0, 0, 0, .55)"><?php echo format_date(substr($row['last_modified_time'], 0, 10), SQL_DATE_STYLE, IT_DATE_STYLE, "/")." ".substr($row['last_modified_time'], 10, 6) ?></div>
                 <div style="order: 5; flex: 1; color: rgba(0, 0, 0, .55)"><?php echo human_filesize($fs, 0) ?></div>
             </div>
             <?php

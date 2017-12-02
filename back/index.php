@@ -13,7 +13,7 @@ check_role(User::$USER);
 $_SESSION['area'] = 'admin';
 
 $doc_count = $db->executeCount("SELECT COUNT(*) FROM rb_documents WHERE owner = ".$_SESSION['__user__']->getUid());
-
+$doc_m_count = $db->executeCount("SELECT COUNT(*) FROM rb_documents WHERE upload_date BETWEEN DATE_SUB(NOW(), INTERVAL + 1 MONTH) AND NOW() AND owner = ".$_SESSION['__user__']->getUid());
 $drawer_label = "Home";
 
 include "index.html.php";

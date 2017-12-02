@@ -88,7 +88,7 @@
 					</div>
 					<div class="dashboard_longcard_body">
 						<div class="dashboard_indicator_container">
-							<div style="width: 300px">0 documenti</div>
+							<div style="width: 300px"><?php echo $doc_m_count ?> documenti</div>
 							<div class="dashboard_linear_indicator">
 								<div class="dashboard_linear_indicator_value docs_card_light"> </div>
 							</div>
