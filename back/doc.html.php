@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Dettaglio categoria</title>
+    <title>Dettaglio documento</title>
     <link rel="stylesheet" href="../css/general.css" type="text/css" media="screen,projection" />
     <link rel="stylesheet" media="screen and (min-width: 2000px)" href="../css/layouts/larger.css">
     <link rel="stylesheet" media="screen and (max-width: 1999px) and (min-width: 1300px)" href="../css/layouts/wide.css">

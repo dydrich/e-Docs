@@ -17,6 +17,7 @@
         .app-fab--absolute.app-fab--absolute {
             position: fixed;
             /*right: 39rem;*/
+            background-color: #FF528D;
         }
 	</style>
 </head>
@@ -50,7 +51,7 @@
 				</div>
 		</div>
 	</div>
-    <button id="newsubject" class="mdc-fab material-icons app-fab--absolute" aria-label="Nuova materia">
+    <button id="newsubject" class="mdc-fab material-icons rb_button app-fab--absolute" aria-label="Nuova materia">
         <span class="mdc-fab__icon">
             create
         </span>

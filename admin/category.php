@@ -11,7 +11,7 @@ require_once "../lib/Category.php";
 ini_set('display_errors', 1);
 
 check_session();
-check_role(User::$ADMIN);
+check_role(\edocs\User::$ADMIN);
 
 $_SESSION['area'] = 'admin';
 $drawer_label = null;

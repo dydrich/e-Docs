@@ -29,30 +29,17 @@ final class RBUtilities{
 		return self::$instance;
 	}
 
-	public function loadUserConfig($uid){
-		$sel_config = "SELECT rb_parametri_utente.*, rb_parametri_configurabili.codice FROM rb_parametri_utente, rb_parametri_configurabili WHERE rb_parametri_utente.id_parametro = rb_parametri_configurabili.id AND id_utente = {$uid}";
-		$res_config = $this->datasource->executeQuery($sel_config);
-		$config = array();
-		if ($res_config){
-			foreach ($res_config as $row){
-				$data = explode(";", $row['valore']);
-				$config[$row['codice']] = $data;
-			}
-		}
-		return $config;
-	}
-
 	/**
 	 * Load an instance of some User class
 	 * @param integer $uid - the user's id
-	 * @param string $area - type of user
+	 * @return \edocs\User $user
 	 */
 	public function loadUserFromUid($uid){
 			$sel_user = "SELECT firstname, lastname, username, accesses_count, role, active FROM rb_users WHERE rb_users.uid = {$uid} ";
 				$ut = $this->datasource->executeQuery($sel_user);
 				$utente = $ut[0];
 
-				$user = new User($uid, $utente['firstname'], $utente['lastname'], $utente['username'], null, $utente['role'], $this->datasource);
+				$user = new \edocs\User($uid, $utente['firstname'], $utente['lastname'], $utente['username'], null, $utente['role'], $this->datasource);
 				$user->setActive($utente['active']);
 
 		return $user;

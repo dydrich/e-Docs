@@ -1,13 +1,12 @@
 <?php
-
+ini_set("display_errors", 1);
 require_once "../lib/start.php";
 require_once "../lib/MimeType.php";
 require_once '../lib/EventLogFactory.php';
-require_once "../lib/ArrayMultiSort.php";
 require_once "../lib/RBUtilities.php";
 require_once "../lib/Document.php";
 
-ini_set("display_errors", 1);
+
 
 check_session();
 
@@ -22,11 +21,21 @@ else {
 if(isset($_REQUEST['did']) && $_REQUEST['did'] != 0){
 	$did = $_REQUEST['did'];
 	$sel_doc = "SELECT * FROM rb_documents WHERE doc_id = ".$_REQUEST['did'];
-	$r_doc = $db->executeQuery($sel_doc);
+	try {
+		$r_doc = $db->executeQuery($sel_doc);
+	} catch (\edocs\MySQLException $ex) {
+
+	}
+
 	$current_doc = $r_doc->fetch_assoc();
 
 	$sel_tags = "SELECT name FROM rb_tags, rb_doc_tag WHERE rb_tags.tid = rb_doc_tag.tid AND doc_id = {$did}";
-	$res_tags = $db->executeQuery($sel_tags);
+	try {
+		$res_tags = $db->executeQuery($sel_tags);
+	} catch (\edocs\MySQLException $ex) {
+
+	}
+
 	$tags = array();
 	if ($res_tags->num_rows > 0){
 		while ($rt = $res_tags->fetch_assoc()){
@@ -43,24 +52,18 @@ else{
 $drawer_label = "Gestione documento";
 
 $sel_materie = "SELECT * FROM rb_subjects ORDER BY name";
-$res_materie = $db->executeQuery($sel_materie);
-	
-// categorie
 $sel_categorie = "SELECT * FROM rb_categories ORDER BY name";
-$res_categorie = $db->executeQuery($sel_categorie);
-	
-// ordini di scuola
 $sel_ordini = "SELECT * FROM rb_schools ORDER BY name";
-$res_ordini = $db->executeQuery($sel_ordini);
-	
-/*
- * grades
- */
-
 $sel_grades = "SELECT * FROM rb_grades ORDER BY grade ASC";
-$res_grades = $db->executeQuery($sel_grades);
+try {
+	$res_materie = $db->executeQuery($sel_materie);
+	$res_categorie = $db->executeQuery($sel_categorie);
+	$res_ordini = $db->executeQuery($sel_ordini);
+	$res_grades = $db->executeQuery($sel_grades);
+	$schema_db = new MySQLConnection("localhost", "root", "isildur", "information_schema", "3306");
+	$nv = $schema_db->executeCount("SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'edocs' AND TABLE_NAME = 'rb_documents'");
+} catch (\edocs\MySQLException $ex) {
 
-$nv = $db->executeCount("SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'edocs' AND TABLE_NAME = 'documents'");
-echo "==>".$nv;
+}
 
 include "doc.html.php";

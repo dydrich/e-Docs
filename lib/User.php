@@ -1,5 +1,7 @@
 <?php
 
+namespace edocs;
+
 require_once "AccountManager.php";
 
 class User {
@@ -29,14 +31,14 @@ class User {
 		$this->lastName = $ln;
 		$this->username = $un;
 		$this->role = $rl;
-		if ($dl instanceof MySQLDataLoader) {
+		if ($dl instanceof \MySQLDataLoader) {
 			$this->datasource = $dl;
 		}
 		else {
-			$this->datasource = new MySQLDataLoader($dl);
+			$this->datasource = new \MySQLDataLoader($dl);
 		}
 		if ($pwd == null) {
-			$pass = AccountManager::generatePassword();
+			$pass = \AccountManager::generatePassword();
 			$this->pwd = $pass;
 		}
 		else {

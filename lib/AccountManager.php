@@ -5,7 +5,7 @@ class AccountManager{
 	private $user_;
 	private $datasource_;
 
-	public function __construct(User $u, DataLoader $dl){
+	public function __construct(\edocs\User $u, DataLoader $dl){
 		$this->user_ = $u;
 		$this->datasource_ = $dl;
 	}

@@ -44,7 +44,7 @@ if ($user == null) {
 
 $_SESSION['__user__'] = $user;
 if ($_POST['area'] == 'admin') {
-	if ($user->getRole() != User::$ADMIN) {
+	if ($user->getRole() != \edocs\User::$ADMIN) {
 		// TODO: redirect to no permission page
 	}
 	header("Location: admin/index.php");

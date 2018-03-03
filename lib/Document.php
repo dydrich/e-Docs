@@ -240,7 +240,7 @@ class Document
 		return $this->owner;
 	}
 
-	public function setOwner(\User $o){
+	public function setOwner(User $o){
 		$this->owner = $o;
 	}
 
@@ -344,9 +344,9 @@ class Document
 
 	public function delete(){
 		$this->deleteFile();
-		$this->datasource->executeUpdate("DELETE FROM rb_documents_tags WHERE id_documento = {$this->id}");
-		$this->datasource->executeUpdate("DELETE FROM rb_downloads WHERE doc_id = {$this->id}");
-		$this->datasource->executeUpdate("DELETE FROM rb_documents WHERE id = {$this->id}");
+		$this->datasource->executeUpdate("DELETE FROM rb_doc_tag WHERE doc_id = {$this->id}");
+		$this->datasource->executeUpdate("DELETE FROM rb_downloads WHERE document_id = {$this->id}");
+		$this->datasource->executeUpdate("DELETE FROM rb_documents WHERE doc_id = {$this->id}");
 	}
 
 	public function download(){

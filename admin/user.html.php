@@ -64,7 +64,7 @@
                 while ($row = $res_roles->fetch_assoc()) {
                     $selected = '';
 					if (!isset($user)) {
-						if ($row['rid'] == User::$GUEST) {
+						if ($row['rid'] == \edocs\User::$GUEST) {
 							$selected = "default selected";
                         }
                     }

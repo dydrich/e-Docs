@@ -8,7 +8,7 @@
 require_once "../lib/start.php";
 
 check_session();
-check_role(User::$ADMIN);
+check_role(\edocs\User::$ADMIN);
 
 $_SESSION['area'] = 'admin';
 $drawer_label = null;

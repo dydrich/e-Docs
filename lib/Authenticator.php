@@ -34,7 +34,7 @@ class Authenticator {
 			throw new \edocs\CustomException("Utente non più attivo", \edocs\CustomException::$USER_NOT_ACTIVE_CODE);
 		}
 
-		if ($user->getRole() == User::$GUEST) {
+		if ($user->getRole() == \edocs\User::$GUEST) {
 			throw new \edocs\CustomException("Permesso negato", \edocs\CustomException::$GUEST_NOT_AMITTED_CODE);
 		}
 

@@ -30,7 +30,7 @@ switch($_POST['action']){
 	case ACTION_INSERT:
 		try{
 			$begin = $db->executeUpdate("BEGIN");
-			$user = new User(0, $nome, $cognome, $uname, null, $role, new MySQLDataLoader($db));
+			$user = new \edocs\User(0, $nome, $cognome, $uname, null, $role, new MySQLDataLoader($db));
 			$response['user'] = $user->insert();
 			$response['data_field'] = 'user';
 			$commit = $db->executeUpdate("COMMIT");
@@ -52,7 +52,7 @@ switch($_POST['action']){
 	case ACTION_DELETE:
        	try{
 			$begin = $db->executeUpdate("BEGIN");
-			$user = new User($_POST['uid'], "", "", "", null, null, new MySQLDataLoader($db));
+			$user = new \edocs\User($_POST['uid'], "", "", "", null, null, new MySQLDataLoader($db));
 			$user->delete(false);
 			$begin = $db->executeUpdate("COMMIT");
 		} catch (\edocs\MySQLException $ex){
@@ -69,7 +69,7 @@ switch($_POST['action']){
 	case ACTION_UPDATE:
 		try{
 			$begin = $db->executeUpdate("BEGIN");
-			$user = new User($_POST['uid'], $nome, $cognome, $uname, null, $role, new MySQLDataLoader($db));
+			$user = new \edocs\User($_POST['uid'], $nome, $cognome, $uname, null, $role, new MySQLDataLoader($db));
 			$user->update();
 			$begin = $db->executeUpdate("COMMIT");
 		} catch (\edocs\MySQLException $ex){
@@ -85,7 +85,7 @@ switch($_POST['action']){
 	case ACTION_RESTORE:
 		try{
 			$begin = $db->executeUpdate("BEGIN");
-			$user = new User($_POST['uid'], null, null, '', null, null, new MySQLDataLoader($db));
+			$user = new \edocs\User($_POST['uid'], null, null, '', null, null, new MySQLDataLoader($db));
 			$user->restore();
 			$begin = $db->executeUpdate("COMMIT");
 		} catch (\edocs\MySQLException $ex){

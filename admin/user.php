@@ -20,7 +20,7 @@ else {
 	$r_us = $db->executeQuery("SELECT * FROM rb_users WHERE uid = ".$_REQUEST['uid']);
 	if ($r_us) {
 		$us = $r_us->fetch_assoc();
-		$user = new User($_REQUEST['uid'], $us['firstname'], $us['lastname'], $us['username'], null, $us['role'], new MySQLDataLoader($db));
+		$user = new \edocs\User($_REQUEST['uid'], $us['firstname'], $us['lastname'], $us['username'], null, $us['role'], new MySQLDataLoader($db));
 	}
 }
 

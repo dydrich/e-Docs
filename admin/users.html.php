@@ -52,10 +52,10 @@
         <div style="margin: auto; display: flex; flex-wrap: wrap; align-content: center; align-items: center">
             <?php
 			foreach ($users as $user) {
-                if ($user['role'] == User::$USER) {
+                if ($user['role'] == \edocs\User::$USER) {
 					$color = "#1565c0";
                 }
-                else if ($user['role'] == User::$ADMIN) {
+                else if ($user['role'] == \edocs\User::$ADMIN) {
 					$color = "#c2185b";
                 }
                 else {
@@ -66,7 +66,7 @@
                     <div class="mdc-card__horizontal-block">
                         <section class="mdc-card__primary">
                             <h1 class="mdc-card__title"><?php echo $user['lastname']." ".$user['firstname'] ?></h1>
-                            <h2 class="mdc-card__subtitle"><?php echo User::getHumanReadebleRole($user['role']) ?></h2>
+                            <h2 class="mdc-card__subtitle"><?php echo \edocs\User::getHumanReadebleRole($user['role']) ?></h2>
                         </section>
                         <i class="material-icons" style="font-size: 2.5em; position: relative; margin-top: 20px; color: <?php echo $color ?>">people</i>
                     </div>

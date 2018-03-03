@@ -9,7 +9,7 @@ require_once "../lib/start.php";
 require_once "../lib/Subject.php";
 
 check_session();
-check_role(User::$ADMIN);
+check_role(\edocs\User::$ADMIN);
 
 $_SESSION['area'] = 'admin';
 $drawer_label = null;

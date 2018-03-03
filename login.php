@@ -11,7 +11,7 @@ require_once "lib/start.php";
 
 if (isset($_SESSION['__user__'])) {
 	if ($_REQUEST['area'] == 'admin'){
-		if ($_SESSION['__user__']->getRole() != User::$ADMIN) {
+		if ($_SESSION['__user__']->getRole() != \edocs\User::$ADMIN) {
 			// TODO: no_permission page
 		}
 		else {
@@ -19,7 +19,7 @@ if (isset($_SESSION['__user__'])) {
 		}
 	}
 	else if ($_REQUEST['area'] == 'private'){
-		if ($_SESSION['__user__']->getRole() != User::$USER) {
+		if ($_SESSION['__user__']->getRole() != \edocs\User::$USER) {
 			// TODO: no_permission page
 		}
 		else {
