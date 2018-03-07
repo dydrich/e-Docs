@@ -26,7 +26,21 @@
          }
 
         .mdc-card__primary {
-            padding: 16px 16px 0 16px
+            padding: 1px 16px 0 16px
+        }
+
+        .mdc-card__action {
+            padding: 0;
+            margin: 0;
+        }
+
+        .upd {
+            height: 30px;
+        }
+
+        .mdc-card__subtitle {
+            font-style: italic;
+            color: rgba(0, 0, 0, .54);
         }
     </style>
 </head>
@@ -63,21 +77,22 @@
                 }
             ?>
                 <div id="user<?php echo $user['uid'] ?>" class="mdc-card demo-card">
-                    <div class="mdc-card__horizontal-block">
-                        <section class="mdc-card__primary">
+                    <div class="mdc-card__horizontal-block" style="display: flex; flex-flow: row wrap">
+                        <section class="mdc-card__primary" style="order: 1; flex: 4 85%">
                             <h1 class="mdc-card__title"><?php echo $user['lastname']." ".$user['firstname'] ?></h1>
-                            <h2 class="mdc-card__subtitle"><?php echo \edocs\User::getHumanReadebleRole($user['role']) ?></h2>
+                            <h2 class="mdc-card__subtitle"><?php echo \edocs\User::getHumanReadableRole($user['role']) ?></h2>
                         </section>
-                        <i class="material-icons" style="font-size: 2.5em; position: relative; margin-top: 20px; color: <?php echo $color ?>">people</i>
+                        <i class="material-icons" style="font-size: 2.5em; color: <?php echo $color ?>; order: 2; flex: 1 15%; margin-top: 10px">people</i>
+                        <section class="" style="order: 3; flex: 1 100%; padding-left: 10px">
+                            <button type="submit" class="mdc-button mdc-button--compact mdc-card__action upd" data-uid="<?php echo $user['uid'] ?>">Modifica</button>
+							<?php if ($user['active'] == 1): ?>
+                                <button class="mdc-button mdc-button--compact mdc-card__action del" data-uid="<?php echo $user['uid'] ?>">Elimina</button>
+							<?php else: ?>
+                                <button class="mdc-button mdc-button--compact mdc-card__action res" data-uid="<?php echo $user['uid'] ?>">Ripristina</button>
+							<?php endif; ?>
+                        </section>
                     </div>
-                    <section class="mdc-card__actions">
-                        <button type="submit" class="mdc-button mdc-button--compact mdc-card__action upd" data-uid="<?php echo $user['uid'] ?>">Modifica</button>
-                        <?php if ($user['active'] == 1): ?>
-                        <button class="mdc-button mdc-button--compact mdc-card__action del" data-uid="<?php echo $user['uid'] ?>">Elimina</button>
-                        <?php else: ?>
-                        <button class="mdc-button mdc-button--compact mdc-card__action res" data-uid="<?php echo $user['uid'] ?>">Ripristina</button>
-                        <?php endif; ?>
-                    </section>
+
                 </div>
             <?php
             }

@@ -34,15 +34,15 @@
         <form id="myform" action="do_login.php" method="post" style="margin: auto">
             <div class="rb-login-container">
                 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                    <input required type="text" id="my-username" name="my-username" class="mdc-text-field__input">
-                    <label class="mdc-text-field__label" for="my-username">Username</label>
+                    <input required autocomplete="off" type="text" id="my-username" name="my-username" class="mdc-text-field__input">
+                    <label class="mdc-floating-label" for="my-username">Username</label>
                 </div>
             </div>
             <div class="rb-login-container">
                 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
                     <input required type="password" class="mdc-text-field__input" id="pw" name="pw"
                            autocomplete="current-password">
-                    <label for="pw" class="mdc-text-field__label">Password</label>
+                    <label for="pw" class="mdc-floating-label">Password</label>
                     <div class="mdc-text-field__bottom-line"></div>
                 </div>
             </div>

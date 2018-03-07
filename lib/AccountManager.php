@@ -1,5 +1,7 @@
 <?php
 
+namespace edocs;
+
 class AccountManager{
 
 	private $user_;

@@ -36,7 +36,7 @@
 				?>
                     <a href="subject.php?sid=<?php echo $row['sid'] ?>&back=subjects.php" data-id="<?php echo $row['sid'] ?>" id="item<?php echo $row['sid'] ?>" class="mdc-list-item mdc-elevation--z3" data-mdc-auto-init="MDCRipple">
 						<span class="mdc-list-item__start-detail _bold" role="presentation">
-							<i class="material-icons">library_books</i>
+							<i class="material-icons" style="color: rgba(0, 0, 0, .68)">library_books</i>
 						</span>
 						<span class="mdc-list-item__text">
 						  <?php echo $row['name'] ?>

@@ -58,20 +58,18 @@
 			$mime = MimeType::getMimeContentType($_SESSION['__config__']['document_root']."/".$row['file']);
 			if (!isset($_GET['view']) || $_GET['view'] == 'cards') {
 				?>
-                <div class="file-card mdc-elevation--z6">
-                    <section class="file-title">
-                        <h1 class="mdc-card__title mdc-card__title--large"><?php echo $row['title'] ?></h1>
-                        <h2 class="mdc-card__subtitle"><?php echo $row['sub'] ?></h2>
+                <div class="file-card mdc-elevation--z3">
+                    <section class="file-subject normal">
+						<p style="margin: auto"><?php echo $row['sub'] ?></p>
                     </section>
                     <section class="file-ext">
-                        <div class="mdc-elevation--z1">
-							<?php echo strtoupper($ext) ?>
+                        <div>
+                            <i class="material-icons" style="font-size: 7rem"><?php echo $mime['icon'] ?></i>
                         </div>
                     </section>
-                    <section class="file-bottom">
-                        <i class="material-icons"><?php echo $mime['icon'] ?></i>
-                        <p style="margin-left: 10px; width: 70%"><?php echo truncateString($row['document_name'], 20) ?></p>
-                        <span style=""><?php echo human_filesize($fs, 0) ?></span>
+                    <section class="file-title normal">
+                        <h1 class="mdc-card__title mdc-card__title--large"><?php echo truncateString($row['title'], 15) ?></h1>
+                        <!--<h2 class="mdc-card__subtitle"><?php echo $row['sub'] ?></h2>-->
                     </section>
                 </div>
 				<?php
@@ -155,7 +153,7 @@
         btn.style.right = (right_offset - 18)+"px";
 
         btn.addEventListener('click', function () {
-            window.location = 'doc.php?did=0';
+            window.location = 'doc.php?did=0&back=documents.php';
         });
     })();
 </script>

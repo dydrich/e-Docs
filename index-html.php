@@ -43,19 +43,19 @@
     <div id="login_form" style="display: flex; display: -webkit-flex; flex-direction: row; flex-wrap: wrap; align-items: center;">
         <div class="area">
             <a href="#" id="admin">
-                <i class="material-icons" style="color: #673ab7">build</i>
+                <img src="img/gear.png" style="width: 65%" />
                 <div style="">Amministrazione</div>
             </a>
         </div>
         <div class="area" id="center_el">
             <a href="#" id="private">
-                <i class="material-icons" style="color: #880e4f">cloud_upload</i>
+                <img src="img/private2.png" style="width: 65%" />
                 <div style="">Area privata</div>
             </a>
         </div>
         <div class="area" id="area_school">
             <a href="#" id="public">
-                <i class="material-icons" style="color: #00bfa5">public</i>
+                <img src="img/library.png" style="width: 65%" />
                 <div style="">Area pubblica</div>
             </a>
         </div>

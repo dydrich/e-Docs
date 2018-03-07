@@ -1,5 +1,13 @@
 *{margin:0;padding:0;}:focus,:active {outline:0}ul,ol{list-style:none}img{border:0}
 
+:root {
+    --mdc-theme-primary: #01579B !important;
+    --mdc-theme-secondary: #FF528D !important;
+    --accent-color: #c51162 !important;
+    --main-500: #03A9F4;
+    --main-700: #0288D1;
+}
+
 html {
     height: 100%
 }
@@ -19,6 +27,7 @@ body {
 
 .area div {
     color: #1E4389;
+    margin-top: 20px;
 }
 
 #login_form {
@@ -75,4 +84,8 @@ a {
 .alert_title span, .error_title span {
     padding-left: 10px;
     font-size: 1em
+}
+
+.rb-login-container:last-of-type {
+    margin-bottom: 20px;
 }

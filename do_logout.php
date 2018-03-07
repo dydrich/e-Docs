@@ -7,6 +7,7 @@
  */
 
 include_once 'lib/start.php';
+//session_start();
 if ($_SESSION){
 	session_destroy();
 	unset($_SESSION);

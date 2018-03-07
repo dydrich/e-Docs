@@ -2,6 +2,14 @@ html {
     height: 100%
 }
 
+:root {
+    --mdc-theme-primary: #01579B !important;
+    --mdc-theme-secondary: #FF528D !important;
+    --accent-color: #c51162 !important;
+    --main-500: #03A9F4;
+    --main-700: #0288D1;
+}
+
 body {
     background: rgb(224, 247, 250);
     background: -moz-linear-gradient(90deg, rgb(224, 247, 250) 30%, rgb(178, 235, 242) 90%);
@@ -14,19 +22,11 @@ body {
 }
 
 #header {
-    background-color: #0288D1;
+    background-color: var(--main-700);
 }
 
 #header a {
     color: #FFFFFF;
-}
-
-.main500 {
-    color: #03A9F4
-}
-
-.main700 {
-    color: #0288D1
 }
 
 #sc_firstrow {
@@ -53,7 +53,7 @@ body {
 
 #navigation {
     color: #FFFFFF;
-    background-color: #03A9F4;
+    background-color: var(--main-500);
 }
 
 #navigation a {
@@ -108,7 +108,7 @@ div.mdselected_tab a > span {
 }
 
 .rb_button, .mdc-fab, #newuser {
-    background-color: #FF528D;
+    background-color: var(--mdc-theme-secondary);
 }
 
 .rb_bg {
@@ -120,11 +120,11 @@ div.mdselected_tab a > span {
 }
 
 .accent_button a, a.material_link, .material_label {
-    color: #c51162 !important;
+    color: var(--accent-color) !important;
 }
 
 .accent_decoration {
-    border-bottom: 1px solid #FF528D !important;
+    border-bottom: 1px solid var(--mdc-theme-secondary) !important;
 }
 
 .hover_row:hover {
@@ -134,11 +134,11 @@ div.mdselected_tab a > span {
 }
 
 .accent_color {
-    color: #c51162;
+    color: var(--accent-color);
 }
 
 .accent_color a {
-    color: #c51162 !important;
+    color: var(--accent-color) !important;
 }
 
 #ticker li, #tr_ticker li {
@@ -223,6 +223,5 @@ input.android:focus, select.android:focus, textarea.android:focus {
 }
 
 .file-ext div {
-    background-color: #0288D1;
-    color: white;
+
 }

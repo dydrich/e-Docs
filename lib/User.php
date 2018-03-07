@@ -38,7 +38,7 @@ class User {
 			$this->datasource = new \MySQLDataLoader($dl);
 		}
 		if ($pwd == null) {
-			$pass = \AccountManager::generatePassword();
+			$pass = AccountManager::generatePassword();
 			$this->pwd = $pass;
 		}
 		else {
@@ -181,7 +181,7 @@ class User {
         return $json_array;
     }
 
-    public static function getHumanReadebleRole ($r) {
+    public static function getHumanReadableRole($r) {
     	switch ($r) {
 			case 1:
 				return "User";
