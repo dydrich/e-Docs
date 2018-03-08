@@ -205,6 +205,46 @@ var show_user_menu = function (event) {
     }
 };
 
+var show_context_menu = function (event, data, height) {
+    event.preventDefault();
+    var menu = document.getElementById('context_menu');
+    if (menu.style.display === 'block') {
+        var x = event.clientX;
+        var y = event.clientY;
+
+        menu.style.top = parseInt(y)+"px";
+        menu.style.left = parseInt(x)+"px";
+    }
+    else {
+        menu.style.opacity = 0;
+        var x = event.clientX;
+        var y = event.clientY;
+
+        menu.style.height = parseInt(height)+'px !important';
+        menu.style.top = parseInt(y)+"px";
+        menu.style.left = parseInt(x)+"px";
+        menu.style.display = 'block';
+        menu.style.height = parseInt(height)+'px !important';
+        window.setTimeout(function () {
+            fade('context_menu', 'in', 500, 1);
+        }, 10);
+    }
+};
+
+var clear_context_menu;
+clear_context_menu = function (event) {
+    event.preventDefault();
+    var menu = document.getElementById('context_menu');
+    if (menu.style.display === 'block') {
+        window.setTimeout(function () {
+            fade('context_menu', 'out', 500, 0);
+        }, 10);
+    }
+    else {
+        return false;
+    }
+};
+
 /*
 codice per la visualizzazione dei processi in background
 
