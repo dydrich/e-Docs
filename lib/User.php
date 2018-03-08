@@ -198,8 +198,8 @@ class User {
 	}
 
 	public function insert ($sendEmail = true) {
-    	$sql = "INSERT INTO rb_users (username, password, firstname, lastname, accesses_count, last_access, previous_access, active, files_count, downloads, role)  
-				VALUES ('{$this->username}', '{$this->pwd['e']}', '{$this->firstName}', '{$this->lastName}', 0, NULL, NULL, 1, 0, 0, {$this->role})";
+    	$sql = "INSERT INTO rb_users (username, password, firstname, lastname, accesses_count, last_access, previous_access, active, files_count, downloads, role, registration_date)  
+				VALUES ('{$this->username}', '{$this->pwd['e']}', '{$this->firstName}', '{$this->lastName}', 0, NULL, NULL, 1, 0, 0, {$this->role}, NOW())";
     	$this->uid = $this->datasource->executeUpdate($sql);
     	if ($sendEmail && $this->role != User::$GUEST) {
 			$this->sendEmailAccessData();
