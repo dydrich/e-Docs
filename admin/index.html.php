@@ -46,7 +46,7 @@
                 <div class="dashboard_card docs_card_light mdc-elevation--z3 mdc-elevation-transition" style="order: 2">
                     <div class="dashboard_card_body">
                         <div class="dashboard_body_left">
-                            <span style="font-size: 2em;">0</span>
+                            <span style="font-size: 2em;"><?php echo $docs_count ?></span>
                             <br /> documenti
                         </div>
                         <div class="dashboard_body_right">
@@ -108,31 +108,31 @@
                     </div>
                     <div class="dashboard_longcard_body">
                         <div class="dashboard_indicator_container">
-                            <div style="width: 300px">0 nuovi utenti</div>
+                            <div style="width: 300px"><?php echo $monthly_users ?> nuovi utenti</div>
                             <div class="dashboard_linear_indicator">
                                 <div class="dashboard_linear_indicator_value users_card_light"> </div>
                             </div>
                         </div>
                         <div class="dashboard_indicator_container">
-                            <div style="width: 300px">0 nuovi documenti</div>
+                            <div style="width: 300px"><?php echo $monthly_docs ?> nuovi documenti</div>
                             <div class="dashboard_linear_indicator">
                                 <div class="dashboard_linear_indicator_value docs_card_light"> </div>
                             </div>
                         </div>
                         <div class="dashboard_indicator_container">
-                            <div style="width: 300px">1234 accessi pubblici</div>
+                            <div style="width: 300px"><?php echo $monthly_public_accesses ?> accessi pubblici</div>
                             <div class="dashboard_linear_indicator">
                                 <div class="dashboard_linear_indicator_value linear_accessess"> </div>
                             </div>
                         </div>
                         <div class="dashboard_indicator_container">
-                            <div style="width: 300px">12 accessi privati</div>
+                            <div style="width: 300px"><?php echo $monthly_private_accesses ?> accessi privati</div>
                             <div class="dashboard_linear_indicator">
                                 <div class="dashboard_linear_indicator_value linear_unq_accessess"> </div>
                             </div>
                         </div>
                         <div class="dashboard_indicator_container">
-                            <div style="width: 300px">34 download</div>
+                            <div style="width: 300px">-- download</div>
                             <div class="dashboard_linear_indicator">
                                 <div class="dashboard_linear_indicator_value linear_downloads"> </div>
                             </div>
