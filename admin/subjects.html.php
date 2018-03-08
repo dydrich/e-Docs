@@ -36,7 +36,7 @@
 				?>
                     <a href="subject.php?sid=<?php echo $row['sid'] ?>&back=subjects.php" data-id="<?php echo $row['sid'] ?>" id="item<?php echo $row['sid'] ?>" class="mdc-list-item mdc-elevation--z3" data-mdc-auto-init="MDCRipple">
 						<span class="mdc-list-item__start-detail _bold" role="presentation">
-							<i class="material-icons" style="color: rgba(0, 0, 0, .68)">library_books</i>
+							<i class="material-icons">library_books</i>
 						</span>
 						<span class="mdc-list-item__text">
 						  <?php echo $row['name'] ?>
@@ -60,6 +60,7 @@
 </div>
 <?php include_once "../share/footer.php" ?>
 <script>
+    var selected_tag = 0;
     document.addEventListener("DOMContentLoaded", function () {
         var heightMain = document.getElementById('main').clientHeight;
         var heightScreen = document.body.clientHeight;
@@ -78,35 +79,84 @@
             window.location = 'subject.php?sid=0&back=subjects.php';
         });
 
+        document.getElementById('left_col').addEventListener('contextmenu', function (ev) {
+            ev.preventDefault();
+            clear_context_menu(ev);
+            if (selected_tag !== 0) {
+                document.getElementById('item'+selected_tag).classList.remove('selected_tag');
+            }
+            return false;
+        });
+        document.getElementById('left_col').addEventListener('click', function (ev) {
+            ev.preventDefault();
+            clear_context_menu(ev);
+            if (selected_tag !== 0) {
+                document.getElementById('item'+selected_tag).classList.remove('selected_tag');
+            }
+            return false;
+        });
+
         var ends = document.querySelectorAll('.mdc-list-item');
         for (i = 0; i < ends.length; i++) {
-            ends[i].addEventListener('mouseenter', function (event) {
-                event.target.getElementsByTagName('span')[2].style.display = 'inline';
+            document.getElementById('open_item').addEventListener('click', function (ev) {
+                open_in_browser(ev);
             });
-            ends[i].addEventListener('mouseleave', function (event) {
-                event.target.getElementsByTagName('span')[2].style.display = 'none';
+            document.getElementById('remove_item').addEventListener('click', function (ev) {
+                j_alert("confirm", "Eliminare la disciplina?");
+                document.getElementById('okbutton').addEventListener('click', function (event) {
+                    event.preventDefault();
+                    remove_item(ev);
+                });
+                document.getElementById('nobutton').addEventListener('click', function (event) {
+                    event.preventDefault();
+                    fade('overlay', 'out', .1, 0);
+                    fade('confirm', 'out', .3, 0);
+                    return false;
+                })
             });
-        }
-        var deletes = document.querySelectorAll('.mdc-list-item__end-detail');
-        for (i = 0; i < deletes.length; i++) {
-            deletes[i].addEventListener('click', function (event) {
+            ends[i].addEventListener('click', function (event) {
                 event.preventDefault();
-                var parent = event.target.parentElement;
-                itemID = parent.dataset.id;
-                delete_item(itemID);
+                event.stopImmediatePropagation();
+                if (selected_tag !== 0) {
+                    document.getElementById('item'+selected_tag).classList.remove('selected_tag');
+                }
+                event.currentTarget.classList.add('selected_tag');
+                selected_tag = event.currentTarget.getAttribute("data-id")
+            });
+            ends[i].addEventListener('contextmenu', function (event) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                if (selected_tag !== 0) {
+                    document.getElementById('item'+selected_tag).classList.remove('selected_tag');
+                }
+                event.currentTarget.classList.add('selected_tag');
+                current_target_id = event.currentTarget.getAttribute("data-id");
+                //clear_context_menu(event);
+                show_context_menu(event, null, 150);
+                selected_tag = event.currentTarget.getAttribute("data-id");
+            });
+            ends[i].addEventListener('dblclick', function (event) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                selected_tag = event.currentTarget.getAttribute("data-id");
+                open_in_browser();
             });
         }
+
+        var open_in_browser = function (ev) {
+            document.location.href = 'subject.php?sid='+selected_tag+'&back=subjects.php';
+        };
 
     });
 
-    var delete_item = function (itemID) {
+    var remove_item = function (ev) {
         var xhr = new XMLHttpRequest();
         var formData = new FormData();
 
         xhr.open('post', 'subject_manager.php');
         var action = <?php echo ACTION_DELETE ?>;
 
-        formData.append('sid', itemID);
+        formData.append('sid', selected_tag);
         formData.append('action', action);
         xhr.responseType = 'json';
         xhr.send(formData);
@@ -116,8 +166,9 @@
             if (xhr.readyState === DONE) {
                 if (xhr.status === OK) {
                     j_alert("alert", xhr.response.message);
-                    var item_to_del = document.getElementById('item'+itemID);
+                    var item_to_del = document.getElementById('item'+selected_tag);
                     item_to_del.style.display = 'none';
+                    clear_context_menu(ev);
                 }
             } else {
                 console.log('Error: ' + xhr.status);

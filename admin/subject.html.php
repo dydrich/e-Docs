@@ -38,7 +38,7 @@
 		<form method="post" id="userform"  class="mdc-elevation--z5" style="width: 50%; text-align: center; margin: auto" onsubmit="submit_data()">
 			<div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
 				<input type="text" required id="sub" name="sub" class="mdc-text-field__input" value="<?php if(isset($subject)) echo $subject->getDescription() ?>">
-				<label class="mdc-text-field__label" for="sub">Nome</label>
+				<label class="mdc-floating-label" for="sub">Nome</label>
 			</div>
 			<select class="mdc-select" name="parent" id="parent">
 				<option value="0">Nessuna</option>
@@ -71,6 +71,7 @@
     var sid = <?php if (isset($_REQUEST['sid'])) echo $_REQUEST['sid']; else echo 0 ?>;
 
     var submit_data = function (event) {
+        fade('confirm', 'out', .1, 0);
         event.preventDefault();
         var xhr = new XMLHttpRequest();
         var form = document.getElementById('userform');

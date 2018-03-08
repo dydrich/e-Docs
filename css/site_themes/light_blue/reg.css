@@ -222,6 +222,11 @@ input.android:focus, select.android:focus, textarea.android:focus {
     color: #000000;
 }
 
-.file-ext div {
+.selected_tag, .selected_element {
+    background-color: var(--mdc-theme-primary);
+    color: white!important;
+}
 
+.selected_tag span, .selected_element span {
+    color: white;
 }

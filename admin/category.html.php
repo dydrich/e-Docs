@@ -38,17 +38,18 @@
 		<form method="post" id="userform"  class="mdc-elevation--z5" style="width: 50%; text-align: center; margin: auto" onsubmit="submit_data()">
 			<div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
 				<input type="text" required id="sub" name="sub" class="mdc-text-field__input" value="<?php if (isset($category)) echo $category->getName() ?>">
-				<label class="mdc-text-field__label" for="sub">Nome</label>
+				<label class="mdc-floating-label" for="sub">Nome</label>
 			</div>
             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
                 <input type="text" required id="code" name="code" class="mdc-text-field__input" value="<?php if (isset($category)) echo $category->getCode() ?>">
-                <label class="mdc-text-field__label" for="code">Codice</label>
+                <label class="mdc-floating-label" for="code">Codice</label>
             </div>
             <div class="mdc-text-field mdc-text-field--textarea" data-mdc-auto-init="MDCTextField">
                 <textarea id="textarea" name="textarea" class="mdc-text-field__input" rows="8" cols="40"><?php if (isset($category)) echo $category->getDescription() ?></textarea>
-                <label for="textarea" class="mdc-text-field__label">Descrizione</label>
+                <label for="textarea" class="mdc-floating-label">Descrizione</label>
             </div>
 			<select class="mdc-select" name="parent" id="parent">
+                <label for="parent" class="mdc-floating-label">Categoria madre</label>
 				<option value="0">Nessuna</option>
 				<?php
 				while ($row = $res_cats->fetch_assoc()) {
@@ -98,7 +99,7 @@
                 if (xhr.status === OK) {
                     j_alert("alert", xhr.response.message);
                     window.setTimeout(function () {
-                        //window.location = 'categories.php';
+                        window.location = 'categories.php';
                     }, 2500);
                 }
             } else {

@@ -1,3 +1,36 @@
+0.6.1-49
+page.js: aggiunte funzioni di gestione context menu per le card in admin
+footer.php: aggiunto context menu
+
+0.6.1-48
+aggiunta data di registrazione utente, necessaria per le statistiche, in User
+
+0.6.1-47
+front.php sostituisce front.html
+
+0.6.1-46
+dati traffico reali in dashboard
+
+0.6.1
+bug fix
+
+0.6
+file manager
+
+0.5.1-43
+Fix for Google renaming MDCTextField
+
+0.5
+Amministrazione documenti: discipline, categorie e tag
+Riorganizzazione css
+Layout css per dispositivo
+
+0.4
+Access management:
+login errors
+logout
+password recovery
+
 0.3-20
 Bug fix (email e web) in User.php
 

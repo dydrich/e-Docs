@@ -784,6 +784,10 @@ div.menu_link i {
     color: #666666;
 }
 
+.dashboard_card_title i {
+    color: rgba(0, 0, 0, .40);
+}
+
 .dashboard_card_body {
     height: 67%;
     margin: 0;
@@ -886,7 +890,15 @@ div.dashboard_card_row i {
     border-radius: 0 0 4px;
 }
 
-#user_menu .item {
+#context_menu {
+    width: 250px;
+    display: none;
+    background-color: white;
+    position: absolute;
+    border-radius: 0 0 4px;
+}
+
+#user_menu .item, #context_menu .item {
     width: 100%;
     height: 50px;
     display: flex;
@@ -894,7 +906,7 @@ div.dashboard_card_row i {
     /*border-bottom: 1px solid #c0c0c0;*/
 }
 
-#user_menu .item a {
+#user_menu .item a, #context_menu .item a {
     display: flex;
     align-items: center;
 }
@@ -905,7 +917,23 @@ div.dashboard_card_row i {
     text-decoration: none;
 }
 
-#user_menu .item span {
+#context_menu .item a {
+    text-decoration: none;
+}
+
+#context_menu .item a i, #context_menu .item span {
+      margin-left: 15px;
+      color: rgba(0, 0, 0, .54);
+      text-decoration: none;
+}
+
+#context_menu .item a span {
+    margin-left: 15px;
+    color: rgba(0, 0, 0, .87);
+    text-decoration: none;
+}
+
+#user_menu .item span, #context_menu .item span {
     position: relative;
 }
 

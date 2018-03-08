@@ -44,7 +44,7 @@
         <form method="post" id="userform"  class="mdc-elevation--z5" style="width: 50%; text-align: center; margin: auto" onsubmit="submit_data()">
             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
                 <input type="email" required <?php if (isset($user)) echo 'disabled' ?> id="username" name="username" class="mdc-text-field__input <?php if (isset($user)) echo 'disabled_link' ?>" value="<?php if (isset($user)) echo $user->getUsername() ?>">
-                <label class="mdc-text-field__label" for="username">Username</label>
+                <label class="mdc-floating-label" for="username">Username</label>
                 <?php if (isset($user)): ?>
                 <a href="#" id="unlock" style="float: right">
                     <i class="material-icons accent_color" id="ulk_i">edit</i>
@@ -53,11 +53,11 @@
             </div>
             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
                 <input type="text" required id="firstname" name="firstname" class="mdc-text-field__input" value="<?php if (isset($user)) echo $user->getFirstName() ?>">
-                <label class="mdc-text-field__label" for="name">Nome</label>
+                <label class="mdc-floating-label" for="name">Nome</label>
             </div>
             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
                 <input type="text" required id="lastname" name="lastname" class="mdc-text-field__input" value="<?php if (isset($user)) echo $user->getLastName() ?>">
-                <label class="mdc-text-field__label" for="lastname">Cognome</label>
+                <label class="mdc-floating-label" for="lastname">Cognome</label>
             </div>
             <select class="mdc-select" name="role">
                 <?php

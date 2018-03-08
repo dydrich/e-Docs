@@ -14,10 +14,10 @@ ini_set('display_errors', 1);
 
 $active = " WHERE active = 1 ";
 if (!isset($_GET['active'])) {
-	$active = "";
+	$active = " WHERE uid != 1";
 }
 else {
-	$active = " WHERE active = {$_GET['active']} ";
+	$active = " WHERE active = {$_GET['active']} AND uid != 1";
 }
 
 $r_users = null;

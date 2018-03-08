@@ -38,11 +38,11 @@
 		<form method="post" id="userform"  class="mdc-elevation--z5" style="width: 50%; text-align: center; margin: auto" onsubmit="submit_data()">
 			<div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
 				<input type="text" required id="sub" name="sub" class="mdc-text-field__input" value="<?php if (isset($tag)) echo $tag->getName() ?>">
-				<label class="mdc-text-field__label" for="sub">Nome</label>
+				<label class="mdc-floating-label" for="sub">Nome</label>
 			</div>
 			<div class="mdc-text-field mdc-text-field--textarea" data-mdc-auto-init="MDCTextField">
 				<textarea id="textarea" name="textarea" class="mdc-text-field__input" rows="8" cols="40"><?php if (isset($tag)) echo $tag->getDescription() ?></textarea>
-				<label for="textarea" class="mdc-text-field__label">Descrizione</label>
+				<label for="textarea" class="mdc-floating-label">Descrizione</label>
 			</div>
 			<section class="mdc-card__actions">
 				<button id="submit_btn" onclick="submit_data(event)" class="mdc-button mdc-button--compact mdc-card__action">Registra</button>
