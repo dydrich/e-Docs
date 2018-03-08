@@ -70,3 +70,17 @@
         </a>
     </div>
 </div>
+<div id="context_menu" class="mdc-elevation--z2">
+    <div class="item" style="border-bottom: 1px solid rgba(0, 0, 0, .10)">
+        <a href="#" id="open_item">
+            <i class="material-icons">open_in_browser</i>
+            <span>Modifica</span>
+        </a>
+    </div>
+    <div class="item">
+        <a href="#" id="remove_item">
+            <i class="material-icons">delete</i>
+            <span>Rimuovi</span>
+        </a>
+    </div>
+</div>
