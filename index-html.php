@@ -15,7 +15,7 @@
     <script type="application/javascript">
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById('public').addEventListener('click', function () {
-                document.location.href = 'front/index.html';
+                document.location.href = 'front/index.php';
             }, false);
 
             document.getElementById('private').addEventListener('click', function () {
