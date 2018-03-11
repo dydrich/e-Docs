@@ -6,8 +6,6 @@ require_once '../lib/EventLogFactory.php';
 require_once "../lib/RBUtilities.php";
 require_once "../lib/Document.php";
 
-
-
 check_session();
 
 // per la paginazione del REFERER
@@ -42,11 +40,11 @@ if(isset($_REQUEST['did']) && $_REQUEST['did'] != 0){
 			$tags[] = $rt['tag'];
 		}
 	}
+	$document = new \edocs\Document($current_doc['doc_id'], $current_doc, $current_doc['category'], new MySQLDataLoader($db));
 }
 else{
 	$did = 0;
-	$current_doc = null;
-	$tipo = null;
+	$current_doc = $tipo = $document = null;
 }
 
 $drawer_label = "Gestione documento";

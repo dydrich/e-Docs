@@ -57,19 +57,19 @@ class Document
 		$this->file = null;
 		$this->filePath = "/library/";
 		if ($data != null){
-			$this->uploadDate = $data['data_upload'];
+			$this->uploadDate = $data['upload_date'];
 			$this->file = $data['file'];
 			$this->abstract = $data['abstract'];
 			$this->documentName = $data['document_name'];
-			$this->documentType = $data['doc_type'];
+			$this->documentType = $data['document_type'];
 			$this->school = $data['school'];
 			$this->schoolGrade = $data['school_grade'];
 			$this->subject = $data['subject'];
 			$rb = \RBUtilities::getInstance($dl);
 			$this->owner = $rb->loadUserFromUid($data['owner']);
-			$this->lastUpdate = $data['last_update'];
+			$this->lastUpdate = $data['last_modified_time'];
 			$this->title = $data['title'];
-			$this->uri = $data['uri'];
+			$this->uri = $data['link'];
 
 			if (isset($data['tags']) && $data['tags'] != ""){
 				$tags = explode(",", $data['tags']);
@@ -339,7 +339,17 @@ class Document
 	}
 
 	public function update(){
-		$this->datasource->executeUpdate("UPDATE rb_documents SET file = '{$this->file}', title = '{$this->title}', abstract = '{$this->abstract}' WHERE doc_id = {$this->id}");
+		$sql = "UPDATE rb_documents SET 
+				title = '{$this->title}', 
+				abstract = '{$this->abstract}',
+				document_type = {$this->documentType},  
+				category = {$this->category}, 
+				school = ".field_null($this->school, false).", 
+				school_grade = ".field_null($this->schoolGrade, false).", 
+				last_modified_time = NOW(),
+				subject = ".field_null($this->subject, false)."
+				WHERE doc_id = {$this->id}";
+		$this->datasource->executeUpdate($sql);
 		$this->insertTags();
 	}
 

@@ -31,34 +31,34 @@
     <div style="width: 90%; margin: auto">
         <form method="post" id="docform"  class="mdc-elevation--z5" style="width: 90%; text-align: center; margin: auto; padding: 10px" onsubmit="go(event)">
             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                <input type="text" required id="title" name="title" class="mdc-text-field__input" value="">
-                <label class="mdc-text-field__label" for="title">Titolo</label>
+                <input type="text" required id="title" name="title" class="mdc-text-field__input" value="<?php if(isset($document)) echo $document->getTitle() ?>">
+                <label class="mdc-floating-label" for="title">Titolo</label>
             </div>
             <div class="mdc-text-field mdc-text-field--textarea" style="margin-right: auto; margin-left: auto" data-mdc-auto-init="MDCTextField">
-                <textarea required id="abstract" name="abstract" class="mdc-text-field__input" rows="8" cols="40"></textarea>
-                <label for="abstract" class="mdc-text-field__label">Abstract</label>
+                <textarea required id="abstract" name="abstract" class="mdc-text-field__input" rows="8" cols="40"><?php if(isset($document)) echo $document->getAbstract() ?></textarea>
+                <label for="abstract" class="mdc-floating-label">Abstract</label>
             </div>
             <select required class="mdc-select" name="subject" id="subject">
                 <option value="" selected>Disciplina</option>
 				<?php
 				while ($row = $res_materie->fetch_assoc()) {
 					?>
-                    <option value="<?php echo $row['sid'] ?>"><?php echo $row['name'] ?></option>
+                    <option value="<?php echo $row['sid'] ?>" <?php if(isset($document) && $document->getSubject() == $row['sid']) echo "selected" ?>><?php echo $row['name'] ?></option>
 					<?php
 				}
 				?>
             </select>
             <select required class="mdc-select" name="type" id="type">
-                <option value="" selected>Tipo di risorsa</option>
-				<option value="1">File</option>
-				<option value="2">Risorsa esterna</option>
+                <option value="" <?php if(!isset($document)) echo "selected" ?>>Tipo di risorsa</option>
+				<option value="1" <?php if(isset($document) && $document->getDocumentType() == 1) echo "selected" ?>>File</option>
+				<option value="2" <?php if(isset($document) && $document->getDocumentType() == 2) echo "selected" ?>>Risorsa esterna</option>
             </select>
             <select required class="mdc-select" name="category" id="category" style="">
                 <option value="" selected>Categoria</option>
 				<?php
 				while ($row = $res_categorie->fetch_assoc()) {
 					?>
-                    <option value="<?php echo $row['cid'] ?>"><?php echo $row['name'] ?></option>
+                    <option value="<?php echo $row['cid'] ?>" <?php if(isset($document) && $document->getCategory() == $row['cid']) echo "selected" ?>><?php echo $row['name'] ?></option>
 					<?php
 				}
 				?>
@@ -66,8 +66,8 @@
             <div id="if_container" style="width: 90%; margin: auto">
                 <p style="text-align: left; color: rgba(0, 0, 0, .5">File</p>
                 <?php if(isset($current_doc)){ ?>
-                    <input class="form_input" type="text" name="fname" id="fname" style="width: 75%" readonly value=""/>
-                    <a href="#" onclick="load_iframe('')" style="margin-left: 15px">Modifica file</a>
+                    <input class="form_input" type="text" name="fname" id="fname" style="width: 75%" readonly value="<?php echo $document->getFile() ?>"/>
+                    <a href="#" onclick="load_iframe('')" style="margin-left: 15px" class="material_link">Modifica file</a>
                 <?php }  else{ ?>
                     <div id="iframe">
                         <iframe src="upload_manager.php" style="border: 0; width: 100%" id="aframe"></iframe>
@@ -77,13 +77,13 @@
             </div>
             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="lnk_field" style="display: none; margin: auto;">
                 <input type="text" id="link" name="link" class="mdc-text-field__input" value="">
-                <label class="mdc-text-field__label" for="link">Link</label>
+                <label class="mdc-floating-label" for="link">Link</label>
             </div>
             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
                 <input type="text" name="tag" id="tag" style="width: 80%" list="tag_list" class="mdc-text-field__input" />
-                <label class="mdc-text-field__label" for="title">Tag</label>
+                <label class="mdc-floating-label" for="title">Tag</label>
                 <datalist id="tag_list"></datalist>
-                <a href="#" id="add_tag" style="margin-left: 20px; margin-bottom: 8px" onclick="addTag(event)" class="normal">Aggiungi</a>
+                <a href="#" id="add_tag" style="margin-left: 20px; margin-bottom: 8px" onclick="addTag(event)" class="material_link">Aggiungi</a>
             </div>
             <div id="tags_ct" style="width: 90%; margin: auto; display: block; text-align: left"></div>
             <select required class="mdc-select" name="school" id="school">
@@ -91,7 +91,7 @@
 				<?php
 				while ($row = $res_ordini->fetch_assoc()) {
 					?>
-                    <option value="<?php echo $row['sid'] ?>"><?php echo $row['name'] ?></option>
+                    <option value="<?php echo $row['sid'] ?>" <?php if(isset($document) && $document->getSchool() == $row['sid']) echo "selected" ?>><?php echo $row['name'] ?></option>
 					<?php
 				}
 				?>
@@ -101,7 +101,7 @@
 				<?php
 				while ($row = $res_grades->fetch_assoc()) {
 					?>
-                    <option value="<?php echo $row['grade'] ?>"><?php echo $row['description'] ?></option>
+                    <option value="<?php echo $row['grade'] ?>" <?php if(isset($document) && $document->getSchoolGrade() == $row['grade']) echo "selected" ?>><?php echo $row['description'] ?></option>
 					<?php
 				}
 				?>
@@ -328,11 +328,11 @@
 
     var validate_form = function () {
 
-        if(document.getElementById('title').value == ""){
+        if(document.getElementById('title').value === ""){
             return false;
         }
 
-        if(document.getElementById('abstract').value == ""){
+        if(document.getElementById('abstract').value === ""){
             return false;
         }
 
@@ -340,11 +340,11 @@
             return false;
         }
 
-        if(document.getElementById('subject').value == ""){
+        if(document.getElementById('subject').value === ""){
             return false;
         }
 
-        if(document.getElementById('type').value == ""){
+        if(document.getElementById('type').value === ""){
             return false;
         }
 
