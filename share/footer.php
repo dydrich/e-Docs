@@ -84,3 +84,41 @@
         </a>
     </div>
 </div>
+<div id="doc_context_menu" class="mdc-elevation--z2">
+    <div class="item" style="border-bottom: 1px solid rgba(0, 0, 0, .10)">
+        <a href="#" id="open_doc">
+            <i class="material-icons">mode_edit</i>
+            <span>Modifica</span>
+        </a>
+    </div>
+    <div class="item">
+        <a href="#" id="stat_doc">
+            <i class="material-icons">equalizer</i>
+            <span>Statistiche</span>
+        </a>
+    </div>
+    <div class="item">
+        <a href="#" id="det_doc">
+            <i class="material-icons">info</i>
+            <span>Info</span>
+        </a>
+    </div>
+    <div class="item" style="border-top: 1px solid rgba(0, 0, 0, .10)">
+        <a href="#" id="show_doc">
+            <i class="material-icons">open_in_browser</i>
+            <span>Apri</span>
+        </a>
+    </div>
+    <div class="item">
+        <a href="#" id="down_doc">
+            <i class="material-icons">file_download</i>
+            <span>Scarica una copia</span>
+        </a>
+    </div>
+    <div class="item" style="border-top: 1px solid rgba(0, 0, 0, .10)">
+        <a href="#" id="remove_doc">
+            <i class="material-icons">delete</i>
+            <span>Rimuovi</span>
+        </a>
+    </div>
+</div>
