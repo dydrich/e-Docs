@@ -9,6 +9,7 @@
 namespace edocs;
 
 require_once "RBUtilities.php";
+require_once "MimeType.php";
 
 
 class Document
@@ -53,6 +54,8 @@ class Document
 		$this->id = $id;
 		$this->datasource = $dl;
 		$this->category = $category;
+		$this->file = null;
+		$this->filePath = "/library/";
 		if ($data != null){
 			$this->uploadDate = $data['data_upload'];
 			$this->file = $data['file'];
@@ -67,7 +70,6 @@ class Document
 			$this->lastUpdate = $data['last_update'];
 			$this->title = $data['title'];
 			$this->uri = $data['uri'];
-			$this->filePath = "/";
 
 			if (isset($data['tags']) && $data['tags'] != ""){
 				$tags = explode(",", $data['tags']);
@@ -283,8 +285,7 @@ class Document
 
 	public function downloadFile(){
 		$mime = \MimeType::getMimeContentType($this->file);
-
-		$fp = $_SESSION['__config__']['document_root'].$this->getFilePath().$this->file;
+		$fp = $_SESSION['__config__']['document_root']."/".$this->file;
 		header("Content-Type: ".$mime['ctype']);
 		header("Content-Disposition: attachment; filename=".$this->file);
 		header("Expires: 0");
@@ -349,13 +350,18 @@ class Document
 		$this->datasource->executeUpdate("DELETE FROM rb_documents WHERE doc_id = {$this->id}");
 	}
 
-	public function download(){
-		if (file_exists($_SESSION['__config__']['html_root']."/".$this->getFilePath().$this->file)){
-			$this->registerDownload();
+	public function download($register = false){
+		if ($this->file == null) {
+			$this->file = $this->datasource->executeCount("SELECT file FROM rb_documents WHERE doc_id = ".$this->id);
+		}
+		if (file_exists($_SESSION['__config__']['document_root']."/".$this->file)){
+			if ($register) {
+				$this->registerDownload();
+			}
 			$this->downloadFile();
 		}
 		else {
-			$_SESSION['no_file']['file'] =  $this->file;
+			$_SESSION['no_file']['file'] =  $_SESSION['__config__']['document_root']."/".$this->file;
 			header("Location: no_file.php");
 		}
 	}
