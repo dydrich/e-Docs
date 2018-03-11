@@ -34,13 +34,13 @@ try{
 			$data['title'] = $db->real_escape_string($_POST['title']);
 			$data['abstract'] = $db->real_escape_string($_POST['abstract']);
 			$data['subject'] = $_POST['subject'] != '' ? $_POST['subject'] : null;
-			$data['doc_type'] = $_POST['type'];
+			$data['document_type'] = $_POST['type'];
 			$data['category'] = $_POST['category'];
 			$data['file'] = $_POST['server_file'];
 			$data['document_name'] = $_POST['doc_name'];
-			$data['uri'] = isset($_POST['link']) ? $db->real_escape_string($_POST['link']) : null;
-			$data['data_upload'] = null;
-			$data['last_update'] = null;
+			$data['link'] = isset($_POST['link']) ? $db->real_escape_string($_POST['link']) : null;
+			$data['upload_date'] = null;
+			$data['last_modified_time'] = null;
 			$data['school'] = $_POST['school'] != '' ? $_POST['school'] : null;
 			$data['school_grade'] = $_POST['grade'] != '' ? $_POST['grade'] : null;
 			$data['tags'] = $_POST['tags'];
@@ -50,6 +50,20 @@ try{
 			$response['message'] = "Il documento è stato inserito";
 			break;
 		case \edocs\Document::$UPDATE_DOCUMENT:
+			$data = [];
+			$data['title'] = $db->real_escape_string($_POST['title']);
+			$data['abstract'] = $db->real_escape_string($_POST['abstract']);
+			$data['subject'] = $_POST['subject'] != '' ? $_POST['subject'] : null;
+			$data['document_type'] = $_POST['type'];
+			$data['category'] = $_POST['category'];
+			$data['document_name'] = $_POST['doc_name'];
+			$data['upload_date'] = null;
+			$data['last_modified_time'] = null;
+			$data['school'] = $_POST['school'] != '' ? $_POST['school'] : null;
+			$data['school_grade'] = $_POST['grade'] != '' ? $_POST['grade'] : null;
+			$data['tags'] = $_POST['tags'];
+			$data['owner'] = $_SESSION['__user__']->getUid();
+			$doc = new \edocs\Document($_REQUEST['did'], $data, $_POST['category'], new MySQLDataLoader($db));
 			$doc->update();
 			$response['message'] = "Il documento è stato modificato";
 			break;

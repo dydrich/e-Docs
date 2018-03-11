@@ -34,10 +34,10 @@
 	<div id="left_col">
         <div style="width: 90%; margin-right: auto; margin-left: auto; margin-top: -10px; text-align: right; display: flex; justify-content: flex-end">
             <?php if(!isset($_GET['view']) || $_GET['view'] != 'list'): ?>
-            <div style="width: 60px; color: rgba(0, 0, 0, .57); font-size: 1.2rem; display: flex; align-items: center" class="_bold">
-                Nome
+            <div id="choose_order" style="width: 130px; color: rgba(0, 0, 0, .57); font-size: 1.2rem; display: flex; align-items: center" class="_bold">
+                <?php echo $label ?>
             </div>
-            <a href="<?php echo $name_link ?>" style="margin-right: 80%">
+            <a href="<?php echo $name_link ?>" style="margin-right: 75%">
                 <div class="file-action">
                     <i class="material-icons"><?php echo $arrow ?></i>
                 </div>
@@ -59,12 +59,12 @@
 			if (!isset($_GET['view']) || $_GET['view'] == 'cards') {
 				?>
                 <div class="file-card mdc-elevation--z2" id="item<?php echo $row['doc_id'] ?>" data-id="<?php echo $row['doc_id'] ?>">
-                    <section class="file-subject">
+                    <section class="file-subject normal">
 						<p style="margin: auto"><?php echo $row['sub'] ?></p>
                     </section>
                     <section class="file-ext">
                         <div>
-                            <i class="material-icons" style="font-size: 5rem"><?php echo $mime['icon'] ?></i>
+                            <i class="material-icons" style="font-size: 7rem; color: <?php echo $row['color'] ?>; opacity: 25%"><?php echo $row['icon'] ?></i>
                         </div>
                     </section>
                     <section class="file-title normal">
@@ -158,9 +158,14 @@
             window.location = 'doc.php?did=0&back=documents.php';
         });
 
+        document.getElementById('choose_order').addEventListener('click', function (event) {
+            show_context_menu(event, null, 300, 'field_order');
+        });
+
         document.getElementById('left_col').addEventListener('contextmenu', function (ev) {
             ev.preventDefault();
             clear_context_menu(ev, 'doc_context_menu');
+            clear_context_menu(ev, 'cat_menu');
             if (selected_doc !== 0) {
                 document.getElementById('item'+selected_doc).classList.remove('selected_doc');
             }
@@ -169,6 +174,7 @@
         document.getElementById('container').addEventListener('click', function (ev) {
             ev.preventDefault();
             clear_context_menu(ev, 'doc_context_menu');
+            clear_context_menu(ev, 'cat_menu');
             if (selected_doc !== 0) {
                 document.getElementById('item'+selected_doc).classList.remove('selected_doc');
             }
@@ -266,5 +272,57 @@
         }
     };
 </script>
+<div id="cat_menu" style="display: none" class="mdc-elevation--z4">
+<?php
+while($cat = $res_categorie->fetch_assoc()) {
+    ?>
+    <div class="item" style="border-bottom: 1px solid rgba(0, 0, 0, .10)">
+        <a href="#">
+            <i class="material-icons" style="color: <?php echo $cat['color'] ?>"><?php echo $cat['icon'] ?></i>
+            <span><?php echo $cat['name'] ?></span>
+        </a>
+    </div>
+    <?php
+}
+?>
+</div>
+<div id="field_order" style="display: none" class="mdc-elevation--z4">
+    <div class="item">
+        <a href="documents.php?o=title&d=<?php echo $d ?>">
+            <i class="material-icons">sort</i>
+            <span>Nome</span>
+        </a>
+    </div>
+    <div class="item">
+        <a href="documents.php?o=category&d=<?php echo $d ?>">
+            <i class="material-icons">label</i>
+            <span>Categoria</span>
+        </a>
+    </div>
+    <div class="item">
+        <a href="documents.php?o=subject&d=<?php echo $d ?>">
+            <i class="material-icons">pie_chart</i>
+            <span>Disciplina</span>
+        </a>
+    </div>
+    <div class="item" style="border-top: 1px solid rgba(0, 0, 0, .10)">
+        <a href="documents.php?o=title&d=<?php echo $d ?>">
+            <i class="material-icons">exposure</i>
+            <span>Dimensioni</span>
+        </a>
+    </div>
+    <div class="item" style="border-top: 1px solid rgba(0, 0, 0, .10)">
+        <a href="documents.php?o=upload_date&d=<?php echo $d ?>">
+            <i class="material-icons">add_box</i>
+            <span>Data caricamento</span>
+        </a>
+    </div>
+    <div class="item">
+        <a href="documents.php?o=last_modified_time&d=<?php echo $d ?>">
+            <i class="material-icons">recent_actors</i>
+            <span>Data di modifica</span>
+        </a>
+    </div>
+</div>
 </body>
 </html>
