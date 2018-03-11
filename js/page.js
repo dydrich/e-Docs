@@ -127,8 +127,11 @@ var j_alert = function(type, msg){
         if (field === 'user') {
             // show user account data
             _text = 'Username: '+msg.user.login;
-            _text += '\n';
+            _text += '<br>';
             _text += 'Password: '+msg.user.password;
+        }
+        else if (field === 'validation_data') {
+            _text = msg.validation_message;
         }
         infomessage.innerHTML = _text;
         var span = document.querySelector('#information .confirm_title span');
@@ -140,7 +143,14 @@ var j_alert = function(type, msg){
         _info.style.display = 'block';
         _info.style.top = mtop+"px";
         _info.style.left = mleft+"px";
-        _info.style.minHeight = '170px';
+        if (msg.min_height) {
+            _info.style.minHeight = msg.min_height+'px';
+            infomessage.style.height = (msg.min_height - 100)+'px';
+        }
+        else {
+            _info.style.minHeight = '170px';
+        }
+
         overlay.style.opacity = 0;
         overlay.style.display = 'block';
         window.setTimeout(function () {
@@ -208,17 +218,18 @@ var show_user_menu = function (event) {
 var show_context_menu = function (event, data, height) {
     event.preventDefault();
     var menu = document.getElementById('context_menu');
+    var x, y;
     if (menu.style.display === 'block') {
-        var x = event.clientX;
-        var y = event.clientY;
+        x = event.clientX;
+        y = event.clientY;
 
         menu.style.top = parseInt(y)+"px";
         menu.style.left = parseInt(x)+"px";
     }
     else {
         menu.style.opacity = 0;
-        var x = event.clientX;
-        var y = event.clientY;
+        x = event.clientX;
+        y = event.clientY;
 
         menu.style.height = parseInt(height)+'px !important';
         menu.style.top = parseInt(y)+"px";

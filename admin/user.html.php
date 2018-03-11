@@ -53,7 +53,7 @@
             </div>
             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
                 <input type="text" required id="firstname" name="firstname" class="mdc-text-field__input" value="<?php if (isset($user)) echo $user->getFirstName() ?>">
-                <label class="mdc-floating-label" for="name">Nome</label>
+                <label class="mdc-floating-label" for="firstname">Nome</label>
             </div>
             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
                 <input type="text" required id="lastname" name="lastname" class="mdc-text-field__input" value="<?php if (isset($user)) echo $user->getLastName() ?>">
@@ -104,6 +104,38 @@
         if (!supportFormData()) {
             alert("Not supported :(");
         }
+
+        var message = '';
+        var ok = true;
+
+        if (document.getElementById('username').value === '') {
+            message += "Username non valida<br>";
+            ok = false;
+        }
+        if (document.getElementById('firstname').value === '') {
+            message += "Nome non valido<br>";
+            ok = false;
+        }
+        if (document.getElementById('lastname').value === '') {
+            message += "Cognome non valido<br>";
+            ok = false;
+        }
+        if (!ok) {
+            var msg = new Object();
+            msg.data_field = 'validation_data';
+            msg.validation_message = message;
+            msg.message = 'Dati non validi';
+            msg.min_height = 180;
+            var okbtn = document.getElementById('close_button');
+            okbtn.addEventListener('click', function () {
+                fade('overlay', 'out', 100, .3);
+                fade('information', 'out', 300, 1);
+            });
+            j_alert("information", msg);
+            return false;
+        }
+
+
         var xhr = new XMLHttpRequest();
         var form = document.getElementById('userform');
         var formData = new FormData(form);
@@ -120,11 +152,19 @@
             var OK = 200; // status 200 is a successful return.
             if (xhr.readyState === DONE) {
                 if (xhr.status === OK) {
-                    j_alert("information", xhr.response);
-                    var okbtn = document.getElementById('close_button');
-                    okbtn.addEventListener('click', function () {
-                        window.location.href = 'users.php?active=1';
-                    });
+                    if (action === 1) {
+                        j_alert("information", xhr.response);
+                        var okbtn = document.getElementById('close_button');
+                        okbtn.addEventListener('click', function () {
+                            window.location.href = 'users.php?active=1';
+                        });
+                    }
+                    else {
+                        j_alert('alert', 'Dati aggiornati');
+                        window.setTimeout(function () {
+                            window.location.href = 'users.php?active=1';
+                        }, 2500);
+                    }
                 }
             } else {
                 console.log('Error: ' + xhr.status);
