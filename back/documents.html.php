@@ -49,7 +49,7 @@
                 </div>
             </a>
         </div>
-        <div style="width: 90%; margin: auto; padding: 2%; display: flex; align-items: center; flex-wrap: wrap">
+        <div id="container" style="width: 90%; margin: auto; padding: 2%; display: flex; align-items: center; flex-wrap: wrap">
         <?php
 		$index = 0;
         while ($row = $res_docs->fetch_assoc()) {
@@ -58,17 +58,17 @@
 			$mime = MimeType::getMimeContentType($_SESSION['__config__']['document_root']."/".$row['file']);
 			if (!isset($_GET['view']) || $_GET['view'] == 'cards') {
 				?>
-                <div class="file-card mdc-elevation--z3">
-                    <section class="file-subject normal">
+                <div class="file-card mdc-elevation--z2" id="item<?php echo $row['doc_id'] ?>" data-id="<?php echo $row['doc_id'] ?>">
+                    <section class="file-subject">
 						<p style="margin: auto"><?php echo $row['sub'] ?></p>
                     </section>
                     <section class="file-ext">
                         <div>
-                            <i class="material-icons" style="font-size: 7rem"><?php echo $mime['icon'] ?></i>
+                            <i class="material-icons" style="font-size: 5rem"><?php echo $mime['icon'] ?></i>
                         </div>
                     </section>
                     <section class="file-title normal">
-                        <h1 class="mdc-card__title mdc-card__title--large"><?php echo truncateString($row['title'], 15) ?></h1>
+                        <h1 class=""><?php echo truncateString($row['title'], 25) ?></h1>
                         <!--<h2 class="mdc-card__subtitle"><?php echo $row['sub'] ?></h2>-->
                     </section>
                 </div>
@@ -131,13 +131,15 @@
     </div>
     <button id="newdoc" class="mdc-fab material-icons app-fab--absolute" aria-label="Nuovo documento">
         <span class="mdc-fab__icon">
-            create
+            cloud_upload
         </span>
     </button>
 	<p class="spacer"></p>
 </div>
 <?php include_once "../share/footer.php" ?>
 <script>
+    var selected_doc = 0;
+
     (function() {
         var heightMain = document.getElementById('main').clientHeight;
         var heightScreen = document.body.clientHeight;
@@ -155,7 +157,114 @@
         btn.addEventListener('click', function () {
             window.location = 'doc.php?did=0&back=documents.php';
         });
+
+        document.getElementById('left_col').addEventListener('contextmenu', function (ev) {
+            ev.preventDefault();
+            clear_context_menu(ev, 'doc_context_menu');
+            if (selected_doc !== 0) {
+                document.getElementById('item'+selected_doc).classList.remove('selected_doc');
+            }
+            return false;
+        });
+        document.getElementById('container').addEventListener('click', function (ev) {
+            ev.preventDefault();
+            clear_context_menu(ev, 'doc_context_menu');
+            if (selected_doc !== 0) {
+                document.getElementById('item'+selected_doc).classList.remove('selected_doc');
+            }
+            return false;
+        });
+
+        document.getElementById('open_doc').addEventListener('click', function (ev) {
+            open_in_browser();
+        });
+        document.getElementById('show_doc').addEventListener('click', function (ev) {
+            clear_context_menu(ev, 'doc_context_menu');
+            getFileName(selected_doc, 'open_in_browser');
+        });
+        document.getElementById('down_doc').addEventListener('click', function (ev) {
+            clear_context_menu(ev, 'doc_context_menu');
+            document.location.href = '../share/download_manager.php?did='+selected_doc;
+        });
+        document.getElementById('remove_doc').addEventListener('click', function (ev) {
+            j_alert("confirm", "Eliminare il documento?");
+            document.getElementById('okbutton').addEventListener('click', function (event) {
+                event.preventDefault();
+                remove_item(ev);
+            });
+            document.getElementById('nobutton').addEventListener('click', function (event) {
+                event.preventDefault();
+                fade('overlay', 'out', .1, 0);
+                fade('confirm', 'out', .3, 0);
+                return false;
+            })
+
+        });
+
+        var ends = document.querySelectorAll('.file-card');
+        for (i = 0; i < ends.length; i++) {
+            ends[i].addEventListener('click', function (event) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                if (selected_doc !== 0) {
+                    document.getElementById('item'+selected_doc).classList.remove('selected_doc');
+                }
+                event.currentTarget.classList.add('selected_doc');
+                selected_doc = event.currentTarget.getAttribute("data-id");
+            });
+            ends[i].addEventListener('contextmenu', function (event) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                if (selected_doc !== 0) {
+                    document.getElementById('item'+selected_doc).classList.remove('selected_doc');
+                }
+                event.currentTarget.classList.add('selected_doc');
+                current_target_id = event.currentTarget.getAttribute("data-id");
+                //clear_context_menu(event);
+                show_context_menu(event, null, 200, 'doc_context_menu');
+                selected_doc = event.currentTarget.getAttribute("data-id");
+            });
+            ends[i].addEventListener('dblclick', function (event) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                selected_doc = event.currentTarget.getAttribute("data-id");
+                open_in_browser();
+            });
+        }
+
+        var open_in_browser = function () {
+            document.location.href = 'doc.php?did='+selected_doc+'&back=documents.php';
+        };
+
     })();
+
+    var remove_item = function (ev) {
+        fade('confirm', 'out', .1, 0);
+        var xhr = new XMLHttpRequest();
+        var formData = new FormData();
+
+        xhr.open('post', 'document_manager.php');
+        var action = <?php echo ACTION_DELETE ?>;
+
+        formData.append('did', selected_doc);
+        formData.append('action', action);
+        xhr.responseType = 'json';
+        xhr.send(formData);
+        xhr.onreadystatechange = function () {
+            var DONE = 4; // readyState 4 means the request is done.
+            var OK = 200; // status 200 is a successful return.
+            if (xhr.readyState === DONE) {
+                if (xhr.status === OK) {
+                    j_alert("alert", xhr.response.message);
+                    var item_to_del = document.getElementById('item'+selected_doc);
+                    item_to_del.style.display = 'none';
+                    clear_context_menu(ev);
+                }
+            } else {
+                console.log('Error: ' + xhr.status);
+            }
+        }
+    };
 </script>
 </body>
 </html>
