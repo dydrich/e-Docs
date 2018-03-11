@@ -7,7 +7,7 @@ class AccountManager{
 	private $user_;
 	private $datasource_;
 
-	public function __construct(\edocs\User $u, DataLoader $dl){
+	public function __construct(\edocs\User $u, \MySQLDataLoader $dl){
 		$this->user_ = $u;
 		$this->datasource_ = $dl;
 	}
@@ -17,9 +17,9 @@ class AccountManager{
 	    * generate a random id
 		*/
 		$uniqid = md5(uniqid(rand(), true));
-		$tm = new DateTime();
+		$tm = new \DateTime();
 		$now = $tm->format("Y-m-d H:i:s");
-		$due = $tm->add(new DateInterval('P1D'));
+		$due = $tm->add(new \DateInterval('P1D'));
 		$area = null;
 
 		$smt = $this->datasource_->prepare("INSERT INTO rb_password_recovery (user, token, request_date, token_due_date) VALUES (?, ?, ?, ?)");
@@ -51,17 +51,14 @@ class AccountManager{
 	}
 
 	public function changeUsername($newUsername) {
-		$table = 'rb_utenti';
-		$field = 'uid';
-
-		$smt = $this->datasource_->prepare("UPDATE {$table} SET username = ? WHERE $field = ?");
+		$smt = $this->datasource_->prepare("UPDATE rb_users SET username = ? WHERE uid = ?");
 		$id = $this->user_->getUid();
 		$smt->bind_param("si", $newUsername, $id);
 		$smt->execute();
 	}
 
 	public function updateAccount($uname, $pwd) {
-		$smt = $this->datasource_->prepare("UPDATE {$this->table_} SET username = ?, password = ? WHERE uid = ?");
+		$smt = $this->datasource_->prepare("UPDATE rb_users SET username = ?, password = ? WHERE uid = ?");
 		$smt->bind_param("ssi", $uname, $pwd, $this->user_->getUid());
 		$smt->execute();
 	}
@@ -99,39 +96,8 @@ class AccountManager{
 		return $pwd;
 	}
 
-	public static function generateLogin($names, $nome, $cognome){
-		// analizzo il nome: se composto, utilizzo solo il primo
-		if(preg_match("/ /", $nome)){
-			$nomi = explode(" ", $nome);
-		}
-		else{
-			$nomi[0] = $nome;
-			$nomi[1] = "";
-		}
-		// elimino eventuali accenti (apostrofi) e spazi (solo dal cognome)
-		$nm = strtolower(preg_replace("/'/", "", $nomi[0]));
-		$cm = strtolower(preg_replace("/'/", "", trim($cognome)));
-		$cm = strtolower(preg_replace("/ /", "", $cm));
-		// creo la login e verifico
-		$login = $nm.".".$cm;
-		$base_login = $login;
-		$length = count($login);
-		$ok = false;
-		// valore numerico per la creazione di login univoche
-		$index = 1;
-		while(!$ok){
-			if(!in_array($login, $names)){
-				return $login;
-			}
-			else{
-				$login = $base_login.$index;
-				$index++;
-			}
-		}
-	}
-
 	public function checkUsername($uname) {
-		$names = $this->datasource_->executeCount("SELECT username FROM ".$this->table_." WHERE username = '".$uname."' AND uid <> ".$this->user_->getUid());
+		$names = $this->datasource_->executeCount("SELECT username FROM rb_users WHERE username = '".$uname."' AND uid <> ".$this->user_->getUid());
 		if ($names != null) {
 			return false;
 		}
@@ -141,10 +107,8 @@ class AccountManager{
 	public function createToken() {
 	    $token = hash("md5", $this->user_->getFullName().$this->user_->getUsername().$this->user_->getUniqID());
         $this->user_->setToken($token);
-        $table = 'rb_utenti';
-        $field = 'uid';
 
-        $smt = $this->datasource_->prepare("UPDATE {$table} SET token = ? WHERE $field = ?");
+        $smt = $this->datasource_->prepare("UPDATE rb_users SET token = ? WHERE uid = ?");
         $uid = $this->user_->getUid();
         $smt->bind_param("si", $token, $uid);
         $smt->execute();

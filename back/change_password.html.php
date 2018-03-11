@@ -38,13 +38,13 @@
 				<div style="display: block; width: 100%">
 					<div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
 						<input required type="password" id="pwd1" name="pwd1" class="mdc-text-field__input">
-						<label class="mdc-text-field__label" for="pwd1">Inserisci la password</label>
+						<label class="mdc-floating-label" for="pwd1">Inserisci la password</label>
 					</div>
 				</div>
 				<div style="display: block; width: 100%">
 					<div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
 						<input required type="password" class="mdc-text-field__input" id="pwd2" name="pwd2">
-						<label for="pwd2" class="mdc-text-field__label">Ripeti la password</label>
+						<label for="pwd2" class="mdc-floating-label">Ripeti la password</label>
 						<div class="mdc-text-field__bottom-line"></div>
 					</div>
 				</div>
@@ -60,7 +60,7 @@
 <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 <script type="text/javascript">
     window.mdc.autoInit();
-    mdc.text-field.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
+    mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
 
     (function() {
         load_jalert();
@@ -73,19 +73,19 @@
 
     var registra = function (){
         var patt = /[^a-zA-Z0-9]/;
-        if(document.forms[0].pwd1.value === ""){
+        if(document.getElementById('pwd1').value === ""){
             j_alert('error', "Password non valida.");
             return false;
         }
-        else if(document.forms[0].pwd1.value.match(patt)){
+        else if(document.getElementById('pwd1').value.match(patt)){
             j_alert('error', "Password non valida: sono ammessi solo lettere e numeri");
             return false;
         }
-        if(document.forms[0].pwd1.value !== document.forms[0].pwd2.value){
+        if(document.getElementById('pwd1').value !== document.getElementById('pwd2').value){
             j_alert('error', "Le password inserite sono differenti. Ricontrolla.");
             return false;
         }
-        p = hex_md5(document.forms[0].pwd1.value);
+        p = hex_md5(document.getElementById('pwd1').value);
 
         var uid = <?php echo $uid ?>;
 
@@ -94,8 +94,8 @@
         var xhr = new XMLHttpRequest();
         var formData = new FormData();
 
-        xhr.open('post', 'password_manager.php');
-        var action = 'change';
+        xhr.open('post', '../share/account_manager.php');
+        var action = 'change_personal_password';
         formData.append('uid', uid);
         formData.append('action', action);
         formData.append('new_pwd', p);
