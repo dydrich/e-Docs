@@ -361,8 +361,8 @@ class Document
 			$this->downloadFile();
 		}
 		else {
-			$_SESSION['no_file']['file'] =  $_SESSION['__config__']['document_root']."/".$this->file;
-			header("Location: no_file.php");
+			$_SESSION['no_file']['file'] =  $this->file;
+			header("Location: no_file.php?back=../back/documents.php");
 		}
 	}
 }
