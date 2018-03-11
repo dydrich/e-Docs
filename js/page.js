@@ -215,9 +215,9 @@ var show_user_menu = function (event) {
     }
 };
 
-var show_context_menu = function (event, data, height) {
+var show_context_menu = function (event, data, height, _menu) {
     event.preventDefault();
-    var menu = document.getElementById('context_menu');
+    var menu = document.getElementById(_menu);
     var x, y;
     if (menu.style.display === 'block') {
         x = event.clientX;
@@ -237,18 +237,18 @@ var show_context_menu = function (event, data, height) {
         menu.style.display = 'block';
         menu.style.height = parseInt(height)+'px !important';
         window.setTimeout(function () {
-            fade('context_menu', 'in', 500, 1);
+            fade(_menu, 'in', 500, 1);
         }, 10);
     }
 };
 
 var clear_context_menu;
-clear_context_menu = function (event) {
+clear_context_menu = function (event, _menu) {
     event.preventDefault();
-    var menu = document.getElementById('context_menu');
+    var menu = document.getElementById(_menu);
     if (menu.style.display === 'block') {
         window.setTimeout(function () {
-            fade('context_menu', 'out', 500, 0);
+            fade(_menu, 'out', 500, 0);
         }, 10);
     }
     else {
@@ -360,4 +360,34 @@ var setOverlayEvent = function() {
 
 var show_error = function(error) {
     j_alert("error", error);
+};
+
+var getFileName;
+getFileName = function (fileID, action) {
+    var xhr = new XMLHttpRequest();
+    var formData = new FormData();
+
+    xhr.open('post', '../share/get_file_name.php');
+
+    formData.append('doc_id', fileID);
+    xhr.responseType = 'json';
+    xhr.send(formData);
+    xhr.onreadystatechange = function () {
+        var DONE = 4; // readyState 4 means the request is done.
+        var OK = 200; // status 200 is a successful return.
+        if (xhr.readyState === DONE) {
+            if (xhr.status === OK) {
+                filename = xhr.response.file;
+                if(action === 'open_in_browser') {
+                    document.location.href = '../library/'+filename;
+                }
+                else if(action === 'download') {
+                    document.location.href = '../share/download_manager.php'+filename;
+                }
+            }
+        } else {
+            console.log('Error: ' + xhr.status);
+            return false;
+        }
+    }
 };
