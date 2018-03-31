@@ -24,7 +24,7 @@ class Authenticator {
 		$sel_user = "SELECT uid FROM rb_users WHERE username = '{$username}' AND password = '".trim($password)."'";
 		$res_user = $this->datasource->executeCount($sel_user);
 		if ($res_user == null){
-			throw new \edocs\CustomException("Accesso negato", \edocs\CustomException::$LOGIN_ERROR_CODE);
+			throw new \edocs\CustomException("Username o password errata", \edocs\CustomException::$LOGIN_ERROR_CODE);
 		}
 
 		$rb = RBUtilities::getInstance($this->datasource->getSource());
@@ -40,6 +40,9 @@ class Authenticator {
 
 		$update = "UPDATE rb_users SET accesses_count = (rb_users.accesses_count + 1), previous_access = last_access, last_access = NOW() WHERE uid = ".$res_user;
 		$upd = $this->datasource->executeUpdate($update);
+
+		$this->response['name'] = $user->getFullName();
+		$this->response['role'] = $user->getRole();
 
 		return $user;
 	}

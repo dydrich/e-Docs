@@ -42,7 +42,7 @@ if ($_POST['action'] == 'sendmail'){
 		try{
 			$rb = RBUtilities::getInstance($db);
 			$user = $rb->loadUserFromUid($uid);
-			$am = new AccountManager($user, new MySQLDataLoader($db));
+			$am = new \edocs\AccountManager($user, new MySQLDataLoader($db));
 			$am->recoveryPasswordViaEmail();
 			$response['message'] = "La tua richiesta è stata inviata. ";
 		} catch (\edocs\MySQLException $ex){
@@ -59,7 +59,7 @@ else if ($_POST['action'] == "change"){
 	try{
 		$rb = RBUtilities::getInstance($db);
 		$user = $rb->loadUserFromUid($uid);
-		$am = new AccountManager($user, new MySQLDataLoader($db));
+		$am = new \edocs\AccountManager($user, new MySQLDataLoader($db));
 		$am->changePassword($new_pwd);
 	} catch (\edocs\MySQLException $ex){
 		$response['status'] = "kosql";

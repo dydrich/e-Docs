@@ -121,7 +121,7 @@
             ok = false;
         }
         if (!ok) {
-            var msg = new Object();
+            var msg = {};
             msg.data_field = 'validation_data';
             msg.validation_message = message;
             msg.message = 'Dati non validi';

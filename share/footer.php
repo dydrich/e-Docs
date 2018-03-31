@@ -1,3 +1,4 @@
+</div>
 <footer id="footer">
 	<span>Copyright <?php echo date("Y") ?> Riccardo Bachis </span>
 </footer>
@@ -64,6 +65,12 @@
         </a>
     </div>
     <div class="item">
+        <a href="../index.php">
+            <i class="material-icons">cloud</i>
+            <span>Area pubblica</span>
+        </a>
+    </div>
+    <div class="item" style="border-top: 1px solid rgba(0, 0, 0, .10)">
         <a href="../do_logout.php">
             <i class="material-icons">cloud_off</i>
             <span>Logout</span>

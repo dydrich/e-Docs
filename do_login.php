@@ -12,7 +12,7 @@ require_once "lib/start.php";
 require_once "lib/Authenticator.php";
 //require_once "lib/EventLogFactory.php";
 
-$response = array();
+header("Content-type: application/json");
 
 $nick = $db->real_escape_string($_POST['my-username']);
 $pass = $db->real_escape_string($_POST['pw']);
@@ -26,7 +26,8 @@ try {
 	$response['query'] = $ex->getQuery();
 	$response['message'] = $ex->getMessage();
 	$_SESSION['mysqlerror'] = $response;
-	// TODO: redirect to mysql error page
+	$res = json_encode($response);
+	echo $res;
 	exit;
 } catch (\edocs\CustomException $e){
 	$response['status'] = "ko";
@@ -34,23 +35,25 @@ try {
 	$response['code'] = $e->getCode();
 	$response['detail'] = $e->__toString();
 	$_SESSION['error'] = $response;
-	header("Location: share/login_errors.php");
+	$res = json_encode($response);
+	echo $res;
 	exit;
 }
 
 if ($user == null) {
-	// TODO: redirect to access error page
+	$response['status'] = "kologin";
+	$response['message'] = "Username o password errata";
+	$response['code'] = $e->getCode();
+	$response['detail'] = $e->__toString();
+	$_SESSION['error'] = $response;
+	$res = json_encode($response);
+	echo $res;
+	exit;
 }
 
 $_SESSION['__user__'] = $user;
-if ($_POST['area'] == 'admin') {
-	if ($user->getRole() != \edocs\User::$ADMIN) {
-		// TODO: redirect to no permission page
-	}
-	header("Location: admin/index.php");
-}
-else {
-	header("Location: back/index.php");
-}
-
 $response = $authenticator->getResponse();
+$response["status"] = "ok";
+$res = json_encode($response);
+echo $res;
+exit;

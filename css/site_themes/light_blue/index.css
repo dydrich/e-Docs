@@ -1,11 +1,126 @@
 *{margin:0;padding:0;}:focus,:active {outline:0}ul,ol{list-style:none}img{border:0}
 
+#header, #main, #navigation, #footer, #page {
+    width: 100%;
+}
+
+#footer {
+    font-size: 1em;
+    height: 15px;
+    margin: 10px auto 0 auto;
+    padding-right: 10px;
+}
+
+#_header {
+    width: 400px;
+    margin: 100px auto 30px auto;
+}
+
+#_header p {
+    font-size: 0.7em;
+}
+
+.area {
+    margin-top: 80px;
+}
+
+.area i {
+    font-size: 8em;
+}
+
+.area div {
+    font-size: 1.3em;
+}
+/* index end */
+/*login start */
+.rb-login-container {
+    display: block;
+    width: 100%;
+}
+
+#pwdreq_info {
+    display: block;
+    width: 100%;
+    padding: 20px;
+}
+
+
+html, body {
+    font-size: 13px;
+}
+
+#header {
+    height: 60px;
+    background-color: var(--main-900);
+    margin: 0!important;
+    color: white
+}
+
+#header a {
+    color: white
+}
+
+#navigation {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--main-900);
+    margin: 0!important;
+    color: white
+}
+
+#main {
+    display: flex;
+}
+
+#menu {
+    width: 0;
+    display: none;
+    border-right: 1px solid gray;
+}
+
+#content {
+    padding: 10px
+}
+
+#left_col, #right_col {
+    padding-bottom: 9999px;
+    margin-bottom: -9999px;
+}
+
+.dashboard_card {
+    width: 250px;
+    height: 120px;
+}
+
+.demo-card {
+    width: 300px;
+    height: 100px;
+}
+
+.dashboard_longcard {
+    width: 280px;
+    height: 300px;
+}
+
+.dashboard_longcard_body {
+    padding: 10px;
+}
+
+#sc_firstrow {
+    width: 50%;
+}
+
+div.menu {
+    width: 270px;
+}
+
 :root {
     --mdc-theme-primary: #01579B !important;
     --mdc-theme-secondary: #FF528D !important;
     --accent-color: #c51162 !important;
     --main-500: #03A9F4;
     --main-700: #0288D1;
+    --main-900: #01579B;
 }
 
 html {
@@ -16,6 +131,7 @@ body {
     height: 100%;
     margin: 0;
 
+    background-color: rgba(0, 0, 0, .10);
 }
 
 .area {
@@ -31,19 +147,26 @@ body {
 }
 
 #login_form {
-    border: 2px solid #000000;
-    border-radius: 10px;
-    margin: 20px auto 0 auto;
+    width: 310px;
+    border-radius: 3px 3px 0 0;
+    margin: 0 auto 0 auto;
     background-color: #FFF;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 #_header {
-    font-size: 1.6em;
+    font-size: 1.9rem;
     text-transform: uppercase;
     text-align: center;
     padding-bottom: 10px;
-    font-weight: bold;
-    display: block
+    font-weight: bolder;
+    display: block;
+    color: rgba(0, 0, 0, .87);
+    border-bottom: 1px solid var(--mdc-theme-secondary);
 }
 
 #_header p {
@@ -51,7 +174,8 @@ body {
     line-height: 20px;
     margin: 0;
     padding-top: 10px;
-    text-transform: none
+    text-transform: none;
+    color: rgba(0, 0, 0, .87);
 }
 
 #_subheader{
@@ -88,4 +212,8 @@ a {
 
 .rb-login-container:last-of-type {
     margin-bottom: 20px;
+}
+
+#login_button, #signup_button, #req_button {
+    background-color: var(--mdc-theme-secondary);
 }

@@ -30,7 +30,7 @@
     </div>
 </header>
 <section class="wrap">
-    <div id="login_form" style="display: flex; display: -webkit-flex; flex-direction: row; flex-wrap: wrap; align-items: center;">
+    <div id="login_form" style="">
         <form id="myform" action="do_login.php" method="post" style="margin: auto">
             <div class="rb-login-container">
                 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">

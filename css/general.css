@@ -890,12 +890,41 @@ div.dashboard_card_row i {
     border-radius: 0 0 4px;
 }
 
+#access_menu {
+    width: 200px;
+    min-height: 105px;
+    display: none;
+    background-color: white;
+    position: absolute;
+    border-radius: 0 0 4px;
+}
+
+#login, #signup, #reqpwd {
+    width: 310px;
+    display: none;
+    background-color: white;
+    position: absolute;
+    border-radius: 3px;
+}
+
+#login {
+    min-height: 340px;
+}
+
+#signup {
+    min-height: 520px;
+}
+
+#reqpwd {
+    min-height: 360px;
+}
+
 #context_menu, #field_order {
     width: 250px;
     display: none;
     background-color: white;
     position: absolute;
-    border-radius: 0 0 4px;
+    border-radius: 4px;
 }
 
 #doc_context_menu, #cat_menu {
@@ -903,7 +932,7 @@ div.dashboard_card_row i {
     display: none;
     background-color: white;
     position: absolute;
-    border-radius: 0 0 4px;
+    border-radius: 4px;
 }
 
 .item {
@@ -919,7 +948,7 @@ div.dashboard_card_row i {
     align-items: center;
 }
 
-#user_menu .item a, #user_menu .item span, #field_order .item a, #field_order .item span {
+#user_menu .item a, #user_menu .item span, #field_order .item a, #field_order .item span, #access_menu .item a, #access_menu .item span {
     margin-left: 15px;
     color: rgba(0, 0, 0, .87);
     text-decoration: none;
@@ -1096,4 +1125,8 @@ iframe {
 .file-action:hover {
     background-color: rgba(0, 0, 0, .15);
     color: rgba(0, 0, 0, 1);
+}
+
+.mdc-select {
+    height: 30px!important;
 }

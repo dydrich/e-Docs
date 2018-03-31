@@ -1,3 +1,60 @@
+0.7
+issue #49
+
+0.6.3
+modifica documento
+apertura documento in browser
+download documento
+issue #48
+issue #52
+
+0.6.2-62
+menu ordinamento documenti
+
+0.6.2-61
+share/no_file.php: gestione errore download file
+
+0.6.2-60
+bug fix (Document)
+
+0.6.2-59
+page.js:
+parametrizzazione funzioni di gestione menu contestuale
+funzione getFileName
+
+0.6.2-58
+get_file_name.php: web service che restituisce il file dall'id documento
+
+0.6.2-57
+download manager
+
+0.6.2-56
+footer.php
+generic.css
+- menu contestuale documenti
+- modifiche card documenti
+
+0.6.2-55
+Document.php: semplificata la gestione del download per il proprietario (area privata)
+
+0.6.2-54
+document.php
+issue #47
+issue #50
+issue #51
+
+0.6.2-53
+parametrizzate funzioni di gestione context menu in admin
+
+0.6.2-52
+modifica password utente (issue #37)
+
+0.6.2-51
+validazione form inserimento e modifica utente (issue #33)
+
+0.6.2
+modifiche grafiche e funzionali per gestione card in admin
+
 0.6.1-49
 page.js: aggiunte funzioni di gestione context menu per le card in admin
 footer.php: aggiunto context menu
