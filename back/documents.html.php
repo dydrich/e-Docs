@@ -159,6 +159,8 @@
         });
 
         document.getElementById('choose_order').addEventListener('click', function (event) {
+            clear_context_menu(event, 'doc_context_menu');
+            clear_context_menu(event, 'cat_menu');
             show_context_menu(event, null, 300, 'field_order');
         });
 
@@ -166,6 +168,7 @@
             ev.preventDefault();
             clear_context_menu(ev, 'doc_context_menu');
             clear_context_menu(ev, 'cat_menu');
+            clear_context_menu(ev, 'field_order');
             if (selected_doc !== 0) {
                 document.getElementById('item'+selected_doc).classList.remove('selected_doc');
             }
@@ -175,6 +178,7 @@
             ev.preventDefault();
             clear_context_menu(ev, 'doc_context_menu');
             clear_context_menu(ev, 'cat_menu');
+            clear_context_menu(ev, 'field_order');
             if (selected_doc !== 0) {
                 document.getElementById('item'+selected_doc).classList.remove('selected_doc');
             }
@@ -212,6 +216,7 @@
             ends[i].addEventListener('click', function (event) {
                 event.preventDefault();
                 event.stopImmediatePropagation();
+                clear_context_menu(ev, 'field_order');
                 if (selected_doc !== 0) {
                     document.getElementById('item'+selected_doc).classList.remove('selected_doc');
                 }
@@ -229,6 +234,7 @@
                 //clear_context_menu(event);
                 show_context_menu(event, null, 200, 'doc_context_menu');
                 selected_doc = event.currentTarget.getAttribute("data-id");
+                clear_context_menu(event, 'field_order');
             });
             ends[i].addEventListener('dblclick', function (event) {
                 event.preventDefault();

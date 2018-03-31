@@ -38,7 +38,7 @@
                 <textarea required id="abstract" name="abstract" class="mdc-text-field__input" rows="8" cols="40"><?php if(isset($document)) echo $document->getAbstract() ?></textarea>
                 <label for="abstract" class="mdc-floating-label">Abstract</label>
             </div>
-            <select required class="mdc-select" name="subject" id="subject">
+            <select required class="mdc-select form_input" name="subject" id="subject">
                 <option value="" selected>Disciplina</option>
 				<?php
 				while ($row = $res_materie->fetch_assoc()) {
@@ -48,12 +48,12 @@
 				}
 				?>
             </select>
-            <select required class="mdc-select" name="type" id="type">
+            <select required class="mdc-select form_input" name="type" id="type">
                 <option value="" <?php if(!isset($document)) echo "selected" ?>>Tipo di risorsa</option>
 				<option value="1" <?php if(isset($document) && $document->getDocumentType() == 1) echo "selected" ?>>File</option>
 				<option value="2" <?php if(isset($document) && $document->getDocumentType() == 2) echo "selected" ?>>Risorsa esterna</option>
             </select>
-            <select required class="mdc-select" name="category" id="category" style="">
+            <select required class="mdc-select form_input" name="category" id="category" style="">
                 <option value="" selected>Categoria</option>
 				<?php
 				while ($row = $res_categorie->fetch_assoc()) {
@@ -86,7 +86,7 @@
                 <a href="#" id="add_tag" style="margin-left: 20px; margin-bottom: 8px" onclick="addTag(event)" class="material_link">Aggiungi</a>
             </div>
             <div id="tags_ct" style="width: 90%; margin: auto; display: block; text-align: left"></div>
-            <select required class="mdc-select" name="school" id="school">
+            <select required class="mdc-select form_input" name="school" id="school">
                 <option value="" selected>Ordine di scuola</option>
 				<?php
 				while ($row = $res_ordini->fetch_assoc()) {
@@ -96,7 +96,7 @@
 				}
 				?>
             </select>
-            <select required class="mdc-select" name="grade" id="grade">
+            <select required class="mdc-select form_input" name="grade" id="grade">
                 <option value="" selected>Classe</option>
 				<?php
 				while ($row = $res_grades->fetch_assoc()) {
