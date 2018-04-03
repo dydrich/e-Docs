@@ -85,7 +85,25 @@
                 <datalist id="tag_list"></datalist>
                 <a href="#" id="add_tag" style="margin-left: 20px; margin-bottom: 8px" onclick="addTag(event)" class="material_link">Aggiungi</a>
             </div>
-            <div id="tags_ct" style="width: 90%; margin: auto; display: block; text-align: left"></div>
+            <div id="tags_ct" style="width: 90%; margin: auto; display: block; text-align: left">
+				<?php
+				if (isset($tags)){
+					reset($tags);
+					$i = 0;
+					foreach ($tags as $t){
+						?>
+                        <p id='tag_<?php echo $i ?>' style='height: 16px; margin: 3px 0 0 0'>
+                            <a href='#' onclick='deleteTag(<?php echo $i ?>)' style='margin-right: 5px'>
+                                <i class='material-icons' style='font-size: 1rem; color: rgba(0, 0, 0, .5)'>cancel</i>
+                            </a>
+                            <span style='position: relative; top: -2px'><?php echo $t ?></span>
+                        </p>
+						<?php
+                        $i++;
+					}
+				}
+				?>
+            </div>
             <select required class="mdc-select form_input" name="school" id="school">
                 <option value="" selected>Ordine di scuola</option>
 				<?php
@@ -252,7 +270,7 @@
                         j_alert("alert", json.message);
                         window.setTimeout(function(){
                             document.location.href = "documents.php";
-                        }, 4000);
+                        }, 3000);
                     }
                 }
             } else {

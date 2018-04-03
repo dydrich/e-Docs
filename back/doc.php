@@ -27,7 +27,7 @@ if(isset($_REQUEST['did']) && $_REQUEST['did'] != 0){
 
 	$current_doc = $r_doc->fetch_assoc();
 
-	$sel_tags = "SELECT name FROM rb_tags, rb_doc_tag WHERE rb_tags.tid = rb_doc_tag.tid AND doc_id = {$did}";
+	$sel_tags = "SELECT name AS tag FROM rb_tags, rb_doc_tag WHERE rb_tags.tid = rb_doc_tag.tid AND doc_id = {$did}";
 	try {
 		$res_tags = $db->executeQuery($sel_tags);
 	} catch (\edocs\MySQLException $ex) {
