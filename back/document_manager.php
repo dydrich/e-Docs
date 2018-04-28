@@ -68,6 +68,7 @@ try{
 			$response['message'] = "Il documento è stato modificato";
 			break;
 		case \edocs\Document::$DELETE_DOCUMENT:
+			$doc = new \edocs\Document($_REQUEST['did'], null, null, new MYSQLDataLoader($db));
 			$doc->delete();
 			$response['message'] = "Il documento è stato cancellato";
 			break;

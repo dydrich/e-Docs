@@ -256,7 +256,7 @@
         var formData = new FormData();
 
         xhr.open('post', 'document_manager.php');
-        var action = <?php echo ACTION_DELETE ?>;
+        var action = <?php echo \edocs\Document::$DELETE_DOCUMENT ?>;
 
         formData.append('did', selected_doc);
         formData.append('action', action);
@@ -270,7 +270,7 @@
                     j_alert("alert", xhr.response.message);
                     var item_to_del = document.getElementById('item'+selected_doc);
                     item_to_del.style.display = 'none';
-                    clear_context_menu(ev);
+                    clear_context_menu(ev, 'doc_context_menu');
                 }
             } else {
                 console.log('Error: ' + xhr.status);
