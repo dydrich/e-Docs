@@ -84,6 +84,9 @@ class Document
 				}
 			}
 		}
+		else {
+			$this->documentName = $this->datasource->executeCount('SELECT document_name FROM rb_documents WHERE doc_id = '.$this->id);
+		}
 	}
 
 	/**
@@ -287,7 +290,7 @@ class Document
 		$mime = \MimeType::getMimeContentType($this->file);
 		$fp = $_SESSION['__config__']['document_root']."/".$this->file;
 		header("Content-Type: ".$mime['ctype']);
-		header("Content-Disposition: attachment; filename=".$this->file);
+		header("Content-Disposition: attachment; filename=\"".$this->documentName."\"");
 		header("Expires: 0");
 		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 		header("Pragma: public");
@@ -302,7 +305,6 @@ class Document
 	}
 
 	public function registerDownload(){
-		$id_type = $this->getDocumentType();
 		$id = $this->getID();
 		$ip = $_SERVER['REMOTE_ADDR'];
 		if ($_SESSION['__user__']){
@@ -311,7 +313,7 @@ class Document
 		else {
 			$user = 0;
 		}
-		$ins = "INSERT INTO rb_downloads (document_id, document_type, ip_address, dw_date, user) VALUES ({$id}, {$id_type}, '{$ip}', NOW(), {$user})";
+		$ins = "INSERT INTO rb_downloads (document_id, ip_address, dw_date, user) VALUES ({$id}, '{$ip}', NOW(), {$user})";
 		$this->datasource->executeUpdate($ins);
 
 		$upd = "UPDATE rb_documents SET download_counter = (rb_documents.download_counter + 1) WHERE doc_id = $id";
