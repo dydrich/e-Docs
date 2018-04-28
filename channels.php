@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: riccardo
- * Date: 19/10/17
- * Time: 6.48
+ * Date: 28/04/18
+ * Time: 19.17
  */
 
 require_once "lib/start.php";
@@ -15,7 +15,7 @@ $sql = "SELECT rb_documents.*, rb_categories.color AS color, rb_categories.icon 
 		FROM rb_documents, rb_subjects, rb_categories 
 		WHERE subject = sid 
 		AND category = cid
-		ORDER BY upload_date DESC LIMIT 16";
+		ORDER BY upload_date DESC LIMIT 6";
 $sel_categorie = "SELECT * FROM rb_categories ORDER BY name";
 $sel_subjects = "SELECT * FROM rb_subjects ORDER BY name";
 try {
@@ -27,4 +27,4 @@ try {
 
 }
 
-include "index.html.php";
+include "channels.html.php";
