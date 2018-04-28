@@ -28,7 +28,7 @@
 					<div class="dashboard_card_body">
 						<div class="dashboard_body_left">
 							<span style="font-size: 2em;"><?php echo $sub_count ?></span>
-							<br /> Materie
+							<br /> Aree disciplinari
 						</div>
 						<div class="dashboard_body_right">
 							<i class="material-icons" style="color: #4db6ac; font-size: 3.5em">library_books</i>

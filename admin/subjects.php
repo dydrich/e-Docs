@@ -14,6 +14,6 @@ $_SESSION['area'] = 'admin';
 
 $res_subs = $db->executeQuery("SELECT * FROM rb_subjects ORDER BY name");
 
-$drawer_label = "Materie e discipline";
+$drawer_label = "Aree disciplinari";
 
 include "subjects.html.php";
