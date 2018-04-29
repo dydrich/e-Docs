@@ -54,6 +54,7 @@ if ($user == null) {
 $_SESSION['__user__'] = $user;
 $response = $authenticator->getResponse();
 $response["status"] = "ok";
+$response['role'] = $user->getRole();
 $res = json_encode($response);
 echo $res;
 exit;

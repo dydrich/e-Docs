@@ -163,8 +163,44 @@ var submit_login = function (ev) {
                     '            </span>\n';
                 fade('login', 'out', 500, 0);
                 document.getElementById('user_space').style.display = 'block';
-                var first_a = document.getElementById('access_menu').querySelector('a');
-                first_a.setAttribute('href', 'admin/index.php');
+                if (xhr.response.role == 3) {
+                    var first_a = document.getElementById('access_menu').querySelector('a');
+                    first_a.setAttribute('href', 'admin/index.php');
+                }
+            }
+        }
+    }
+};
+
+var signup = function (ev) {
+    ev.preventDefault();
+    var xhr = new XMLHttpRequest();
+    var formElement = document.getElementById('signupform');
+    var formData = new FormData(formElement);
+
+    xhr.open('post', 'do_signup.php');
+    xhr.responseType = 'json';
+    xhr.send(formData);
+    xhr.onreadystatechange = function () {
+        var DONE = 4; // readyState 4 means the request is done.
+        var OK = 200; // status 200 is a successful return.
+        if (xhr.readyState === DONE) {
+            if (xhr.response.status !== 'ok') {
+                alert(xhr.response.status);
+                j_alert("error", xhr.response.message);
+                return false;
+            }
+            if (xhr.status === OK) {
+                var div = document.getElementById('sc_secondrow');
+                div.innerHTML = '<i class="material-icons" style="position: relative; top: 1px">person</i>\n' +
+                    '<span style="position: relative; margin-left: 5px; bottom: 5px">\n' +
+                    '                <a href="#" onclick="show_user_menu(event, \'access_menu\', 200)">\n' + xhr.response.name +
+                    '                    <i id="arrow" class="material-icons" style="position: relative; top: 8px">arrow_drop_down</i>\n' +
+                    '                </a>\n' +
+                    '            </span>\n';
+                fade('login', 'out', 500, 0);
+                document.getElementById('user_space').style.display = 'block';
+
             }
         }
     }

@@ -140,7 +140,7 @@ if (isset($_SESSION['__user__']) && $_SESSION['__user__']->getRole() == 3) {
 			<div class="rb-login-container">
 				<div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="width: 100%">
 					<input required autocomplete="off" type="text" id="new-username" name="new-username" class="mdc-text-field__input" style="width: 100%">
-					<label class="mdc-floating-label" for="new-username">Username</label>
+					<label class="mdc-floating-label" for="new-username">Email</label>
 				</div>
 			</div>
 			<div class="rb-login-container">
