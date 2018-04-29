@@ -70,9 +70,15 @@
 		</a>
 	</div>
 </div>
+<?php
+$link = 'back/index.php';
+if (isset($_SESSION['__user__']) && $_SESSION['__user__']->getRole() == 3) {
+    $link = 'admin/index.php';
+}
+?>
 <div id="access_menu" class="mdc-elevation--z2">
     <div class="item">
-        <a href="back/index.php">
+        <a href="<?php echo $link ?>">
             <i class="material-icons">lock</i>
             <span>Area privata</span>
         </a>
