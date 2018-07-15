@@ -2,10 +2,6 @@
     width: 100%;
 }
 
-#main {
-    display: block;
-}
-
 #footer {
     font-size: 1em;
     height: 15px;
@@ -44,7 +40,7 @@
 }
 
 #screenlab::after {
-    content: " - normal";
+    content: " - normal-ext";
 }
 
 #menu {
