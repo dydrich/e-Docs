@@ -25,6 +25,10 @@ class User {
     public static $USER = 1;
     public static $GUEST = 2;
 
+	public static $NO_EMAIL = 0;
+	public static $ACTIVATION_EMAIL = 1;
+	public static $DATA_EMAIL = 2;
+
 	public function __construct($u, $fn, $ln, $un, $pwd = null, $rl, $dl){
 		$this->uid = $u;
 		$this->firstName = $fn;
@@ -197,11 +201,18 @@ class User {
 
 	}
 
-	public function insert ($sendEmail = true) {
+	public function insert ($sendEmail) {
+    	$active = 1;
+    	if($this->role == User::$GUEST) {
+    		$active = 0;
+		}
     	$sql = "INSERT INTO rb_users (username, password, firstname, lastname, accesses_count, last_access, previous_access, active, files_count, downloads, role, registration_date)  
-				VALUES ('{$this->username}', '{$this->pwd['e']}', '{$this->firstName}', '{$this->lastName}', 0, NULL, NULL, 1, 0, 0, {$this->role}, NOW())";
+				VALUES ('{$this->username}', '{$this->pwd['e']}', '{$this->firstName}', '{$this->lastName}', 0, NULL, NULL, $active, 0, 0, {$this->role}, NOW())";
     	$this->uid = $this->datasource->executeUpdate($sql);
-    	if ($sendEmail && $this->role != User::$GUEST) {
+    	if ($sendEmail === User::$ACTIVATION_EMAIL) {
+			$this->sendActivationEmail();
+		}
+		else if($sendEmail === User::$DATA_EMAIL) {
 			$this->sendEmailAccessData();
 		}
     	return ['login' => $this->username, 'password' => $this->pwd['c']];
@@ -247,12 +258,42 @@ class User {
 		$subject = "Piattaforma e-Docs+";
 		$headers = "From: {$from}\r\n"."Reply-To: {$from}\r\n" .'X-Mailer: PHP/' . phpversion();
 		$message = "Gentile utente,\nil suo account per l'utilizzo della piattaforma e-Docs+ è stato attivato.\n ";
-		$message .= "Di seguito troverà i dati e le istruzioni per accedere:\n\n";
+		$message .= "Di seguito troverà i dati di accesso:\n\n";
 		$message .= "username: {$this->username}\npassword: ".$pwd['c']."\n";
-		$message .= "Procedura di accesso:\nandare su https://www.dydrich.net/edocs. \nNella finestra seguente selezionare 'Area privata', inserire i dati di accesso e cliccare sul pulsante Login. \n\n";
 		$message .= "Per un corretto funzionamento del software, si raccomanda di NON utilizzare il browser Internet Explorer, ma una versione aggiornata di Firefox, Google Chrome, Opera o Safari.\n";
 		//$message .= "Le ricordiamo che, in caso di smarrimento della password, pu&ograve; richiederne una nuova usando il link 'Password dimenticata?' presente nella pagine iniziale del Registro.\n";
 		$message .= "Per qualunque problema, non esiti a contattarci.";
+		mail($to, $subject, $message, $headers);
+	}
+
+	public function sendActivationEmail(){
+		/*
+	    * generate a random id
+		*/
+		$uniqid = md5(uniqid(rand(), true));
+		$tm = new \DateTime();
+		$now = $tm->format("Y-m-d H:i:s");
+		try {
+			$due = $tm->add(new \DateInterval('P1D'));
+		} catch (\Exception $e) {
+
+		}
+
+		$dt = $due->format("Y-m-d H:i:s");
+		$this->datasource->executeUpdate("UPDATE rb_users SET activation_code = '{$uniqid}', code_expire_time = '$dt' WHERE uid = ".$this->uid);
+
+		/*
+		 * send email
+		 */
+		$to = $this->getUsername();
+		$subject = "Attivazione nuovo account";
+		$from = "edocs@dydrich.net";
+		$headers = "From: {$from}\r\n"."Reply-To: {$from}\r\n" .'X-Mailer: PHP/' . phpversion();
+		$message = "Gentile utente,\nabbiamo ricevuto la tua richiesta di accesso alla piattaforma.\n ";
+		$message .= "Per completare la procedura, clicca sul link seguente entro 24 ore:\n\n";
+		$message .= ROOT_SITE."/activate.php?token=".$uniqid."&chk=".$this->uid."\n";
+		$message .= "Per qualunque problema, non esitare a contattarci.\n\n";
+		$message .= "Si prega di non rispondere a questa mail, in quanto inviata da un programma automatico.\n\n";
 		mail($to, $subject, $message, $headers);
 	}
 }
