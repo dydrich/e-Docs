@@ -64,7 +64,7 @@
                     </section>
                     <section class="file-ext">
                         <div>
-                            <i class="material-icons" style="font-size: 7rem; color: <?php echo $row['color'] ?>; opacity: 25%"><?php echo $row['icon'] ?></i>
+                            <i class="material-icons" style="font-size: 7rem; opacity: 25%"><?php echo $row['icon'] ?></i>
                         </div>
                     </section>
                     <section class="file-title normal">
