@@ -430,7 +430,14 @@ toggle_mobile_drawer = function(e) {
         return false;
     }
     fdrawer.style.display = 'block';
-    fdrawer.style.width = '100%';
+    if (window.screen.width < 641) {
+        fdrawer.style.width = '100%';
+        document.getElementById('menuspacer').style.display = 'none';
+    }
+    else {
+        fdrawer.style.width = '30%';
+    }
+
     return false;
 };
 

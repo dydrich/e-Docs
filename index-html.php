@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="css/site_themes/light_blue/index.css">
     <link rel="stylesheet" media="screen and (min-width: 2000px)" href="css/layouts/index/larger.css">
     <link rel="stylesheet" media="screen and (max-width: 1999px) and (min-width: 1300px)" href="css/layouts/index/wide.css">
-    <link rel="stylesheet" media="screen and (max-width: 1299px) and (min-width: 640px)" href="css/layouts/index/normal.css">
+    <link rel="stylesheet" media="screen and (max-width: 1299px) and (min-width: 1024px)" href="css/layouts/index/normal_ext.css">
+    <link rel="stylesheet" media="screen and (max-width: 1023px) and (min-width: 640px)" href="css/layouts/index/normal.css">
     <link rel="stylesheet" media="screen and (max-width: 639px)" href="css/layouts/index/small.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script type="application/javascript" src="js/page.js"></script>
@@ -66,9 +67,7 @@
                     </div>
                 </div>
             </div>
-            <?php if(!$detect->isMobile()): ?>
-            <p class="spacer"></p>
-            <?php endif; ?>
+            <p class="spacer" id="menuspacer"></p>
         </div>
         <div id="content" style="order: 2">
             <div class="main_front_label">
