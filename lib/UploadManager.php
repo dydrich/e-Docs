@@ -1,6 +1,8 @@
 <?php
 
 require_once 'data_source.php';
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
 
 class UploadManager {
 	
@@ -40,27 +42,33 @@ class UploadManager {
 		 * gestione del filesystem
 		 */
 		$file = basename($this->file['name']);
-
 		$fileName = $this->createFileName();
 
 		/**
 		 * gestione file nel filesystem
 		*/
-		$dir = $_SESSION['__config__']['document_root']."{$this->pathTo}";
+		$dir = $_SESSION['__config__']['document_root']."/";
+		/*
 		if(!file_exists($dir)){
+			echo $dir. 'non esiste???';
 			if (!mkdir($dir, 0775, true)) {
 				return self::UPL_ERROR;
 			}
 		}
+		*/
 		
 		$target_path = $dir . $fileName;
-		if(file_exists($target_path)){
 
+		if(file_exists($target_path)){
+			echo "file exists";
 		}
 		else{
 			if(move_uploaded_file($this->file['tmp_name'], $target_path)) {
 				chdir($dir);
-				chmod($file, 0644);
+				chmod($fileName, 0644);
+			}
+			else {
+				echo "<br>moving error to $target_path";
 			}
 		}
 		return $fileName;
