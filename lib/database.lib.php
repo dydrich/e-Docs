@@ -10,7 +10,8 @@ class MySQLConnection extends mysqli{
 		if (mysqli_connect_error()) {
 			$_SESSION['connect_errno'] = mysqli_connect_errno();
 			$_SESSION['connect_error'] = mysqli_connect_error();
-			header("Location: ".$_SESSION['__config__']['root_site']."/shared/connection_error.php");
+			header("Location: ".ROOT_SITE."/share/connection_error.php");
+			//echo $host." ==> ".$user." ==> ".$pass." ==> ".$db;
 	    }
 	}
 	
