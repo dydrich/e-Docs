@@ -22,10 +22,7 @@ $drawer_label = "File non trovato";
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
 	<script type="text/javascript" src="../js/page.js"></script>
 	<script type="text/javascript">
-		$(function() {
-			load_jalert();
-			setOverlayEvent()
-		});
+
 	</script>
 </head>
 <body>
