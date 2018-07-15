@@ -1,0 +1,24 @@
+#header, #main, #navigation, #footer, #page {
+    width: 100%;
+}
+
+#footer {
+    width: 100%;
+}
+
+#header {
+    height: 60px;
+}
+
+#navigation {
+    display: flex;
+    justify-content: space-between;
+}
+
+#sc_firstrow {
+    width: 50%;
+}
+
+#screenlab::after {
+    content: " - wide";
+}
