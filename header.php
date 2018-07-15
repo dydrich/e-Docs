@@ -1,8 +1,8 @@
 <header id="header">
 	<div id="sc_firstrow">
 		<i class="material-icons" style="font-size: 1.6em">school</i>
-		<span style="position: relative; bottom: 8px; margin-left: 5px">e-Docs 0.6 - </span>
-		<span style="position: relative; bottom: 8px; font-size: 0.9em; font-weight: normal">Software di condivisione e archiviazione materiali didattici</span>
+		<span style="position: relative; bottom: 8px; margin-left: 5px">e-Docs 0.6</span>
+		<span style="position: relative; bottom: 8px; font-size: 0.9em; font-weight: normal" id="soft_desc"> - Software di condivisione e archiviazione materiali didattici</span>
 	</div>
 	<div id="sc_secondrow">
 		<?php

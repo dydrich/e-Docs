@@ -234,7 +234,7 @@ var show_context_menu = function (event, data, height, _menu) {
     var x, y;
     if (menu.style.display === 'block') {
         x = event.clientX;
-        y = event.clientY;
+        y = event.pageY;
 
         menu.style.top = parseInt(y)+"px";
         menu.style.left = parseInt(x)+"px";
@@ -242,7 +242,7 @@ var show_context_menu = function (event, data, height, _menu) {
     else {
         menu.style.opacity = 0;
         x = event.clientX;
-        y = event.clientY;
+        y = event.pageY;
 
         menu.style.height = parseInt(height)+'px !important';
         menu.style.top = parseInt(y)+"px";
@@ -419,6 +419,18 @@ toggle_fixed_drawer = function(e) {
     fdrawer.style.width = '20%';
     content.style.width = '80%';
     fdrawer.style.overflow = 'auto';
+    return false;
+};
+
+var toggle_mobile_drawer;
+toggle_mobile_drawer = function(e) {
+    var fdrawer = document.getElementById('menu');
+    if (fdrawer.style.display === 'block') {
+        fdrawer.style.display = 'none';
+        return false;
+    }
+    fdrawer.style.display = 'block';
+    fdrawer.style.width = '100%';
     return false;
 };
 

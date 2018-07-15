@@ -7,18 +7,19 @@
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/site_themes/light_blue/index.css">
+    <link rel="stylesheet" media="screen and (min-width: 2000px)" href="css/layouts/index/larger.css">
+    <link rel="stylesheet" media="screen and (max-width: 1999px) and (min-width: 1300px)" href="css/layouts/index/wide.css">
+    <link rel="stylesheet" media="screen and (max-width: 1299px) and (min-width: 640px)" href="css/layouts/index/normal.css">
+    <link rel="stylesheet" media="screen and (max-width: 639px)" href="css/layouts/index/small.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script type="application/javascript" src="js/page.js"></script>
-    <script type="application/javascript">
-
-    </script>
 </head>
 <body>
 <div id="page" class="" style="margin: auto">
     <?php include "header.php" ?>
     <?php include "nav.php" ?>
     <section id="main">
-        <div id="menu" style="order: 1; background-color: #f3f5fa">
+        <div id="menu" style="order: 1">
             <div style="width: 95%; margin: auto; background-color: white; border-radius: 3px; margin-top: 15px">
                 <div class="front_item">
                     <i class="material-icons" style="margin-right: 10px">watch_later</i>Ultimi inserimenti
@@ -65,21 +66,22 @@
                     </div>
                 </div>
             </div>
-
+            <?php if(!$detect->isMobile()): ?>
             <p class="spacer"></p>
+            <?php endif; ?>
         </div>
         <div id="content" style="order: 2">
             <div class="main_front_label">
                 <p>
                     <i class="material-icons">watch_later</i>
-                    <span>Ultimi documenti inseriti</span>
+                    <span id="screenlab">Ultimi inserimenti</span>
                 </p>
             </div>
             <div style="display: flex; padding-left: 40px; margin-top: 20px; flex-wrap: wrap">
                 <?php
                 while ($row = $res_docs->fetch_assoc()) {
 					?>
-                    <div class="file-card mdc-elevation--z2" id="item<?php echo $row['doc_id'] ?>" data-id="<?php echo $row['doc_id'] ?>" data-list="highlight">
+                    <div class="file-card" id="item<?php echo $row['doc_id'] ?>" data-id="<?php echo $row['doc_id'] ?>" data-list="highlight">
                         <section class="file-subject normal">
                             <p style="margin: auto"><?php echo $row['sub'] ?></p>
                         </section>
@@ -106,5 +108,13 @@
 <?php include "footer.php" ?>
 <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 <script src="front.js" type="application/javascript"></script>
+<script type="application/javascript">
+    var is_mobile = <?php if ($detect->isMobile()) echo 1; else echo 0; ?>;
+    (function() {
+        var w = window.screen.width ;
+        var h = window.screen.height;
+        document.getElementById('screenlab').innerText += " "+w+"x"+h;
+    })();
+</script>
 </body>
 </html>

@@ -5,9 +5,16 @@ var selected_doc = 0;
 var selected_list = 'highlight';
 
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById('open_drawer').addEventListener('click', function () {
-        toggle_fixed_drawer();
-    }, false);
+    if (is_mobile) {
+        document.getElementById('open_drawer').addEventListener('click', function () {
+            toggle_mobile_drawer();
+        }, false);
+    }
+    else {
+        document.getElementById('open_drawer').addEventListener('click', function () {
+            toggle_fixed_drawer();
+        }, false);
+    }
 
     document.getElementById('login_button').addEventListener('click', function (event) {
         submit_login(event);

@@ -8,8 +8,12 @@
 
 require_once "lib/start.php";
 require_once "lib/load_env.php";
+require_once "lib/Mobile_Detect.php";
+
+ini_set('display_errors', 1);
 
 $drawer_label = "Home";
+$detect = new Mobile_Detect;
 
 $sql = "SELECT rb_documents.*, rb_categories.color AS color, rb_categories.icon AS icon, rb_subjects.name as sub 
 		FROM rb_documents, rb_subjects, rb_categories 
@@ -27,4 +31,4 @@ try {
 
 }
 
-include "index.html.php";
+include "index-html.php";
