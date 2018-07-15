@@ -58,8 +58,6 @@ try {
 	$res_categorie = $db->executeQuery($sel_categorie);
 	$res_ordini = $db->executeQuery($sel_ordini);
 	$res_grades = $db->executeQuery($sel_grades);
-	$schema_db = new MySQLConnection("localhost", "root", "isildur", "information_schema", "3306");
-	$nv = $schema_db->executeCount("SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'edocs' AND TABLE_NAME = 'rb_documents'");
 } catch (\edocs\MySQLException $ex) {
 
 }

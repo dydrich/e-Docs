@@ -35,7 +35,7 @@
                 <label class="mdc-floating-label" for="title">Titolo</label>
             </div>
             <div class="mdc-text-field mdc-text-field--textarea" style="margin-right: auto; margin-left: auto" data-mdc-auto-init="MDCTextField">
-                <textarea required id="abstract" name="abstract" class="mdc-text-field__input" rows="8" cols="40"><?php if(isset($document)) echo $document->getAbstract() ?></textarea>
+                <textarea required id="abstract" name="abstract" class="mdc-text-field__input" cols="40"><?php if(isset($document)) echo $document->getAbstract() ?></textarea>
                 <label for="abstract" class="mdc-floating-label">Abstract</label>
             </div>
             <select required class="mdc-select form_input" name="subject" id="subject">
@@ -63,6 +63,7 @@
 				}
 				?>
             </select>
+            <?php if((isset($current_doc) && $document->getDocumentType() == 1) || !isset($current_doc)): ?>
             <div id="if_container" style="width: 90%; margin: auto">
                 <p style="text-align: left; color: rgba(0, 0, 0, .5">File</p>
                 <?php if(isset($current_doc)){ ?>
@@ -75,6 +76,7 @@
                     <a href="#" onclick="del_file()" id="del_upl" style="">Annulla upload</a>
                 <?php } ?>
             </div>
+            <?php endif; ?>
             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="lnk_field" style="display: none; margin: auto;">
                 <input type="text" id="link" name="link" class="mdc-text-field__input" value="">
                 <label class="mdc-floating-label" for="link">Link</label>
