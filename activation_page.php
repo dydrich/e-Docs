@@ -21,6 +21,8 @@ else if($_SESSION['activation_message'] == 'activation_code_sent') {
 	$message = "Codice di attivazione inviato";
 }
 
+$drawer_label = 'Pagina di attivazione account';
+
 ?>
 <!DOCTYPE html>
 <html>

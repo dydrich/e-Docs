@@ -72,15 +72,20 @@
 </div>
 <?php
 $link = 'back/index.php';
+$lab = "Area privata";
 if (isset($_SESSION['__user__']) && $_SESSION['__user__']->getRole() == 3) {
     $link = 'admin/index.php';
+}
+else if (isset($_SESSION['__user__']) && $_SESSION['__user__']->getRole() == 2) {
+	$link = 'request_update.php';
+	$lab = 'Richiedi accesso come utente contributore';
 }
 ?>
 <div id="access_menu" class="mdc-elevation--z2">
     <div class="item">
         <a href="<?php echo $link ?>">
             <i class="material-icons">lock</i>
-            <span>Area privata</span>
+            <span><?php echo $lab ?></span>
         </a>
     </div>
     <div class="item" style="border-top: 1px solid rgba(0, 0, 0, .10)">
