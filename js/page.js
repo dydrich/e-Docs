@@ -391,8 +391,15 @@ getFileName = function (fileID, action) {
         if (xhr.readyState === DONE) {
             if (xhr.status === OK) {
                 filename = xhr.response.file;
+                type = xhr.response.type;
+                link = xhr.response.res_link;
                 if(action === 'open_in_browser') {
-                    document.location.href = '../library/'+filename;
+                    if(type == 1) {
+                        document.location.href = '../library/'+filename;
+                    }
+                    else {
+                        window.open(link, '_blank');
+                    }
                 }
                 else if(action === 'download') {
                     document.location.href = '../share/download_manager.php'+filename;
@@ -461,4 +468,8 @@ var show_sign_menu = function (event, elem, right_offset) {
             fade(elem, 'in', 500, 1);
         }, 10);
     }
+};
+
+var do_nothing = function () {
+    return false;
 };

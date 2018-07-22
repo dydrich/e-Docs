@@ -58,7 +58,7 @@
 			$mime = MimeType::getMimeContentType($_SESSION['__config__']['document_root']."/".$row['file']);
 			if (!isset($_GET['view']) || $_GET['view'] == 'cards') {
 				?>
-                <div class="file-card mdc-elevation--z2" id="item<?php echo $row['doc_id'] ?>" data-id="<?php echo $row['doc_id'] ?>">
+                <div class="file-card mdc-elevation--z2" id="item<?php echo $row['doc_id'] ?>" data-id="<?php echo $row['doc_id'] ?>" data-type="<?php echo $row['document_type'] ?>">
                     <section class="file-subject normal">
 						<p style="margin: auto"><?php echo $row['sub'] ?></p>
                     </section>
@@ -139,6 +139,7 @@
 <?php include_once "../share/footer.php" ?>
 <script>
     var selected_doc = 0;
+    var doc_type = 0;
 
     (function() {
         var heightMain = document.getElementById('main').clientHeight;
@@ -192,10 +193,7 @@
             clear_context_menu(ev, 'doc_context_menu');
             getFileName(selected_doc, 'open_in_browser');
         });
-        document.getElementById('down_doc').addEventListener('click', function (ev) {
-            clear_context_menu(ev, 'doc_context_menu');
-            document.location.href = '../share/download_manager.php?did='+selected_doc;
-        });
+        document.getElementById('down_doc').addEventListener('click', download_item);
         document.getElementById('remove_doc').addEventListener('click', function (ev) {
             j_alert("confirm", "Eliminare il documento?");
             document.getElementById('okbutton').addEventListener('click', function (event) {
@@ -222,6 +220,7 @@
                 }
                 event.currentTarget.classList.add('selected_doc');
                 selected_doc = event.currentTarget.getAttribute("data-id");
+                doc_type = event.currentTarget.getAttribute("data-type");
             });
             ends[i].addEventListener('contextmenu', function (event) {
                 event.preventDefault();
@@ -231,24 +230,45 @@
                 }
                 event.currentTarget.classList.add('selected_doc');
                 current_target_id = event.currentTarget.getAttribute("data-id");
-                //clear_context_menu(event);
-                show_context_menu(event, null, 200, 'doc_context_menu');
                 selected_doc = event.currentTarget.getAttribute("data-id");
+                doc_type = event.currentTarget.getAttribute("data-type");
+                if (doc_type === '2') {
+                    document.getElementById('down_doc').classList.add('disabled_menu_item');
+                    document.getElementById('down_doc').removeEventListener('click', download_item);
+                    document.getElementById('down_doc').addEventListener('click', do_nothing);
+                }
+                else {
+                    document.getElementById('down_doc').classList.remove('disabled_menu_item');
+                    document.getElementById('down_doc').removeEventListener('click', do_nothing);
+                    document.getElementById('down_doc').addEventListener('click', download_item);
+                }
+                show_context_menu(event, null, 200, 'doc_context_menu');
                 clear_context_menu(event, 'field_order');
             });
             ends[i].addEventListener('dblclick', function (event) {
                 event.preventDefault();
                 event.stopImmediatePropagation();
                 selected_doc = event.currentTarget.getAttribute("data-id");
+                doc_type = event.currentTarget.getAttribute("data-type");
                 open_in_browser();
             });
         }
 
         var open_in_browser = function () {
-            document.location.href = 'doc.php?did='+selected_doc+'&back=documents.php';
+            if (doc_type === 1) {
+                document.location.href = 'doc.php?did='+selected_doc+'&back=documents.php';
+            }
+            else {
+                document.location.href = '';
+            }
         };
 
     })();
+
+    var download_item = function (ev) {
+        clear_context_menu(ev, 'doc_context_menu');
+        document.location.href = '../share/download_manager.php?did='+selected_doc;
+    };
 
     var remove_item = function (ev) {
         fade('confirm', 'out', .1, 0);

@@ -1169,3 +1169,10 @@ iframe {
 .mdc-select {
     height: 30px!important;
 }
+
+/* menu
+ */
+.disabled_menu_item i,  .disabled_menu_item span{
+    color: #9E9E9E!important;
+    font-style: italic!important;
+}
