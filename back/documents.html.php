@@ -64,7 +64,7 @@
                     </section>
                     <section class="file-ext">
                         <div>
-                            <i class="material-icons" style="font-size: 7rem; opacity: 25%"><?php echo $row['icon'] ?></i>
+                            <i class="material-icons" style="font-size: 7rem; opacity: 25%"><?php if($row['document_type'] == 1) echo $row['icon']; else echo 'public' ?></i>
                         </div>
                     </section>
                     <section class="file-title normal">
@@ -193,6 +193,10 @@
             clear_context_menu(ev, 'doc_context_menu');
             getFileName(selected_doc, 'open_in_browser');
         });
+        document.getElementById('det_doc').addEventListener('click', function (ev) {
+            clear_context_menu(ev, 'doc_context_menu');
+            document.location.href = 'doc_info.php?did='+selected_doc+'&back=documents.php';
+        });
         document.getElementById('down_doc').addEventListener('click', download_item);
         document.getElementById('remove_doc').addEventListener('click', function (ev) {
             j_alert("confirm", "Eliminare il documento?");
@@ -255,11 +259,11 @@
         }
 
         var open_in_browser = function () {
-            if (doc_type === 1) {
+            if (doc_type === '1') {
                 document.location.href = 'doc.php?did='+selected_doc+'&back=documents.php';
             }
             else {
-                document.location.href = '';
+                document.location.href = 'doc.php?did='+selected_doc+'&back=documents.php';
             }
         };
 
