@@ -123,3 +123,7 @@ div.menu {
 html, body {
     font-size: 18px;
 }
+
+.info_back_card {
+    width: 90%;
+}

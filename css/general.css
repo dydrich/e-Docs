@@ -1176,3 +1176,7 @@ iframe {
     color: #9E9E9E!important;
     font-style: italic!important;
 }
+
+.info_back_card {
+    padding: 10px 50px 10px 10px;
+}
