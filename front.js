@@ -3,6 +3,7 @@ mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
 
 var selected_doc = 0;
 var selected_list = 'highlight';
+var doc_type = 0;
 
 document.addEventListener("DOMContentLoaded", function () {
     if (is_mobile) {
@@ -66,16 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
         clear_context_menu(ev, 'doc_context_menu');
         getFileName(selected_doc, 'open_in_browser');
     });
-    document.getElementById('down_doc').addEventListener('click', function (ev) {
-        clear_context_menu(ev, 'doc_context_menu');
-        if (selected_list === 'highlight') {
-            document.getElementById('item'+selected_doc).classList.remove('selected_doc');
-        }
-        else {
-            document.getElementById('sbitem'+selected_doc).classList.remove('selected_doc');
-        }
-        document.location.href = 'share/download_manager.php?register=1&did='+selected_doc;
-    });
+    document.getElementById('down_doc').addEventListener('click', download_item);
     var ends = document.querySelectorAll('.file-card');
     for (i = 0; i < ends.length; i++) {
         ends[i].addEventListener('click', function (event) {
@@ -108,7 +100,17 @@ document.addEventListener("DOMContentLoaded", function () {
             event.currentTarget.classList.add('selected_doc');
             current_target_id = event.currentTarget.getAttribute("data-id");
             current_target_list = event.currentTarget.getAttribute("data-list");
-            //clear_context_menu(event);
+            doc_type = event.currentTarget.getAttribute("data-type");
+            if (doc_type === '2') {
+                document.getElementById('down_doc').classList.add('disabled_menu_item');
+                document.getElementById('down_doc').removeEventListener('click', download_item);
+                document.getElementById('down_doc').addEventListener('click', do_nothing);
+            }
+            else {
+                document.getElementById('down_doc').classList.remove('disabled_menu_item');
+                document.getElementById('down_doc').removeEventListener('click', do_nothing);
+                document.getElementById('down_doc').addEventListener('click', download_item);
+            }
             show_context_menu(event, null, 0, 'doc_context_menu');
             selected_doc = event.currentTarget.getAttribute("data-id");
             selected_list = current_target_list;
@@ -138,6 +140,17 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+var download_item = function (ev) {
+    clear_context_menu(ev, 'doc_context_menu');
+    if (selected_list === 'highlight') {
+        document.getElementById('item'+selected_doc).classList.remove('selected_doc');
+    }
+    else {
+        document.getElementById('sbitem'+selected_doc).classList.remove('selected_doc');
+    }
+    document.location.href = 'share/download_manager.php?register=1&did='+selected_doc;
+};
 
 var submit_login = function (ev) {
     ev.preventDefault();

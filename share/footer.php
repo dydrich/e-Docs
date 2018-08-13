@@ -113,7 +113,7 @@
     <div class="item" style="border-top: 1px solid rgba(0, 0, 0, .10)">
         <a href="#" id="show_doc">
             <i class="material-icons">open_in_browser</i>
-            <span>Apri</span>
+            <span>Visualizza</span>
         </a>
     </div>
     <div class="item">

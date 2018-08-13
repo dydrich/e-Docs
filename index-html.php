@@ -80,7 +80,7 @@
                 <?php
                 while ($row = $res_docs->fetch_assoc()) {
 					?>
-                    <div class="file-card" id="item<?php echo $row['doc_id'] ?>" data-id="<?php echo $row['doc_id'] ?>" data-list="highlight">
+                    <div class="file-card" id="item<?php echo $row['doc_id'] ?>" data-id="<?php echo $row['doc_id'] ?>" data-list="highlight" data-type="<?php echo $row['document_type'] ?>">
                         <section class="file-subject normal">
                             <p style="margin: auto"><?php echo $row['sub'] ?></p>
                         </section>
