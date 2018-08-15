@@ -376,11 +376,10 @@ var show_error = function(error) {
 };
 
 var getFileName;
-getFileName = function (fileID, action) {
+getFileName = function (fileID, action, path) {
     var xhr = new XMLHttpRequest();
     var formData = new FormData();
-
-    xhr.open('post', '../share/get_file_name.php');
+    xhr.open('post', path+'share/get_file_name.php');
 
     formData.append('doc_id', fileID);
     xhr.responseType = 'json';
@@ -388,21 +387,23 @@ getFileName = function (fileID, action) {
     xhr.onreadystatechange = function () {
         var DONE = 4; // readyState 4 means the request is done.
         var OK = 200; // status 200 is a successful return.
+        console.log(xhr);
         if (xhr.readyState === DONE) {
             if (xhr.status === OK) {
                 filename = xhr.response.file;
                 type = xhr.response.type;
                 link = xhr.response.res_link;
+
                 if(action === 'open_in_browser') {
-                    if(type == 1) {
-                        document.location.href = '../library/'+filename;
+                    if(type === '1') {
+                        document.location.href = path+'library/'+filename;
                     }
                     else {
                         window.open(link, '_blank');
                     }
                 }
                 else if(action === 'download') {
-                    document.location.href = '../share/download_manager.php'+filename;
+                    document.location.href = path+'share/download_manager.php'+filename;
                 }
             }
         } else {

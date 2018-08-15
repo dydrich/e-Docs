@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     document.getElementById('show_doc').addEventListener('click', function (ev) {
         clear_context_menu(ev, 'doc_context_menu');
-        getFileName(selected_doc, 'open_in_browser');
+        getFileName(selected_doc, 'open_in_browser', '');
     });
     document.getElementById('down_doc').addEventListener('click', download_item);
     var ends = document.querySelectorAll('.file-card');
@@ -116,10 +116,6 @@ document.addEventListener("DOMContentLoaded", function () {
             selected_list = current_target_list;
         });
     }
-
-    var open_in_browser = function () {
-        //document.location.href = 'doc.php?did='+selected_doc+'&back=documents.php';
-    };
 
     var collapsables = document.querySelectorAll('.collapsable');
     for (i = 0; i < collapsables.length; i++) {

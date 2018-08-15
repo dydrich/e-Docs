@@ -191,7 +191,7 @@
         });
         document.getElementById('show_doc').addEventListener('click', function (ev) {
             clear_context_menu(ev, 'doc_context_menu');
-            getFileName(selected_doc, 'open_in_browser');
+            getFileName(selected_doc, 'open_in_browser', '../');
         });
         document.getElementById('det_doc').addEventListener('click', function (ev) {
             clear_context_menu(ev, 'doc_context_menu');

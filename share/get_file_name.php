@@ -7,8 +7,6 @@
  */
 require_once "../lib/start.php";
 
-check_session();
-
 header("Content-type: application/json");
 $response = array("status" => "ok", "message" => "");
 $doc_id = $_REQUEST['doc_id'];
