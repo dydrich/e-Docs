@@ -79,7 +79,6 @@ $sel_categorie = "SELECT * FROM rb_categories ORDER BY name";
 try {
 	$res_docs = $db->executeQuery($sql);
 	$res_categorie = $db->executeQuery($sel_categorie);
-
 } catch (\edocs\MySQLException $ex) {
 
 }

@@ -33,7 +33,7 @@
 	</div>
 	<div id="left_col">
 		<div id="container" style="width: 90%; margin: auto; padding: 2%; display: flex; align-items: center; flex-wrap: wrap">
-			<?php echo $info->getHTMLInfos() ?>
+			<?php echo $info->getHTMLStats() ?>
 		</div>
 	</div>
 	<p class="spacer"></p>

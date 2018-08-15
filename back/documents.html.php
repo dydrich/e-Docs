@@ -197,6 +197,10 @@
             clear_context_menu(ev, 'doc_context_menu');
             document.location.href = 'doc_info.php?did='+selected_doc+'&back=documents.php';
         });
+        document.getElementById('stat_doc').addEventListener('click', function (ev) {
+            clear_context_menu(ev, 'doc_context_menu');
+            document.location.href = 'doc_stats.php?did='+selected_doc+'&back=documents.php';
+        });
         document.getElementById('down_doc').addEventListener('click', download_item);
         document.getElementById('remove_doc').addEventListener('click', function (ev) {
             j_alert("confirm", "Eliminare il documento?");
@@ -352,6 +356,14 @@ while($cat = $res_categorie->fetch_assoc()) {
             <i class="material-icons">recent_actors</i>
             <span>Data di modifica</span>
         </a>
+    </div>
+</div>
+<div id="stats" style="display: none" class="mdc-elevation--z4">
+    <div class="item">
+
+    </div>
+    <div class="item">
+
     </div>
 </div>
 </body>
