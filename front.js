@@ -68,6 +68,14 @@ document.addEventListener("DOMContentLoaded", function () {
         getFileName(selected_doc, 'open_in_browser', '');
     });
     document.getElementById('down_doc').addEventListener('click', download_item);
+    document.getElementById('det_doc').addEventListener('click', function (ev) {
+        clear_context_menu(ev, 'doc_context_menu');
+        document.location.href = 'document_info.php?did='+selected_doc+'&req=info&back=index.php';
+    });
+    document.getElementById('stat_doc').addEventListener('click', function (ev) {
+        clear_context_menu(ev, 'doc_context_menu');
+        document.location.href = 'document_info.php?did='+selected_doc+'&req=stats&back=index.php';
+    });
     var ends = document.querySelectorAll('.file-card');
     for (i = 0; i < ends.length; i++) {
         ends[i].addEventListener('click', function (event) {

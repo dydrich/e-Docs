@@ -75,7 +75,9 @@ class DocumentInfo
                     <span style=\"font-size: 2rem\">".$row["title"]."</span>
 				</div>
 				<div style=\"display: block; color: rgba(0, 0, 0, .55); margin-top: 5px\">".$row['abstract']."</div>
-                <div style=\"margin-top: 15px\">Tipo di file: ";
+                <div style=\"margin-top: 25px\">
+                	<i class='material-icons normal' style='margin-right: 20px; position: relative; top: 7px'>description</i>
+                	Tipo di file: ";
 		if($row['document_type'] == 1){
 			$html .= $data['mime']['tipo'];
 		}
@@ -83,7 +85,9 @@ class DocumentInfo
 			$html .= "link esterno";
 		}
 		$html .= "</div>
-					<div>Nome: ";
+					<div>
+						<i class='material-icons normal' style='margin-right: 20px; position: relative; top: 7px'>info</i>
+						Nome: ";
 		if($row['document_type'] == 1){
 			$html .= $row['document_name'];
 		}
@@ -91,7 +95,9 @@ class DocumentInfo
 			$html .= "ND";
 		}
 		$html .= "</div>
-					<div class=\"accent_decoration\">Dimensioni: ";
+					<div>
+						<i class='material-icons normal' style='margin-right: 20px; position: relative; top: 7px'>poll</i>
+						Dimensioni: ";
 		if($row['document_type'] == 1){
 			$html .= human_filesize($data['fs'], 0);
 		}
@@ -99,12 +105,24 @@ class DocumentInfo
 			$html .= "ND";
 		}
 		$html .= "</div>
-					<div style=\"margin-top: 15px\">Online dal ".format_date(substr($row['upload_date'], 0, 10), SQL_DATE_STYLE, IT_DATE_STYLE, "/")." ".substr($row['last_modified_time'], 10, 6)."</div>
-					<div>Ultima modifica: ".format_date(substr($row['last_modified_time'], 0, 10), SQL_DATE_STYLE, IT_DATE_STYLE, "/")." ".substr($row['last_modified_time'], 10, 6)."</div>
-					<div class=\"accent_decoration\">Caricato da: ". $row['author'] ."</div>
-					<div style=\"margin-top: 15px\">Tipo di risorsa: ". $row['cat']."</div>
-					<div>Disciplina: ". $row['sub'] ."</div>
-					<div>Livello scolare: ". $school ."</div>
+					<div style=\"margin-top: 25px\">
+						<i class='material-icons normal' style='margin-right: 20px; position: relative; top: 7px'>cloud_upload</i>
+						Online dal ".format_date(substr($row['upload_date'], 0, 10), SQL_DATE_STYLE, IT_DATE_STYLE, "/")." ".substr($row['last_modified_time'], 10, 6)."</div>
+					<div>
+						<i class='material-icons normal' style='margin-right: 20px; position: relative; top: 7px'>edit</i>
+						Ultima modifica: ".format_date(substr($row['last_modified_time'], 0, 10), SQL_DATE_STYLE, IT_DATE_STYLE, "/")." ".substr($row['last_modified_time'], 10, 6)."</div>
+					<div>
+						<i class='material-icons normal' style='margin-right: 20px; position: relative; top: 7px'>person</i>
+						Caricato da: ". $row['author'] ."</div>
+					<div style=\"margin-top: 25px\">
+						<i class='material-icons normal' style='margin-right: 20px; position: relative; top: 7px'>personal_video</i>
+						Tipo di risorsa: ". $row['cat']."</div>
+					<div>
+						<i class='material-icons normal' style='margin-right: 20px; position: relative; top: 7px'>local_library</i>
+						Disciplina: ". $row['sub'] ."</div>
+					<div>
+						<i class='material-icons normal' style='margin-right: 20px; position: relative; top: 7px'>school</i>
+						Livello scolare: ". $school ."</div>
 					</div>";
 		return $html;
 
@@ -126,10 +144,16 @@ class DocumentInfo
 					<span style=\"font-size: 2rem\">". $row['title'] ."</span>
 				</div>
 				<div style=\"display: block; color: rgba(0, 0, 0, .55); margin-top: 5px\">". $row['abstract'] ."</div>
-				<div style=\"margin-top: 15px\">Online dal ".format_date(substr($row['upload_date'], 0, 10), SQL_DATE_STYLE, IT_DATE_STYLE, '/')." ".substr($row['last_modified_time'], 10, 6) ."</div>
-				<div style=\"margin-top: 15px\" class=\"accent_decoration\">Dati complessivi</div>
-				<div style=\"\">Download: ".$row['download_counter'] ."</div>
-				<div style=\"\">Media voto: ";
+				<div style=\"margin-top: 15px\">
+					<i class='material-icons normal' style='margin-right: 20px; position: relative; top: 7px'>cloud_upload</i>
+					Online dal ".format_date(substr($row['upload_date'], 0, 10), SQL_DATE_STYLE, IT_DATE_STYLE, '/')." ".substr($row['last_modified_time'], 10, 6) ."</div>
+				<div style=\"margin-top: 25px\" class=\"accent_decoration _bold\">Dati complessivi</div>
+				<div style=\"\">
+					<i class='material-icons normal' style='margin-right: 20px; position: relative; top: 7px'>cloud_download</i>
+					Download: ".$row['download_counter'] ."</div>
+				<div style=\"\">
+					<i class='material-icons normal' style='margin-right: 20px; position: relative; top: 7px'>star</i>
+					Media voto: ";
 		if($data['avg'] > 0){
 			$html .= $data['avg']." (".$data['grades_count']." voti)";
 		}
@@ -137,9 +161,13 @@ class DocumentInfo
 			$html .= "ND";
 		}
 		$html .= "</div>
-				<div style=\"margin-top: 15px\" class=\"accent_decoration\">Dati ultimo mese</div>
-				<div style=\"\">Download: ". $data['last_month_dwn'] ."</div>
-				<div style=\"\">Media voto: ";
+				<div style=\"margin-top: 25px\" class=\"accent_decoration _bold\" style='font-size: 1.1em'>Dati ultimo mese</div>
+				<div style=\"\">
+					<i class='material-icons normal' style='margin-right: 20px; position: relative; top: 7px'>assignment_returned</i>
+					Download: ". $data['last_month_dwn'] ."</div>
+				<div style=\"\">
+					<i class='material-icons normal' style='margin-right: 20px; position: relative; top: 7px'>star_half</i>
+					Media voto: ";
 		if($data['last_month_avg'] > 0){
 			$html .= $data['last_month_avg']." (".$data['last_month_grades_count']." voti)";
 		}

@@ -80,6 +80,10 @@ html, body {
     border-top: 1px solid rgba(0, 0, 0, .08);
 }
 
+#navigation a {
+    color: var(--main-900);
+}
+
 #main {
     display: flex;
     background-color: #FFFFFF;
@@ -291,4 +295,16 @@ a {
 
 .selected_doc span, .selected_doc section, .selected_doc h1, .selected_doc section.file-subject p, .selected_doc .file-ext i {
     color: white!important;
+}
+
+.accent_decoration {
+    border-bottom: 1px solid var(--mdc-theme-secondary) !important;
+}
+
+.accent_color {
+    color: var(--accent-color);
+}
+
+.accent_color a {
+    color: var(--accent-color) !important;
 }
