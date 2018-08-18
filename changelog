@@ -1,3 +1,93 @@
+0.8.2
+revisione grafica DocumentInfo
+
+0.8.1-89
+resi dinamici anche in front la versione del software e il nome
+
+0.8.1-88
+menu Apri area pubblica
+bug fix per getFileName: inserimento del path come parametro
+
+0.8
+classe DocumentInfo per info e statistiche documento
+
+0.7.7-86
+pagina statistiche area privata
+
+0.7.7
+pagina Info area privata
+
+0.7.6-84
+gestione risorse esterne area back
+issue #71
+issue #72
+
+0.7.6-83
+controllo visualizzazione spacer in menu
+
+0.7.6-82
+menu 100%
+normal_ext per dimensioni superiori a 1024
+
+0.7.6-81
+bug fix database.lib
+
+0.7.6-80
+pulizia codice no_file
+
+0.7.6
+gestione drawer mobile
+revisione layout e media access
+
+0.7.5
+signup
+
+0.7.4-77
+sfondo bianco aree protette
+
+0.7.4
+responsive layout front page
+
+0.7.3-75
+area back:
+ritocchi grafici
+bug fix
+impostazione gestione risorse esterne
+
+0.7.3-74
+bug fix
+
+0.7.3
+gestione signin e signup da tutte le pagine pubbliche
+
+0.7.2-72
+bug fix
+
+0.7.2-71
+bug fixes
+
+0.7.2
+revisione grafica home page
+pagina riepilogo canali
+pagina canale
+
+0.7.1-69
+modifica per restituire il corretto nome del file in download in Document
+
+0.7.1-68
+gestione registrazione download, per evitare errati conteggi
+
+0.7.1-67
+rinominate le materie in Aree disciplinari, per includere settori (come la valutazione) non compresi dalle materie
+
+0.7.1-66
+bug fix per errata gestione tag in doc.php (issue #60)
+
+0.7.1-65
+nuova gestione login
+nuova richiesta password
+inizio nuova home front
+
 0.7
 issue #49
 
