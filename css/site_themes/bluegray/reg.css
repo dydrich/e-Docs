@@ -2,6 +2,14 @@ html {
     height: 100%
 }
 
+:root {
+    --mdc-theme-primary: #455A64 !important;
+    --mdc-theme-secondary: #FF9100 !important;
+    --accent-color: #FF9100 !important;
+    --main-500: #607D8B;
+    --main-700: #455A64;
+}
+
 body {
     background: rgb(236, 239, 241);
     background: -moz-linear-gradient(90deg, rgb(236, 239, 241) 30%, rgb(176, 190, 197) 60%);
@@ -11,15 +19,6 @@ body {
     background: linear-gradient(180deg, rgb(236, 239, 241) 30%, rgb(176, 190, 197) 60%);
     background-attachment: fixed;
     background-repeat: no-repeat;
-}
-
-form {
-    border: 1px solid rgba(30, 67, 137, .9);
-}
-
-input, select, textarea {
-    background-color: #eceff1;
-    border: 1px solid #455A64;
 }
 
 #header {
@@ -44,28 +43,24 @@ input, select, textarea {
     padding: 0;
 }
 
-#main a {
-    color: #1E4389;
-}
-
 #right_col a {
     color: #222222;
 }
 
 #navigation {
-    color: #DDDDDD;
-    background-color: #607D8B;
+    color: #FFFFFF;
+    background-color: var(--main-500);
 }
 
 #navigation a {
-    color: #DDDDDD;
+    color: white;
 }
 
 .nav_div {
     color: #FFFFFF;
 }
 
-.card a {
+.card a, .card_title a {
     color: #FF9100 !important;
 }
 
@@ -99,12 +94,7 @@ div.mdselected_tab a > span {
     color: #FFFFFF !important;
 }
 
-.outline_line_wrapper {
-    border: 1px solid #FF9100;
-    color: #000000;
-}
-
-.rb_button {
+.rb_button, .mdc-fab, #newuser {
     background-color: #FF9100;
 }
 
@@ -117,8 +107,7 @@ div.mdselected_tab a > span {
 }
 
 .accent_button a, a.material_link, .material_label {
-    color: #607D8B !important;
-    font-weight: 400;
+    color: var(--accent-color) !important;
 }
 
 .accent_color {
@@ -131,14 +120,6 @@ div.mdselected_tab a > span {
 
 .accent_decoration {
     border-bottom: 1px solid #FF9100 !important;
-}
-
-.title_row{
-    border-bottom: 1px solid #FF9100 !important;
-}
-
-p#menu_label, .pop_label {
-    border-bottom: 1px solid #FF9100;
 }
 
 #ticker li, #tr_ticker li {
@@ -212,10 +193,6 @@ input.android:focus, select.android:focus, textarea.android:focus {
     color: #222222;
 }
 
-.popup_form {
-    border: 1px solid rgba(96, 125, 139, .6);
-}
-
 .float_button {
     background-color: #455A64 !important;
     color: #ffffff;
@@ -226,8 +203,30 @@ input.android:focus, select.android:focus, textarea.android:focus {
     color: #000000;
 }
 
-#gotoday, #newweek {
-    border-color: #FF9100;
-    background-color: #455A64;
+.selected_tag, .selected_element {
+    background-color: var(--mdc-theme-primary);
+    color: white!important;
+}
+
+.selected_tag span, .selected_element span {
     color: white;
+}
+
+.selected_doc {
+    background-color: var(--mdc-theme-primary);
+    color: white!important;
+}
+
+.selected_doc span, .selected_doc section, .selected_doc h1, .selected_doc section.file-subject p, .selected_doc .file-ext i {
+    color: white!important;
+}
+
+.form_input {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, .76)!important;
+    font-size: 1rem;
+}
+
+select.form_input {
+    border-radius: 4px;
 }

@@ -2,6 +2,14 @@ html {
     height: 100%
 }
 
+:root {
+    --mdc-theme-primary: #7b1fa2 !important;
+    --mdc-theme-secondary: #ffd740 !important;
+    --accent-color: #ffd740 !important;
+    --main-500: #9c27b0;
+    --main-700: #7b1fa2;
+}
+
 body {
     background: rgb(224, 224, 224);
     background: -moz-linear-gradient(90deg, rgb(224, 224, 224) 30%, rgb(189, 189, 189) 69%);
@@ -13,17 +21,8 @@ body {
     background-repeat: no-repeat;
 }
 
-form {
-    border: 1px solid rgba(30, 67, 137, .9);
-}
-
-input, select, textarea {
-    background-color: rgba(243, 229, 245, .5);
-    border: 1px solid rgba(30, 67, 137, .6);
-}
-
 #header {
-    background-color: #7b1fa2;
+    background-color: var(--main-700);
 }
 
 #header a {
@@ -40,34 +39,29 @@ input, select, textarea {
     color: rgb(255, 255, 255);
 }
 
+#sc_secondrow a {
+    font-size: 1.0em;
+}
+
 #main {
     padding: 0;
 }
 
-#main a {
-    color: #1E4389;
-}
-
 #right_col a {
-    color: #222222;
-    text-decoration: none;
+    color: rgba(0, 0, 0, .87);
 }
 
 #navigation {
-    color: #DDDDDD;
-    background-color: #9c27b0;
+    color: #FFFFFF;
+    background-color: var(--main-500);
 }
 
 #navigation a {
-    color: #DDDDDD;
+    color: white;
 }
 
 .nav_div {
     color: white;
-}
-
-div.navigate a {
-    color: #003366;
 }
 
 .card a {
@@ -82,6 +76,15 @@ div.card_title {
     color: #9c27b0;
 }
 
+div.navigate {
+    border: 1px solid rgba(215, 215, 215, 1);
+    background-color: rgba(243, 251, 254,.6);
+}
+
+div.navigate a {
+    color: #003366;
+}
+
 fieldset {
     border: 1px solid #7b1fa2;
 }
@@ -89,6 +92,10 @@ fieldset {
 div.mdtabs {
     background-color: #9c27b0;
     top: -20px;
+}
+
+div.mdtab a > span {
+    color: #EEEEEE;
 }
 
 div.mdselected_tab {
@@ -100,13 +107,8 @@ div.mdselected_tab a > span {
     color: #FFFFFF !important;
 }
 
-.outline_line_wrapper {
-    color: #000000;
-    border: 1px solid #ffd740;
-}
-
-.rb_button {
-    background-color: #ffd740;
+.rb_button, .mdc-fab, #newuser {
+    background-color: var(--mdc-theme-secondary);
 }
 
 .rb_bg {
@@ -118,11 +120,11 @@ div.mdselected_tab a > span {
 }
 
 .accent_button a, a.material_link, .material_label {
-    color: #9c27b0 !important;
+    color: var(--accent-color) !important;
 }
 
 .accent_decoration {
-    border-bottom: 1px solid #ffd740 !important;
+    border-bottom: 1px solid var(--mdc-theme-secondary) !important;
 }
 
 .hover_row:hover {
@@ -132,15 +134,16 @@ div.mdselected_tab a > span {
 }
 
 .accent_color {
-    color: #ffd740;
+    color: var(--accent-color);
 }
 
 .accent_color a {
-    color: #ffd740 !important;
+    color: var(--accent-color) !important;
 }
 
 #ticker li, #tr_ticker li {
-    border-bottom:1px solid #ffd740;;
+	color:#fff;
+    border-bottom:1px solid #ffd740;
     background-color: white;
 }
 
@@ -160,10 +163,12 @@ div.mdselected_tab a > span {
 
 .text_card {
     color: #7B1FA2 !important;
+	font-weight: 600;
 }
 
 .text_card a {
     color: #7B1FA2 !important;
+	font-weight: 600;
 }
 
 input.android:focus, select.android:focus, textarea.android:focus {
@@ -198,10 +203,6 @@ input.android:focus, select.android:focus, textarea.android:focus {
     font-size: 1em
 }
 
-.confirmbuttons {
-    border-top: 1px solid #ffd740;
-}
-
 .material_dark_bg {
     background-color: #4a148c;
 }
@@ -209,10 +210,6 @@ input.android:focus, select.android:focus, textarea.android:focus {
 .material_light_bg {
     background-color: #b39ddb;
     color: #222222;
-}
-
-.popup_form {
-    border: 1px solid rgba(156, 39, 176, .6);
 }
 
 .float_button {
@@ -225,9 +222,30 @@ input.android:focus, select.android:focus, textarea.android:focus {
     color: #000000;
 }
 
-#gotoday, #newweek {
-    background-color: #7b1fa2;
-    border-color: #7b1fa2;
+.selected_tag, .selected_element {
+    background-color: var(--mdc-theme-primary);
+    color: white!important;
+}
+
+.selected_tag span, .selected_element span {
     color: white;
-    font-weight: bold;
+}
+
+.selected_doc {
+    background-color: var(--mdc-theme-primary);
+    color: white!important;
+}
+
+.selected_doc span, .selected_doc section, .selected_doc h1, .selected_doc section.file-subject p, .selected_doc .file-ext i {
+    color: white!important;
+}
+
+.form_input {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, .76)!important;
+    font-size: 1rem;
+}
+
+select.form_input {
+    border-radius: 4px;
 }

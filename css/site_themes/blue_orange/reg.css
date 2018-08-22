@@ -2,6 +2,14 @@ html {
     height: 100%
 }
 
+:root {
+    --mdc-theme-primary: #01579B !important;
+    --mdc-theme-secondary: #FF9800 !important;
+    --accent-color: #FF9800 !important;
+    --main-500: #ff9800;
+    --main-700: #F57C00;
+}
+
 body {
     background: rgb(225, 245, 254);
     background: -moz-linear-gradient(90deg, rgb(225, 245, 254) 30%, rgb(128, 216, 255) 70%);
@@ -13,29 +21,12 @@ body {
     background-repeat: no-repeat;
 }
 
-form {
-    border: 1px solid rgba(30, 67, 137, .9);
-}
-
-input, select, textarea {
-    background-color: #FFF3E0;
-    border: 1px solid rgba(30, 67, 137, .6);
-}
-
 #header {
     background-color: #F57C00;
 }
 
 #header a {
     color: #FFFFFF;
-}
-
-.main500 {
-    color: #ff9800;
-}
-
-.main700 {
-    color: #F57C00;
 }
 
 #sc_firstrow {
@@ -52,29 +43,28 @@ input, select, textarea {
    padding: 0;
 }
 
-#main a {
-    color: #1E4389;
-}
-
 #right_col a {
     color: #222222;
-    text-decoration: none;
 }
 
 #navigation {
-    color: #DDDDDD;
-    background-color: #ff9800;
+    color: #FFFFFF;
+    background-color: var(--main-500);
 }
 
 #navigation a {
-    color: #DDDDDD;
+    color: white;
 }
 
 .nav_div {
-    color: black;
+    color: white;
 }
 
 .card a {
+    color: #F57C00 !important;
+}
+
+.card_title a {
     color: #F57C00 !important;
 }
 
@@ -90,28 +80,13 @@ fieldset {
     border: 1px solid #F57C00;
 }
 
-.context_menu, #hid, #tipinota, .tooltip, #d_tp {
-    background-color: #FFF7E9;
-    padding: 10px;
-    border: 1px solid rgba(30, 67, 137, .2);
-    border-radius: 2px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    color: #222222;
-    z-index: 100;
-    position: absolute;
-}
-.context_menu a, #pop a, #hid a, #tipinota a, #d_tp a {
-    text-decoration: none;
-    color: #1E4389;
-}
-
-.contextmenu_title {
-    color: #F57C00;
-}
-
 div.mdtabs {
     background-color: #ff9800;
     top: -20px;
+}
+
+div.mdtab a > span {
+    color: #EEEEEE;
 }
 
 div.mdselected_tab {
@@ -123,13 +98,8 @@ div.mdselected_tab a > span {
     color: #000000 !important;
 }
 
-.outline_line_wrapper {
-   color: #000000;
-    border: 1px solid #4d73ff;
-}
-
-.rb_button {
-    background-color: #40c4ff;
+.rb_button, .mdc-fab, #newuser {
+    background-color: var(--mdc-theme-secondary);
 }
 
 .rb_bg {
@@ -141,7 +111,11 @@ div.mdselected_tab a > span {
 }
 
 .accent_button a, a.material_link, .material_label {
-    color: #F57C00 !important;
+    color: var(--accent-color) !important;
+}
+
+.accent_decoration {
+    border-bottom: 1px solid #FF9800 !important;
 }
 
 .accent_color {
@@ -152,15 +126,12 @@ div.mdselected_tab a > span {
     color: #FF9800 !important;
 }
 
-.accent_decoration {
-    border-bottom: 1px solid #FF9800 !important;
-}
-
 #ticker li, #tr_ticker li {
     color:#fff;
     border-bottom:1px solid #FF9800;;
     background-color: white;
 }
+
 #ticker li a, #tr_ticker li a {
     color: #1E4389 !important;
 }
@@ -177,10 +148,12 @@ div.mdselected_tab a > span {
 
 .text_card {
     color: #F57C00 !important;
+font-weight: 600;
 }
 
 .text_card a {
     color: #F57C00 !important;
+	font-weight: 600;
 }
 
 input.android:focus, select.android:focus, textarea.android:focus {
@@ -224,10 +197,6 @@ input.android:focus, select.android:focus, textarea.android:focus {
     color: #222222;
 }
 
-.popup_form {
-    border: 1px solid rgba(255, 152, 0, .6);
-}
-
 .float_button {
     background-color: #F57C00 !important;
     color: #ffffff;
@@ -238,9 +207,32 @@ input.android:focus, select.android:focus, textarea.android:focus {
     color: #000000;
 }
 
-#gotoday, #newweek {
-    background-color: #FF9800;
-    border: 1px solid #FF9800;
-    color: #000000;
-    border-radius: 2px;
+.selected_tag, .selected_element {
+    background-color: var(--mdc-theme-primary);
+    color: white!important;
 }
+
+.selected_tag span, .selected_element span {
+    color: white;
+}
+
+.selected_doc {
+    background-color: var(--mdc-theme-primary);
+    color: white!important;
+}
+
+.selected_doc span, .selected_doc section, .selected_doc h1, .selected_doc section.file-subject p, .selected_doc .file-ext i {
+    color: white!important;
+}
+
+.form_input {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, .76)!important;
+    font-size: 1rem;
+}
+
+select.form_input {
+    border-radius: 4px;
+}
+
+

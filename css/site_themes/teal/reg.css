@@ -2,6 +2,14 @@ html {
     height: 100%
 }
 
+:root {
+    --mdc-theme-primary: #01579B !important;
+    --mdc-theme-secondary: #18FFFF !important;
+    --accent-color: #18FFFF !important;
+    --main-500: #009688;
+    --main-700: #00796B;
+}
+
 body {
     background: rgb(224, 247, 250);
     background: -moz-linear-gradient(90deg, rgb(224, 247, 250) 30%, rgb(178, 235, 242) 90%);
@@ -13,17 +21,8 @@ body {
     background-repeat: no-repeat;
 }
 
-form {
-    border: 1px solid rgba(30, 67, 137, .9);
-}
-
-input, select, textarea {
-    background-color: rgba(224, 242, 241, .5);
-    border: 1px solid rgba(30, 67, 137, .6);
-}
-
 #header {
-    background-color: #00796B;
+    background-color: var(--main-700);
 }
 
 #header a {
@@ -40,25 +39,25 @@ input, select, textarea {
     color: rgb(255, 255, 255);
 }
 
+#sc_secondrow a {
+    font-size: 1.0em;
+}
+
 #main {
     padding: 0;
 }
 
-#main a {
-    color: #1E4389;
-}
-
 #right_col a {
-    color: #222222;
+    color: rgba(0, 0, 0, .87);
 }
 
 #navigation {
-    color: #DDDDDD;
-    background-color: #009688;
+    color: #FFFFFF;
+    background-color: var(--main-500);
 }
 
 #navigation a {
-    color: #DDDDDD;
+    color: white;
 }
 
 .nav_div {
@@ -79,6 +78,7 @@ div.card_title {
 
 div.navigate {
     background-color: #FFFFFF;
+
 }
 
 div.navigate a {
@@ -87,21 +87,6 @@ div.navigate a {
 
 fieldset {
     border: 1px solid #00796B;
-}
-
-.context_menu, #hid, #tipinota, .tooltip, #d_tp {
-    background-color: #F2FAF9;
-    padding: 10px;
-    border: 1px solid rgba(30, 67, 137, .2);
-    border-radius: 2px;
-    box-shadow: 0 0 5px #666;
-    color: #222222;
-    z-index: 100;
-    position: absolute;
-}
-.context_menu a, #pop a, #hid a, #tipinota a, #d_tp a {
-    text-decoration: none;
-    color: rgba(30, 67, 137, 1);
 }
 
 div.mdtabs {
@@ -122,14 +107,8 @@ div.mdselected_tab a > span {
     color: #000000 !important;
 }
 
-.outline_line_wrapper {
-    top: -20px;
-    color: #000000;
-    border: 1px solid #009688;
-}
-
-.rb_button {
-    background-color: #18FFFF;
+.rb_button, .mdc-fab, #newuser {
+    background-color: var(--mdc-theme-secondary);
 }
 
 .rb_bg {
@@ -141,11 +120,11 @@ div.mdselected_tab a > span {
 }
 
 .accent_button a, a.material_link, .material_label {
-    color: #009688 !important;
+    color: var(--accent-color) !important;
 }
 
 .accent_decoration {
-    border-bottom: 1px solid #00b8d4 !important;
+    border-bottom: 1px solid var(--mdc-theme-secondary) !important;
 }
 
 .hover_row:hover {
@@ -155,18 +134,15 @@ div.mdselected_tab a > span {
 }
 
 .accent_color {
-    color: #009688;
+    color: var(--accent-color);
 }
 
 .accent_color a {
-    color: #009688 !important;
-}
-
-p#menu_label, .pop_label {
-    border-bottom: 1px solid #00796B;
+    color: var(--accent-color) !important;
 }
 
 #ticker li, #tr_ticker li {
+	color:#fff;
     border-bottom:1px solid #009688;;
     background-color: white;
 }
@@ -207,10 +183,6 @@ input.android:focus, select.android:focus, textarea.android:focus {
     color: #009688 !important;
 }
 
-.main_300 {
-    color: #4db6ac;
-}
-
 .alert_msg, .error_msg, .confirm_msg {
     background-color: #FFFFFF;
     border: 1px solid #00796B;
@@ -240,10 +212,6 @@ input.android:focus, select.android:focus, textarea.android:focus {
     color: #222222;
 }
 
-.popup_form {
-    border: 1px solid rgba(0, 150, 136, .6);
-}
-
 .float_button {
     background-color: #00796B !important;
     color: #ffffff;
@@ -254,9 +222,30 @@ input.android:focus, select.android:focus, textarea.android:focus {
     color: #000000;
 }
 
-#gotoday, #newweek {
-    background-color: #00796B;
-    border-color: #00796B;
+.selected_tag, .selected_element {
+    background-color: var(--mdc-theme-primary);
+    color: white!important;
+}
+
+.selected_tag span, .selected_element span {
     color: white;
-    font-weight: bold;
+}
+
+.selected_doc {
+    background-color: var(--mdc-theme-primary);
+    color: white!important;
+}
+
+.selected_doc span, .selected_doc section, .selected_doc h1, .selected_doc section.file-subject p, .selected_doc .file-ext i {
+    color: white!important;
+}
+
+.form_input {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, .76)!important;
+    font-size: 1rem;
+}
+
+select.form_input {
+    border-radius: 4px;
 }
