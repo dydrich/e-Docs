@@ -772,6 +772,19 @@ div.menu_link i {
     color: white;
 }
 
+.channels_card_light {
+    background-color: #3f51b5;
+}
+
+.channels_card_dark {
+    background-color: #303f9f;
+    color: white;
+}
+
+.channels_card_dark a {
+    color: white;
+}
+
 .dashboard_longcard {
     border-radius: 2px;
     border: 1px solid #e65100;

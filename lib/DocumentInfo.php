@@ -37,9 +37,9 @@ class DocumentInfo
 		  		  FROM rb_documents, rb_users, rb_categories, rb_subjects 
 		  		  WHERE doc_id = ".$this->document." AND owner = uid AND category = cid AND subject = sid";
 		$this->data['row'] = $this->datascource->executeQuery($sel_f);
-		$this->data['ext'] = pathinfo($_SESSION['__config__']['document_root']."/".$this->data['row'][0]['file'], PATHINFO_EXTENSION);
-		$this->data['fs'] = filesize($_SESSION['__config__']['document_root']."/".$this->data['row'][0]['file']);
-		$this->data['mime'] = \MimeType::getMimeContentType($_SESSION['__config__']['document_root']."/".$this->data['row'][0]['file']);
+		$this->data['ext'] = pathinfo($_SESSION['__config__']['document_root']."/".$this->data['row']['file'], PATHINFO_EXTENSION);
+		$this->data['fs'] = filesize($_SESSION['__config__']['document_root']."/".$this->data['row']['file']);
+		$this->data['mime'] = \MimeType::getMimeContentType($_SESSION['__config__']['document_root']."/".$this->data['row']['file']);
 		$this->data['avg'] = $this->datascource->executeCount("SELECT COALESCE(ROUND(AVG(grade), 2), 0) AS avg FROM rb_doc_grades WHERE did = $this->document");
 		$this->data['grades_count'] = $this->datascource->executeCount("SELECT COUNT(grade) AS grades_count FROM rb_doc_grades WHERE did = $this->document");
 		$this->data['last_month_avg'] = $this->datascource->executeCount("SELECT COALESCE(ROUND(AVG(grade), 2), 0) AS last_avg FROM rb_doc_grades WHERE did = $this->document AND grade_time > DATE_SUB(NOW(), INTERVAL + 1 MONTH)");
@@ -55,7 +55,7 @@ class DocumentInfo
 		$cls = ['', 'classe prima', 'classe seconda', 'classe terza', 'classe quarta', 'classe quinta', 'classe prima', 'classe seconda', 'classe terza'];
 		$school = 'Tutti';
 		$data = $this->data;
-		$row = $data['row'][0];
+		$row = $data['row'];
 		if ($row['school'] != '') {
 			$school = strtolower($this->datascource->executeCount('SELECT name FROM rb_schools WHERE sid = '.$row['school']));
 			if ($row['school_grade'] != '') {
@@ -130,7 +130,7 @@ class DocumentInfo
 
 	public function getHTMLStats() {
 		$data = $this->data;
-		$row = $data['row'][0];
+		$row = $data['row'];
 		$html = "<div class=\"info_back_card mdc-elevation--z5\">
 				<div style=\"flex: 3; display: flex; align-items: center; \" class=\"bottom_decoration\">
 					<i class=\"material-icons accent_color\" style=\"margin-right: 20px; font-size: 4rem\">";

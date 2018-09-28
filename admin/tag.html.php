@@ -18,6 +18,7 @@
 			width: 90%;
 			margin-left: auto;
 			margin-right: auto;
+            margin-top: 20px
 		}
 
 		.mdc-select {

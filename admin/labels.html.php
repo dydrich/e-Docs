@@ -81,6 +81,25 @@
 						</div>
 					</div>
 				</div>
+                <div class="dashboard_card channels_card_light mdc-elevation--z3 mdc-elevation-transition" style="order: 5">
+                    <div class="dashboard_card_body">
+                        <div class="dashboard_body_left">
+                            <span style="font-size: 2em;"><?php echo $channels_count ?></span>
+                            <br /> Canali
+                        </div>
+                        <div class="dashboard_body_right">
+                            <i class="material-icons" style="color: #7986cb; font-size: 3.5em">cast_connected</i>
+                        </div>
+                    </div>
+                    <div class="dashboard_card_row channels_card_dark">
+                        <div>
+                            <a href="channels.php">
+                                <span>Gestisci</span>
+                                <i class="material-icons">forward</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</div>

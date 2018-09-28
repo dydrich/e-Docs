@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>Gestione etichette</title>
+	<title>Gestione canali</title>
 	<link rel="stylesheet" href="../css/general.css" type="text/css" media="screen,projection" />
 	<link rel="stylesheet" media="screen and (min-width: 2000px)" href="../css/layouts/larger.css">
 	<link rel="stylesheet" media="screen and (max-width: 1999px) and (min-width: 1300px)" href="../css/layouts/wide.css">
@@ -17,6 +17,7 @@
 		.app-fab--absolute.app-fab--absolute {
 			position: fixed;
 			/*right: 39rem;*/
+			background-color: #FF528D;
 		}
 	</style>
 </head>
@@ -29,16 +30,16 @@
 	</div>
 	<div id="left_col">
 		<div style="width: 90%; margin: auto;">
-			<div class="mdc-list mdc-list" style="display: flex; flex-wrap: wrap; justify-content: left; margin: auto">
+			<div class="mdc-list" style="display: flex; flex-wrap: wrap; justify-content: left; margin: auto">
 				<?php
-				while ($row = $res_tags->fetch_assoc()) {
+				while ($row = $res_channels->fetch_assoc()) {
 					?>
-					<a href="tag.php?tid=<?php echo $row['tid'] ?>&back=tags.php" data-id="<?php echo $row['tid'] ?>" id="item<?php echo $row['tid'] ?>"  class="mdc-list-item mdc-elevation--z3 tag">
+					<a href="channel.php?cid=<?php echo $row['idc'] ?>&back=channels.php" data-id="<?php echo $row['idc'] ?>" id="item<?php echo $row['idc'] ?>" class="mdc-list-item mdc-elevation--z3" data-mdc-auto-init="MDCRipple">
 						<span class="mdc-list-item__start-detail _bold" role="presentation">
-							<i class="material-icons">label</i>
+							<i class="material-icons <?php if($row['level'] > 1) echo 'normal' ?>">cast_connected</i>
 						</span>
 						<span class="mdc-list-item__text">
-						  <?php echo truncateString($row['name'], 22) ?>
+						  <?php echo $row['name'] ?>
 						</span>
 						<span class="mdc-list-item__end-detail material-icons accent_color" style="display: none; font-size: 1rem; position: relative; right: -7px; top: -7px">
                             delete
@@ -50,7 +51,7 @@
 			</div>
 		</div>
 	</div>
-	<button id="newtag" class="mdc-fab material-icons app-fab--absolute" aria-label="Nuova etichetta">
+	<button id="newchannel" class="mdc-fab material-icons rb_button app-fab--absolute" aria-label="Nuovo canale">
         <span class="mdc-fab__icon">
             create
         </span>
@@ -64,7 +65,7 @@
         var heightMain = document.getElementById('main').clientHeight;
         var heightScreen = document.body.clientHeight;
         var usedHeight = heightMain > heightScreen ? heightScreen : heightMain;
-        var btn = document.getElementById('newtag');
+        var btn = document.getElementById('newchannel');
         btn.style.top = (usedHeight)+"px";
         //btn.style.top = '700px';
 
@@ -75,7 +76,7 @@
         btn.style.right = (right_offset - 18)+"px";
 
         btn.addEventListener('click', function () {
-            window.location = 'tag.php?tid=0&back=tags.php';
+            window.location = 'channel.php?cid=0&back=channels.php';
         });
 
         document.getElementById('left_col').addEventListener('contextmenu', function (ev) {
@@ -98,12 +99,14 @@
         var ends = document.querySelectorAll('.mdc-list-item');
         for (i = 0; i < ends.length; i++) {
             document.getElementById('open_item').addEventListener('click', function (ev) {
-                open_in_browser();
+                open_in_browser(ev);
             });
             document.getElementById('remove_item').addEventListener('click', function (ev) {
-                j_alert("confirm", "Eliminare la tag?");
+                j_alert("confirm", "Eliminare il canale?");
                 document.getElementById('okbutton').addEventListener('click', function (event) {
                     event.preventDefault();
+                    fade('overlay', 'out', .1, 0);
+                    fade('confirm', 'out', .3, 0);
                     remove_item(ev);
                 });
                 document.getElementById('nobutton').addEventListener('click', function (event) {
@@ -142,20 +145,20 @@
             });
         }
 
-        var open_in_browser = function () {
-            document.location.href = 'tag.php?tid='+selected_tag+'&back=tags.php';
+        var open_in_browser = function (ev) {
+            document.location.href = 'channel.php?cid='+selected_tag+'&back=channels.php';
         };
+
     });
 
     var remove_item = function (ev) {
-        fade('confirm', 'out', .1, 0);
         var xhr = new XMLHttpRequest();
         var formData = new FormData();
 
-        xhr.open('post', 'tag_manager.php');
+        xhr.open('post', 'channel_manager.php');
         var action = <?php echo ACTION_DELETE ?>;
 
-        formData.append('tid', selected_tag);
+        formData.append('cid', selected_tag);
         formData.append('action', action);
         xhr.responseType = 'json';
         xhr.send(formData);

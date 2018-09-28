@@ -2,27 +2,32 @@
 /**
  * Created by PhpStorm.
  * User: riccardo
- * Date: 22/10/17
- * Time: 11.24
+ * Date: 10/09/18
+ * Time: 17.08
  */
 require_once "../lib/start.php";
-require_once "../lib/Subject.php";
+require_once "../lib/Channel.php";
+
+ini_set('display_errors', 1);
 
 check_session();
+check_role(\edocs\User::$ADMIN);
 
-if (!isset($_POST['action'])) {
-	echo "NOT ISSET";
-}
-
-$name = null;
-$parent = 0;
+$name = $description = null;
 if($_POST['action'] != ACTION_DELETE){
-	if (isset($_POST['sub'])) {
-		$name = $db->real_escape_string(trim($_POST['sub']));
+	$name = $db->real_escape_string(trim($_POST['name']));
+	$description = $db->real_escape_string(trim($_POST['desc']));
+	$system = $_POST['system'];
+	$school = $_POST['school'];
+	$grade = $_POST['grade'];
+	$subject = $_POST['subject'];
+	$owner = $_SESSION['__user__']->getUid();
+	$subchannel_of = null;
+	if (isset($_POST['subchannel-of'])) {
+		$subchannel_of = $_POST['subchannel-of'];
 	}
-	$parent = $_POST['parent'];
 }
-$sid = $_POST['sid'];
+$cid = $_POST['cid'];
 
 header("Content-type: application/json");
 $response = array("status" => "ok", "message" => "Operazione completata");
@@ -31,8 +36,11 @@ switch($_POST['action']){
 	case ACTION_INSERT:
 		try{
 			$begin = $db->executeUpdate("BEGIN");
-			$subject = new \edocs\Subject(0, $name, $parent, new MySQLDataLoader($db));
-			$subject->insert();
+			$channel = new \edocs\Channel(0, $name, $description, $system, $school, $grade, $subject, $_SESSION['__user__'], new MySQLDataLoader($db), null);
+			$channel->insert();
+			if ($subchannel_of != null) {
+				$channel->setParents($subchannel_of);
+			}
 			$commit = $db->executeUpdate("COMMIT");
 		} catch (\edocs\MySQLException $ex){
 			$db->executeUpdate("ROLLBACK");
@@ -43,13 +51,13 @@ switch($_POST['action']){
 			echo json_encode($response);
 			exit;
 		}
-		$msg = "Disciplina inserita";
+		$msg = "Canale inserito";
 		break;
 	case ACTION_DELETE:
 		try{
 			$begin = $db->executeUpdate("BEGIN");
-			$subject = new \edocs\Subject($sid, '', null, new MySQLDataLoader($db));
-			$subject->delete();
+			$channel = new \edocs\Channel($cid, null, null, null, null, null, null, $_SESSION['__user__'], new MySQLDataLoader($db), null);
+			$channel->delete();
 			$commit = $db->executeUpdate("COMMIT");
 		} catch (\edocs\MySQLException $ex){
 			$db->executeUpdate("ROLLBACK");
@@ -60,23 +68,26 @@ switch($_POST['action']){
 			echo json_encode($response);
 			exit;
 		}
-		$msg = "Disciplina cancellata";
+		$msg = "Canale cancellato";
 		break;
 	case ACTION_UPDATE:
 		try{
 			$begin = $db->executeUpdate("BEGIN");
-			$subject = new \edocs\Subject($sid, $name, $parent, new MySQLDataLoader($db));
-			$subject->update();
+			$channel = new \edocs\Channel($cid, $name, $description, null, $school, $grade, $subject, $_SESSION['__user__'], new MySQLDataLoader($db), null);
+			$channel->update();
+			if ($subchannel_of != null) {
+				$channel->setParents($subchannel_of);
+			}
 			$commit = $db->executeUpdate("COMMIT");
 		} catch (\edocs\MySQLException $ex){
 			$response['status'] = "kosql";
-			$response['message'] = "Operazione non completata a causa di un errore";
 			$response['dbg_message'] = $ex->getMessage();
 			$response['query'] = $ex->getQuery();
+			$response['message'] = "Operazione non completata a causa di un errore SQL. Errore: ".$response['dbg_message'] = $ex->getMessage()."===".$response['query'] = $ex->getQuery();
 			echo json_encode($response);
 			exit;
 		}
-		$msg = "Disciplina aggiornata";
+		$msg = "Canale aggiornato";
 		break;
 }
 

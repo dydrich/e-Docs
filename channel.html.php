@@ -78,28 +78,49 @@
 			</div>
 			<div style="display: flex; padding-left: 40px; margin-top: 20px">
 				<?php
-				while ($row = $res_docs->fetch_assoc()) {
+				foreach ($docs as $doc) {
 					?>
-					<div class="file-card mdc-elevation--z2" id="item<?php echo $row['doc_id'] ?>" data-id="<?php echo $row['doc_id'] ?>" data-list="highlight">
+					<div class="file-card mdc-elevation--z2" id="item<?php echo $doc['doc_id'] ?>" data-id="<?php echo $doc['doc_id'] ?>" data-list="highlight">
 						<section class="file-subject normal">
-							<p style="margin: auto"><?php echo $row['cat'] ?></p>
+							<p style="margin: auto"><?php echo $doc['category'] ?></p>
 						</section>
 						<section class="file-ext">
 							<div>
-								<i class="material-icons" style="font-size: 7rem; color: #4FC3F7"><?php echo $row['icon'] ?></i>
+								<i class="material-icons" style="font-size: 7rem; color: #4FC3F7"><?php echo $doc['icon'] ?></i>
 							</div>
 						</section>
 						<section class="file-title normal">
-							<h1 class=""><?php echo truncateString($row['title'], 25) ?></h1>
-							<!--<h2 class="mdc-card__subtitle"><?php echo $row['sub'] ?></h2>-->
+							<h1 class=""><?php echo truncateString($doc['name'], 25) ?></h1>
+							<h2 class="mdc-card__subtitle"><?php echo $doc['field'] ?></h2>
 						</section>
 					</div>
 					<?php
 				}
 				?>
 			</div>
-
 			<p class="spacer"></p>
+            <div class="main_front_label">
+                <p>
+                    <i class="material-icons">cast_connected</i>
+                    <span>Canali di <?php echo $channel->getName() ?></span>
+                </p>
+            </div>
+            <div class="mdc-list" style="display: flex; flex-wrap: wrap; justify-content: left; margin: auto">
+				<?php
+				foreach ($subchannels as $sub) {
+					?>
+                    <a href="channel.php?cid=<?php echo $sub->getId() ?>" data-id="<?php echo $sub->getId() ?>" id="item<?php echo $sub->getId() ?>" class="mdc-list-item mdc-elevation--z3" data-mdc-auto-init="MDCRipple">
+						<span class="mdc-list-item__start-detail _bold" role="presentation">
+							<i class="material-icons normal">cast_connected</i>
+						</span>
+                        <span class="mdc-list-item__text">
+						  <?php echo $sub->getName() ?>
+						</span>
+                    </a>
+					<?php
+				}
+				?>
+            </div>
 			<p class="spacer"></p>
 		</div>
 	</section>

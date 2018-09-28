@@ -48,12 +48,23 @@ class MySQLDataLoader extends DBDataLoader{
 		}
 		$records = array();
 		$f_count = $rows->field_count;
+		$r_count = $rows->num_rows;
 		while($r = $rows->fetch_array()){
-			if ($f_count == 1) {
-				$records[] = $r[0];
+			if ($r_count == 1) {
+				if ($f_count == 1) {
+					$records[] = $r[0];
+				}
+				else {
+					$records = $r;
+				}
 			}
 			else {
-				$records[] = $r;
+				if ($f_count == 1) {
+					$records[] = $r[0];
+				}
+				else {
+					$records[] = $r;
+				}
 			}
 		}
 		return $records;

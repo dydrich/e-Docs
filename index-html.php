@@ -35,10 +35,10 @@
                 </div>
                 <div id="channels" style="display: none">
                 <?php
-                while ($sub = $res_subjects->fetch_assoc()) {
+                while ($sub = $res_channels->fetch_assoc()) {
                     ?>
                     <div class="front_item sub_item">
-                        <a href="channel.php?cid=<?php echo $sub['sid'] ?>"><?php echo $sub['name'] ?></a></div>
+                        <a href="channel.php?cid=<?php echo $sub['idc'] ?>"><?php echo $sub['name'] ?></a></div>
                 <?php
                 }
                 ?>

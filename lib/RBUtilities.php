@@ -37,7 +37,7 @@ final class RBUtilities{
 	public function loadUserFromUid($uid){
 			$sel_user = "SELECT firstname, lastname, username, accesses_count, role, active FROM rb_users WHERE rb_users.uid = {$uid} ";
 				$ut = $this->datasource->executeQuery($sel_user);
-				$utente = $ut[0];
+				$utente = $ut;
 
 				$user = new \edocs\User($uid, $utente['firstname'], $utente['lastname'], $utente['username'], null, $utente['role'], $this->datasource);
 				$user->setActive($utente['active']);
